@@ -4,5 +4,122 @@
     <meta charset="UTF-8" />
     <title>Obligatorio-P1</title>
   </head>
-  <body></body>
+  <body>
+    
+    <!-- Registro -->
+    <section class="registro">
+      <h2>Registro de usuario</h2>
+
+      <label for="txtNombre">Ingrese su nombre: </label>
+      <input type="text" id="txtNombre"><br><br>
+
+      <label for="txtApellido">Ingrese su apellido</label>
+      <input type="text" id="txtApellido"><br><br>
+
+      <label for="txtUsuario">Ingrese su nombre de usuario: </label>
+      <input type="text" id="txtUsuario"><br><br>
+
+      <label for="txtTarjeta">Número de tarjeta de crédito (formato WWWW-XXXX-YYYY-ZZZZ): </label>
+      <input type="text" id="txtTarjeta"><br><br>
+
+      <label for="txtCvc">CVC (3 dígitos): </label>
+      <input type="text" id="txtCvc"><br><br>
+
+      <input type="button" value="Registrarse" id="btnRegistro">
+    </section>  
+    
+    <!-- Iniciar sesión -->
+    <section class="iniciarSesion">
+      <h2>Iniciar sesión</h2>
+
+      <label for="txtUsuarioI">Nombre de usuario: </label>
+      <input type="text" id="txtUsuarioI"><br><br>
+
+      <label for="txtContra">Contraseña: </label>
+      <input type="text" id="txtContra"><br><br>
+
+      <input type="button" value="Iniciar sesión" id="btnSesion">
+    </section>
+
+    <!-- Reservar destinos -->
+    <section class="reservarDestinos">
+      <h2>Reservar destinos</h2>
+
+      <label for="txtCantPersonas">Ingrese la cantidad de personas:</label>
+      <input type="text" id="txtCantPersonas"><br><br>
+
+      <label for="slcDestino">Seleccione un destino: </label>
+      <select id="slcDestino">
+        <option value="">Destino...</option>
+        <option value="">Londres</option>
+        <option value="">París</option>
+        <option value="">Venecia</option>
+        <option value="">Viena</option>
+      </select><br><br>
+
+      <label for="slcPago">Seleccione método de pago: </label>
+      <select id="slcPago">
+        <option value="">Seleccione una opción...</option>
+        <option value="">Tarjeta</option>
+        <option value="">Millas</option>
+      </select><br><br>
+
+      <input type="button" value="Reservar" id="btnReservar">
+    </section>
+
+    <!-- Agregar destinos -->
+    <section class="agregarDestinos">
+      <h2>Agregar destinos</h2>
+
+      <label for="txtNombreDestino">Nombre del destino: </label>
+      <input type="text" id="txtNombreDestino"><br><br>
+
+      <label for="txtPrecio">Precio por persona: </label>
+      <input type="text" id="txtPrecio"><br><br>
+
+      <label for="txtDesc">Descripción: </label>
+      <input type="text" id="txtDesc"><br><br>
+
+      <label for="txtImagen">Imagen (URL): </label>
+      <input type="text" id="txtImagen"><br><br>
+
+      <label for="txtCupos">Cupos disponibles: </label>
+      <input type="text" id="txtCupos"><br><br>
+
+      <input type="button" value="Crear destino" id="btnCrear">
+    </section>
+
+    <!-- Administrar destinos -->
+     <section class="administrarDestino">
+      <h2>Administrar destinos</h2>
+      <table border="1" style="border-collapse: collapse;">
+        <thead>
+          <th>Londres</th>
+          <th>París</th>
+          <th>Venecia</th>
+          <th>Viena</th>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Stock <input type="button" value="-"> 1 <input type="button" value="+"></td>
+            <td>Stock <input type="button" value="-"> 1 <input type="button" value="+"></td>
+            <td>Stock <input type="button" value="-"> 1 <input type="button" value="+"></td>
+            <td>Stock <input type="button" value="-"> 1 <input type="button" value="+"></td>
+          </tr>
+          <tr>
+            <td><input type="button" value="Pausar"> o <input type="button" value="Activar"></td>
+            <td><input type="button" value="Pausar"> o <input type="button" value="Activar"></td>
+            <td><input type="button" value="Pausar"> o <input type="button" value="Activar"></td>
+            <td><input type="button" value="Pausar"> o <input type="button" value="Activar"></td>
+          </tr>
+          <tr>
+            <td>Poner en oferta: <input type="button" value="Oferta"></td>
+            <td>Poner en oferta: <input type="button" value="Oferta"></td>
+            <td>Poner en oferta: <input type="button" value="Oferta"></td>
+            <td>Poner en oferta: <input type="button" value="Oferta"></td>
+          </tr>
+        </tbody>
+      </table>
+     </section>
+  </body>
 </html>
