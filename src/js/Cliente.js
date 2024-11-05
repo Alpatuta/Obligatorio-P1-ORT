@@ -7,6 +7,6 @@ class Cliente {
         this.contrasenia = _contrasenia;
         this.tarjetaCredito = _tarjetaCredito;
         this.cvc = _cvc;
-        this.saldoInicial = _saldoInicial;
+        this.saldo = _saldo;
     }
 }

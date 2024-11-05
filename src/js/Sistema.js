@@ -1,3 +1,5 @@
+// Todo lo que tiene que ver con métodos de las instancias de clases.
+
 class Sistema {
     constructor () {
         this.cliente = [
@@ -10,5 +12,9 @@ class Sistema {
         ];
     }
 
-    // Todo lo que tiene que ver con métodos de las instancias de clases.
+
+    registrarCliente (pNombre, pApellido, pUsuario, pTarjeta, pCvc){
+        this.cliente.push(new Cliente(pNombre, pApellido, pUsuario, pTarjeta, pCvc));
+    }
+
 }
