@@ -7,7 +7,7 @@
   <body>
     
     <!-- Registro -->
-    <section class="registro">
+    <section id="sRegistro">
       <h2>Registro de usuario</h2>
 
       <label for="txtNombre">Ingrese su nombre: </label>
@@ -39,10 +39,12 @@
       <input type="text" id="txtContra"><br><br>
 
       <input type="button" value="Iniciar sesión" id="btnSesion">
+
+      <p id="pIniciarSesion"></p>
     </section>
 
     <!-- Reservar destinos -->
-    <section class="reservarDestinos">
+    <section id="sReservarDestinos">
       <h2>Reservar destinos</h2>
 
       <label for="txtCantPersonas">Ingrese la cantidad de personas:</label>
@@ -68,7 +70,7 @@
     </section>
 
     <!-- Agregar destinos -->
-    <section class="agregarDestinos">
+    <section id="sAgregarDestinos">
       <h2>Agregar destinos</h2>
 
       <label for="txtNombreDestino">Nombre del destino: </label>
@@ -90,7 +92,7 @@
     </section>
 
     <!-- Administrar destinos -->
-     <section class="administrarDestino">
+     <section id="sAdministrarDestino">
       <h2>Administrar destinos</h2>
       <table border="1" style="border-collapse: collapse;">
         <thead>
@@ -122,7 +124,7 @@
       </table>
      </section>
 
-     <section class="explorar-destinos">
+     <section id="sExplorar-destinos">
       <h2>Explorar destinos</h2>
       <table border="1" style="border-collapse: collapse;">
         <thead>
@@ -162,7 +164,7 @@
       </table>
     </section>
   
-    <section class="historial-reservas">
+    <section id="sHistorial-reservas">
       <h2>Historial de reservas</h2>
       <p>Nombre del destino:</p>
       <p>Cantidad de personas:</p>
@@ -171,12 +173,12 @@
       <input type="button" value="Cancelar reserva">
     </section>
   
-    <section class="destinos-en-oferta">
+    <section id="sDestinos-en-oferta">
       <h2>Destinos en oferta</h2>
       <!--Filtrado de explorar destinos. Destinos que cumplan condición de estar en oferta-->
     </section>
   
-    <section class="manipular-reservas">
+    <section id="sManipular-reservas">
       <h2>Manipulación de reservas</h2>
       <table border="1" style="border-collapse: collapse;">
         <thead>
@@ -224,7 +226,7 @@
       </table>
     </section>
   
-    <section class="informe-ganancias">
+    <section id="sInforme-ganancias">
       <h2>Informe de ganancias</h2>
       <table border="1" style="border-collapse: collapse;">
         <thead>
@@ -269,5 +271,13 @@
       </table>
   
     </section>
+
+    <script src="src/js/Admin.js"></script>
+    <script src="src/js/Cliente.js"></script>
+    <script src="src/js/Destino.js"></script>
+    <script src="src/js/Reserva.js"></script>
+    <script src="src/js/Sistema.js"></script>
+    <script src="src/js/codigo.js"></script>
+   
   </body>
 </html>

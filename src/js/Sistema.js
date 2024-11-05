@@ -5,7 +5,8 @@ class Sistema {
         ];
 
         this.admin = [
-            new Administrador ("VaneVic58", "741")
+            new Administrador ("VaneVic58", "741"),
+            new Administrador ("Federico", "Fede1234)")
         ];
     }
 
