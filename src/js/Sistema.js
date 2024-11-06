@@ -9,7 +9,7 @@ class Sistema {
         "Juan",
         "Moneta",
         "JMonetaSsj23",
-        "1234",
+        "Jm1234",
         4213 - 6874 - 9541 - 5511,
         159,
         1500
@@ -19,7 +19,7 @@ class Sistema {
         "Lucas",
         "Gomez",
         "LucasGomez",
-        "1234",
+        "Lg1234",
         4213 - 6872 - 4412 - 5512,
         152,
         1500
@@ -29,7 +29,7 @@ class Sistema {
         "Maria",
         "Lopez",
         "MariaLopez",
-        "1234",
+        "Ml1234",
         4213 - 1234 - 1324 - 5555,
         776,
         1500
@@ -39,7 +39,7 @@ class Sistema {
         "Ana",
         "Perez",
         "AnaPerez",
-        "1234",
+        "Ap1234",
         4213 - 1212 - 4355 - 6533,
         344,
         1500
@@ -49,7 +49,7 @@ class Sistema {
         "Pedro",
         "Gonzalez",
         "PedroGonzalez",
-        "1234",
+        "Pg1234",
         2213 - 5251 - 3537 - 6865,
         159,
         1500
