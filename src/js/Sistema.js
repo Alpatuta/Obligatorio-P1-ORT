@@ -2,6 +2,7 @@
 
 class Sistema {
   constructor() {
+    this.idCliente = 6;
     this.cliente = [
       new Cliente(
         1,
@@ -186,8 +187,9 @@ class Sistema {
 
   registrarCliente(pNombre, pApellido, pUsuario, pTarjeta, pCvc) {
     this.cliente.push(
-      new Cliente(pNombre, pApellido, pUsuario, pTarjeta, pCvc)
+      new Cliente(this.idCliente, pNombre, pApellido, pUsuario, pTarjeta, pCvc)
     );
+    this.idCliente;
   }
 
   historialReservas(

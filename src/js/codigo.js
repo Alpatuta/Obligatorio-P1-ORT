@@ -41,7 +41,7 @@ function registroUsuario() {
     let apellido = document.querySelector("#txtApellido").value;
     let nombreUsuario = document.querySelector("#txtUsuario").value;
     let contrasenia = document.querySelector("#psContrasenia").value;
-    let tarjeta = Number(document.querySelector("#txtTarjeta").value);
+    let tarjeta = document.querySelector("#txtTarjeta").value;
     let nbrCvc = document.querySelector("#txtCvc").value;
     let mensaje = "";
     let cliente = s.obtenerClienteRegistro(nombreUsuario);
@@ -57,10 +57,14 @@ function registroUsuario() {
        mensaje = "Debe completar todos los campos."
     } else if (cliente !== null || admin !== null) {
         mensaje = "El nombre de usuario ya está en uso. ";
-    } else if (nbrCvc.length !== 3 && !isNaN(nbrCvc)) {
+    } else if (nbrCvc.length !== 3 || !isNaN(nbrCvc)) {
         mensaje = "Formato de CVC incorrecto."
     } else if (validarContrasenia(contrasenia) === false){
         mensaje = "La contraseña debe tener un mínimo de 5 caracteres e incluir una mayúscula, una minúscula y un número.";
+    }else if(tarjeta.length !== 19 || !isNaN(tarjeta)){ // Falta seguir aca
+
+        s.registrarCliente(nombre, apellido, nombreUsuario, contrasenia, tarjeta, nbrCvc);
+        mensaje = "Registro exitoso!";
     }
 
 
@@ -98,6 +102,8 @@ function validarContrasenia(pContrasenia) {
     return contraValida;
 
 }
+
+//Validar tarjeta 
 
 function validarTarjeta(nro) {
     if (!nro) {
@@ -151,6 +157,8 @@ function inicioSesion() {
 
     if (cliente === null && admin === null) {
         mensaje = "El nombre de usuario y/o no es válido."
+    }else {
+        mensaje = "Bienvenido";
     }
 
     document.querySelector("#pIniciarSesion").innerHTML = mensaje;
