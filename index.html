@@ -3,69 +3,107 @@
   <head>
     <meta charset="UTF-8" />
     <title>Obligatorio-P1</title>
+    <link rel="stylesheet" href="estilos.css" />
   </head>
   <body>
+    <header id="sHeader">
+      <img
+        id="logo"
+        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBRWovuUPFEU2kx5mlt5sjfigAccmFr8Jq8w&s"
+        alt="logo"
+      />
+      <nav>
+        <ul id="navPrincipal">
+          <li><a id="aExplorarDestinos">Explorar destinos</a></li>
+          <li><a id="aReservarDestinos">Reservar destinos</a></li>
+          <li><a id="aHistorialReservas">Historial reservas</a></li>
+          <li><a id="aDestinosOferta">Destinos en oferta</a></li>
+          <li><a class="aCerrarSesion">Cerrar sesion</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <header id="sHeaderAdmin">
+      <img
+        id="logo"
+        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBRWovuUPFEU2kx5mlt5sjfigAccmFr8Jq8w&s"
+        alt="logo"
+      />
+      <nav>
+        <ul id="navPrincipal">
+          <li><a id="aAgregarDestinos">Agregar destinos</a></li>
+          <li><a id="aAdministrarDestino">Administrar Destino</a></li>
+          <li><a id="aManipularReservas">Manipular reservas</a></li>
+          <li><a id="aInformeGanancias">Informe ganancias</a></li>
+          <li><a class="aCerrarSesion">Cerrar sesion</a></li>
+        </ul>
+      </nav>
+    </header>
     <!-- Registro -->
-    <section id="sRegistro">
-      <h2>Registro de usuario</h2>
+    <main id="sRegistro">
+      <section>
+        <h2>Registro de usuario</h2>
 
-      <label for="txtNombre">Ingrese su nombre: </label>
-      <input type="text" id="txtNombre" /><br /><br />
+        <label for="txtNombre">Ingrese su nombre: </label>
+        <input type="text" id="txtNombre" /><br /><br />
 
-      <label for="txtApellido">Ingrese su apellido</label>
-      <input type="text" id="txtApellido" /><br /><br />
+        <label for="txtApellido">Ingrese su apellido</label>
+        <input type="text" id="txtApellido" /><br /><br />
 
-      <label for="txtUsuario">Ingrese su nombre de usuario: </label>
-      <input type="text" id="txtUsuario" /><br /><br />
+        <label for="txtUsuario">Ingrese su nombre de usuario: </label>
+        <input type="text" id="txtUsuario" /><br /><br />
 
-      <label for="psContrasenia">Ingrese su contraseña</label>
-      <input
-        type="password"
-        name="contrasenia"
-        id="psContrasenia"
-      /><br /><br />
+        <label for="psContrasenia">Ingrese su contraseña</label>
+        <input
+          type="password"
+          name="contrasenia"
+          id="psContrasenia"
+        /><br /><br />
 
-      <label for="txtTarjeta"
-        >Número de tarjeta de crédito (formato WWWW-XXXX-YYYY-ZZZZ):
-      </label>
-      <input type="text" id="txtTarjeta" /><br /><br />
+        <label for="txtTarjeta"
+          >Número de tarjeta de crédito (formato WWWW-XXXX-YYYY-ZZZZ):
+        </label>
+        <input type="text" id="txtTarjeta" /><br /><br />
 
-      <label for="txtCvc">CVC (3 dígitos): </label>
-      <input type="text" id="txtCvc" /><br /><br />
+        <label for="txtCvc">CVC (3 dígitos): </label>
+        <input type="text" id="txtCvc" /><br /><br />
 
-      <input type="button" value="Registrarse" id="btnRegistro" /><br /><br />
+        <input type="button" value="Registrarse" id="btnRegistro" /><br /><br />
 
-      <p>
-        O si ya tienes una cuenta
-        <a id="aIniciarSesion" style="cursor: pointer; color: blue"
-          >inicia sesion aqui</a
-        >
-      </p>
+        <p>
+          Ya tienes una cuenta?
+          <a id="aIniciarSesion" style="cursor: pointer; color: blue"
+            >Inicia sesion aqui</a
+          >
+        </p>
 
-      <p id="pRegistro"></p>
-    </section>
+        <p id="pRegistro"></p>
+      </section>
+    </main>
 
     <!-- Iniciar sesión -->
-    <section id="iniciarSesion">
-      <h2>Iniciar sesión</h2>
+    <main id="iniciarSesion">
+      <section>
+        <h2>Iniciar sesión</h2>
 
-      <label for="txtUsuarioI">Nombre de usuario: </label>
-      <input type="text" id="txtUsuarioI" /><br /><br />
+        <label for="txtUsuarioI">Nombre de usuario: </label>
+        <input type="text" id="txtUsuarioI" /><br /><br />
 
-      <label for="psContra">Contraseña: </label>
-      <input type="password" id="psContra" /><br /><br />
+        <label for="psContra">Contraseña: </label>
+        <input type="password" id="psContra" /><br /><br />
 
-      <input type="button" value="Iniciar sesión" id="btnSesion" />
+        <input type="button" value="Iniciar sesión" id="btnSesion" />
 
-      <p id="pIniciarSesion"></p>
+        <p id="pIniciarSesion"></p>
 
-      <p>
-        No tienes una cuenta?
-        <a id="aRegistro" style="cursor: pointer; color: blue"
-          >Registrate aqui</a
-        >
-      </p>
-    </section>
+        <p>
+          No tienes una cuenta?
+          <a id="aRegistro" style="cursor: pointer; color: blue"
+            >Registrate aqui</a
+          >
+        </p>
+      </section>
+    </main>
 
     <!-- Reservar destinos -->
     <section id="sReservarDestinos">

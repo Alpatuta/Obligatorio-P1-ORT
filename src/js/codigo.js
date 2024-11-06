@@ -17,6 +17,8 @@ function ocultarTodo() {
   document.querySelector("#sManipular-reservas").style.display = "none";
   document.querySelector("#sInforme-ganancias").style.display = "none";
   document.querySelector("#iniciarSesion").style.display = "none";
+  document.querySelector("#sHeader").style.display = "none";
+  document.querySelector("#sHeaderAdmin").style.display = "none";
 }
 
 ocultarTodo();
@@ -190,9 +192,21 @@ function inicioSesion() {
   let mensaje = "";
 
   if (cliente === null && admin === null) {
-    mensaje = "El nombre de usuario y/o no es válido.";
-  } else {
-    mensaje = "Bienvenido";
+    mensaje = "El nombre de usuario y/o contraseña no es válido.";
+  } else if (admin !== null) {
+    ocultarTodo();
+    mostrar("sHeaderAdmin");
+    mostrar("sAgregarDestinos");
+    mostrar("sAdministrarDestino");
+    mostrar("sManipular-reservas");
+    mostrar("sInforme-ganancias");
+  } else if (cliente !== null) {
+    ocultarTodo();
+    mostrar("sHeader");
+    mostrar("sReservarDestinos");
+    mostrar("sExplorar-destinos");
+    mostrar("sHistorial-reservas");
+    mostrar("sDestinos-en-oferta");
   }
 
   document.querySelector("#pIniciarSesion").innerHTML = mensaje;
