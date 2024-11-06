@@ -6,7 +6,7 @@ let s = new Sistema();
 
 // Ocultar todos
 
-function ocultarTodo(){
+function ocultarTodo() {
     // document.querySelector("#sRegistro").style.display = "none";
     document.querySelector("#sReservarDestinos").style.display = "none";
     document.querySelector("#sAgregarDestinos").style.display = "none";
@@ -21,13 +21,13 @@ function ocultarTodo(){
 ocultarTodo();
 
 // mostrar un id específico
-function mostrar (id) {
+function mostrar(id) {
     document.querySelector("#" + id).style.display = "block";
 }
 
 // ocultar un id específico
 
-function ocultar (id){
+function ocultar(id) {
     document.querySelector("#" + id).style.display = "none";
 }
 
@@ -36,66 +36,105 @@ function ocultar (id){
 document.querySelector("#btnRegistro").addEventListener("click", registroUsuario);
 
 
-function registroUsuario () {
+function registroUsuario() {
     let nombre = document.querySelector("#txtNombre").value;
     let apellido = document.querySelector("#txtApellido").value;
     let nombreUsuario = document.querySelector("#txtUsuario").value;
     let contrasenia = document.querySelector("#psContrasenia").value;
     let tarjeta = Number(document.querySelector("#txtTarjeta").value);
-    let nbrCvc = Number(document.querySelector("#txtCvc").value);
+    let nbrCvc = document.querySelector("#txtCvc").value;
     let mensaje = "";
-    let cliente = s.obtenerCliente(nombreUsuario, contrasenia);
+    let cliente = s.obtenerClienteRegistro(nombreUsuario);
+    let admin = s.obtenerAdminRegistro(nombreUsuario);
+    validarContrasenia(contrasenia);
 
     /*
     Validaciones:
     -tarjeta formato correcto // vemos mañana 
-    */ 
-   validarContrasenia(contrasenia);
+    */
+   
+   if (nombre === "" || apellido === "" || nombreUsuario === "" || tarjeta === "" || nbrCvc === "") {
+       mensaje = "Debe completar todos los campos."
+    } else if (cliente !== null || admin !== null) {
+        mensaje = "El nombre de usuario ya está en uso. ";
+    } else if (nbrCvc.length !== 3 && !isNaN(nbrCvc)) {
+        mensaje = "Formato de CVC incorrecto."
+    } else if (validarContrasenia(contrasenia) === false){
+        mensaje = "La contraseña debe tener un mínimo de 5 caracteres e incluir una mayúscula, una minúscula y un número.";
+    }
 
-   if(nombre === "" || apellido === "" || nombreUsuario === "" || tarjeta === "" || nbrCvc === ""){
-    mensaje = "Debe completar todos los campos."
-   }
 
-   if(nbrCvc.length !== 3 && !isNaN(nbrCvc)){
-    mensaje = "Formato de CVC incorrecto."
-   }
-
-   if(cliente !== null){
-    mensaje = "El nombre de usuario ya está en uso. ";
-   }
-
-   document.querySelector("pRegistro").innerHTML = mensaje;
+    document.querySelector("#pRegistro").innerHTML = mensaje;
 
 }
 
 
-function validarContrasenia(pContrasenia){
+function validarContrasenia(pContrasenia) {
     let contadorMayus = 0;
     let contadorMin = 0;
     let contadorNum = 0;
-    let mensaje = "";
+    let contraValida = true;
 
-    for (let i = 0; i < pContrasenia.length; i++){
+    for (let i = 0; i < pContrasenia.length; i++) {
         let contra = pContrasenia.charCodeAt(i);
 
-        if(contra >= 65 && contra <= 90){
+        if (contra >= 65 && contra <= 90) {
             contadorMayus++
         }
 
-        if(contra >= 97 && contra <= 122){
+        if (contra >= 97 && contra <= 122) {
             contadorMin++;
         }
 
-        if(contra >= 48 && contra <= 57){
+        if (contra >= 48 && contra <= 57) {
             contadorNum++;
         }
     }
 
-    if(pContrasenia.length < 5 && contadorMayus < 1 && contadorMin < 1 && contadorNum < 1){
-        mensaje = "La contraseña debe tener un mínimo de 5 caracteres e incluir una mayúscula, una minúscula y un número.";
+    if (pContrasenia.length < 5 || contadorMayus < 1 || contadorMin < 1 || contadorNum < 1) {
+        contraValida = false;
     }
 
-    document.querySelector("#pRegistro").innerHTML = mensaje;
+    return contraValida;
+
+}
+
+function validarTarjeta(nro) {
+    if (!nro) {
+
+        return false
+
+    }
+
+    let suma = 0
+
+    let duplicar = false
+
+    for (let i = nro.length - 1; i >= 0; i--) {
+
+        n = Number(nro[i])
+
+        if (duplicar) {
+
+            n = n * 2
+
+            if (n > 9) {
+
+                n = n - 9
+
+            }
+
+        }
+
+        suma = suma + n
+
+        duplicar = !duplicar
+
+    }
+
+
+
+    return (suma % 10 == 0)
 
 }
 
@@ -103,14 +142,14 @@ function validarContrasenia(pContrasenia){
 
 document.querySelector("#btnSesion").addEventListener("click", inicioSesion);
 
-function inicioSesion(){
+function inicioSesion() {
     let nombreUsuario = document.querySelector("#txtUsuarioI").value;
     let contrasenia = document.querySelector("#psContra").value;
     let cliente = s.obtenerCliente(nombreUsuario, contrasenia);
     let admin = s.obtenerAdmin(nombreUsuario, contrasenia);
     let mensaje = "";
 
-    if(cliente === null && admin === null){
+    if (cliente === null && admin === null) {
         mensaje = "El nombre de usuario y/o no es válido."
     }
 

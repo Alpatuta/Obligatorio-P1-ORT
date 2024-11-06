@@ -209,6 +209,34 @@ class Sistema {
     );
   }
 
+  //Para funcion registro
+
+  obtenerClienteRegistro (pUsuario) {
+    let objCliente = null;
+
+    for (let i = 0; i < this.cliente.length; i++) {
+      if (this.cliente[i].nUsuario === pUsuario) {
+        objCliente = this.cliente[i];
+      }
+    }
+
+    return objCliente;
+  }
+
+  obtenerAdminRegistro(pUsuario) {
+    let objAdmin = null;
+
+    for (let i = 0; i < this.admin.length; i++) {
+      if (this.admin[i].nUsuario === pUsuario) {
+        objAdmin = this.admin[i];
+      }
+    }
+
+    return objAdmin;
+  }
+
+  // Para funcion inicio de sesion
+
   obtenerCliente(pUsuario, pContrasenia) {
     let objCliente = null;
 
