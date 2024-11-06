@@ -209,11 +209,11 @@ class Sistema {
     );
   }
 
-  obtenerCliente(pUsuario) {
+  obtenerCliente(pUsuario, pContrasenia) {
     let objCliente = null;
 
     for (let i = 0; i < this.cliente.length; i++) {
-      if (this.cliente[i].nUsuario == pUsuario) {
+      if (this.cliente[i].nUsuario === pUsuario && this.cliente[i].contrasenia === pContrasenia) {
         objCliente = this.cliente[i];
       }
     }
@@ -221,11 +221,11 @@ class Sistema {
     return objCliente;
   }
 
-  obtenerAdmin(pUsuario) {
+  obtenerAdmin(pUsuario, pContrasenia) {
     let objAdmin = null;
 
     for (let i = 0; i < this.admin.length; i++) {
-      if (this.admin[i].nUsuario == pUsuario) {
+      if (this.admin[i].nUsuario === pUsuario && this.admin[i].contrasenia === pContrasenia) {
         objAdmin = this.admin[i];
       }
     }

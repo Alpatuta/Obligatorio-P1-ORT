@@ -40,18 +40,18 @@ function registroUsuario () {
     let nombre = document.querySelector("#txtNombre").value;
     let apellido = document.querySelector("#txtApellido").value;
     let nombreUsuario = document.querySelector("#txtUsuario").value;
+    let contrasenia = document.querySelector("#psContrasenia").value;
     let tarjeta = Number(document.querySelector("#txtTarjeta").value);
     let nbrCvc = Number(document.querySelector("#txtCvc").value);
     let mensaje = "";
+    let cliente = s.obtenerCliente(nombreUsuario, contrasenia);
 
     /*
     Validaciones:
-    -Campos no pueden ser vacios -- aca
-    -cvc debe ser numerico de 3 digitos. -- aca 
-    -nombre de usuario no se puede repetir - error -- sistema.js
     -tarjeta formato correcto // vemos mañana 
     */ 
-   
+   validarContrasenia(contrasenia);
+
    if(nombre === "" || apellido === "" || nombreUsuario === "" || tarjeta === "" || nbrCvc === ""){
     mensaje = "Debe completar todos los campos."
    }
@@ -60,13 +60,61 @@ function registroUsuario () {
     mensaje = "Formato de CVC incorrecto."
    }
 
+   if(cliente !== null){
+    mensaje = "El nombre de usuario ya está en uso. ";
+   }
+
    document.querySelector("pRegistro").innerHTML = mensaje;
 
 }
 
-//Contraseña: >= a 5, >= 1 mayus, >= 1 min, >= 1 numero - error
 
-function validarContrasenia(){
+function validarContrasenia(pContrasenia){
+    let contadorMayus = 0;
+    let contadorMin = 0;
+    let contadorNum = 0;
+    let mensaje = "";
+
+    for (let i = 0; i < pContrasenia.length; i++){
+        let contra = pContrasenia.charCodeAt(i);
+
+        if(contra >= 65 && contra <= 90){
+            contadorMayus++
+        }
+
+        if(contra >= 97 && contra <= 122){
+            contadorMin++;
+        }
+
+        if(contra >= 48 && contra <= 57){
+            contadorNum++;
+        }
+    }
+
+    if(pContrasenia.length < 5 && contadorMayus < 1 && contadorMin < 1 && contadorNum < 1){
+        mensaje = "La contraseña debe tener un mínimo de 5 caracteres e incluir una mayúscula, una minúscula y un número.";
+    }
+
+    document.querySelector("#pRegistro").innerHTML = mensaje;
+
+}
+
+// Función válida tanto para cliente como para admin. 
+
+document.querySelector("#btnSesion").addEventListener("click", inicioSesion);
+
+function inicioSesion(){
+    let nombreUsuario = document.querySelector("#txtUsuarioI").value;
+    let contrasenia = document.querySelector("#psContra").value;
+    let cliente = s.obtenerCliente(nombreUsuario, contrasenia);
+    let admin = s.obtenerAdmin(nombreUsuario, contrasenia);
+    let mensaje = "";
+
+    if(cliente === null && admin === null){
+        mensaje = "El nombre de usuario y/o no es válido."
+    }
+
+    document.querySelector("#pIniciarSesion").innerHTML = mensaje;
 
 }
 
