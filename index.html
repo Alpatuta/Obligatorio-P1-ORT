@@ -5,47 +5,66 @@
     <title>Obligatorio-P1</title>
   </head>
   <body>
-    
     <!-- Registro -->
     <section id="sRegistro">
       <h2>Registro de usuario</h2>
 
       <label for="txtNombre">Ingrese su nombre: </label>
-      <input type="text" id="txtNombre"><br><br>
+      <input type="text" id="txtNombre" /><br /><br />
 
       <label for="txtApellido">Ingrese su apellido</label>
-      <input type="text" id="txtApellido"><br><br>
+      <input type="text" id="txtApellido" /><br /><br />
 
       <label for="txtUsuario">Ingrese su nombre de usuario: </label>
-      <input type="text" id="txtUsuario"><br><br>
+      <input type="text" id="txtUsuario" /><br /><br />
 
       <label for="psContrasenia">Ingrese su contraseña</label>
-      <input type="password" name="contrasenia" id="psContrasenia"><br><br>
+      <input
+        type="password"
+        name="contrasenia"
+        id="psContrasenia"
+      /><br /><br />
 
-      <label for="txtTarjeta">Número de tarjeta de crédito (formato WWWW-XXXX-YYYY-ZZZZ): </label>
-      <input type="text" id="txtTarjeta"><br><br>
+      <label for="txtTarjeta"
+        >Número de tarjeta de crédito (formato WWWW-XXXX-YYYY-ZZZZ):
+      </label>
+      <input type="text" id="txtTarjeta" /><br /><br />
 
       <label for="txtCvc">CVC (3 dígitos): </label>
-      <input type="text" id="txtCvc"><br><br>
+      <input type="text" id="txtCvc" /><br /><br />
 
-      <input type="button" value="Registrarse" id="btnRegistro"><br><br>
+      <input type="button" value="Registrarse" id="btnRegistro" /><br /><br />
+
+      <p>
+        O si ya tienes una cuenta
+        <a id="aIniciarSesion" style="cursor: pointer; color: blue"
+          >inicia sesion aqui</a
+        >
+      </p>
 
       <p id="pRegistro"></p>
-    </section>  
-    
+    </section>
+
     <!-- Iniciar sesión -->
-    <section class="iniciarSesion">
+    <section id="iniciarSesion">
       <h2>Iniciar sesión</h2>
 
       <label for="txtUsuarioI">Nombre de usuario: </label>
-      <input type="text" id="txtUsuarioI"><br><br>
+      <input type="text" id="txtUsuarioI" /><br /><br />
 
       <label for="psContra">Contraseña: </label>
-      <input type="password" id="psContra"><br><br>
+      <input type="password" id="psContra" /><br /><br />
 
-      <input type="button" value="Iniciar sesión" id="btnSesion">
+      <input type="button" value="Iniciar sesión" id="btnSesion" />
 
       <p id="pIniciarSesion"></p>
+
+      <p>
+        No tienes una cuenta?
+        <a id="aRegistro" style="cursor: pointer; color: blue"
+          >Registrate aqui</a
+        >
+      </p>
     </section>
 
     <!-- Reservar destinos -->
@@ -53,7 +72,7 @@
       <h2>Reservar destinos</h2>
 
       <label for="txtCantPersonas">Ingrese la cantidad de personas:</label>
-      <input type="text" id="txtCantPersonas"><br><br>
+      <input type="text" id="txtCantPersonas" /><br /><br />
 
       <label for="slcDestino">Seleccione un destino: </label>
       <select id="slcDestino">
@@ -61,17 +80,17 @@
         <option value="">Londres</option>
         <option value="">París</option>
         <option value="">Venecia</option>
-        <option value="">Viena</option>
-      </select><br><br>
+        <option value="">Viena</option></select
+      ><br /><br />
 
       <label for="slcPago">Seleccione método de pago: </label>
       <select id="slcPago">
         <option value="">Seleccione una opción...</option>
         <option value="">Tarjeta</option>
-        <option value="">Millas</option>
-      </select><br><br>
+        <option value="">Millas</option></select
+      ><br /><br />
 
-      <input type="button" value="Reservar" id="btnReservar">
+      <input type="button" value="Reservar" id="btnReservar" />
     </section>
 
     <!-- Agregar destinos -->
@@ -79,27 +98,27 @@
       <h2>Agregar destinos</h2>
 
       <label for="txtNombreDestino">Nombre del destino: </label>
-      <input type="text" id="txtNombreDestino"><br><br>
+      <input type="text" id="txtNombreDestino" /><br /><br />
 
       <label for="txtPrecio">Precio por persona: </label>
-      <input type="text" id="txtPrecio"><br><br>
+      <input type="text" id="txtPrecio" /><br /><br />
 
       <label for="txtDesc">Descripción: </label>
-      <input type="text" id="txtDesc"><br><br>
+      <input type="text" id="txtDesc" /><br /><br />
 
       <label for="txtImagen">Imagen (URL): </label>
-      <input type="text" id="txtImagen"><br><br>
+      <input type="text" id="txtImagen" /><br /><br />
 
       <label for="txtCupos">Cupos disponibles: </label>
-      <input type="text" id="txtCupos"><br><br>
+      <input type="text" id="txtCupos" /><br /><br />
 
-      <input type="button" value="Crear destino" id="btnCrear">
+      <input type="button" value="Crear destino" id="btnCrear" />
     </section>
 
     <!-- Administrar destinos -->
-     <section id="sAdministrarDestino">
+    <section id="sAdministrarDestino">
       <h2>Administrar destinos</h2>
-      <table border="1" style="border-collapse: collapse;">
+      <table border="1" style="border-collapse: collapse">
         <thead>
           <th>Londres</th>
           <th>París</th>
@@ -108,30 +127,54 @@
         </thead>
         <tbody>
           <tr>
-            <td>Stock <input type="button" value="-"> 1 <input type="button" value="+"></td>
-            <td>Stock <input type="button" value="-"> 1 <input type="button" value="+"></td>
-            <td>Stock <input type="button" value="-"> 1 <input type="button" value="+"></td>
-            <td>Stock <input type="button" value="-"> 1 <input type="button" value="+"></td>
+            <td>
+              Stock <input type="button" value="-" /> 1
+              <input type="button" value="+" />
+            </td>
+            <td>
+              Stock <input type="button" value="-" /> 1
+              <input type="button" value="+" />
+            </td>
+            <td>
+              Stock <input type="button" value="-" /> 1
+              <input type="button" value="+" />
+            </td>
+            <td>
+              Stock <input type="button" value="-" /> 1
+              <input type="button" value="+" />
+            </td>
           </tr>
           <tr>
-            <td><input type="button" value="Pausar"> o <input type="button" value="Activar"></td>
-            <td><input type="button" value="Pausar"> o <input type="button" value="Activar"></td>
-            <td><input type="button" value="Pausar"> o <input type="button" value="Activar"></td>
-            <td><input type="button" value="Pausar"> o <input type="button" value="Activar"></td>
+            <td>
+              <input type="button" value="Pausar" /> o
+              <input type="button" value="Activar" />
+            </td>
+            <td>
+              <input type="button" value="Pausar" /> o
+              <input type="button" value="Activar" />
+            </td>
+            <td>
+              <input type="button" value="Pausar" /> o
+              <input type="button" value="Activar" />
+            </td>
+            <td>
+              <input type="button" value="Pausar" /> o
+              <input type="button" value="Activar" />
+            </td>
           </tr>
           <tr>
-            <td>Poner en oferta: <input type="button" value="Oferta"></td>
-            <td>Poner en oferta: <input type="button" value="Oferta"></td>
-            <td>Poner en oferta: <input type="button" value="Oferta"></td>
-            <td>Poner en oferta: <input type="button" value="Oferta"></td>
+            <td>Poner en oferta: <input type="button" value="Oferta" /></td>
+            <td>Poner en oferta: <input type="button" value="Oferta" /></td>
+            <td>Poner en oferta: <input type="button" value="Oferta" /></td>
+            <td>Poner en oferta: <input type="button" value="Oferta" /></td>
           </tr>
         </tbody>
       </table>
-     </section>
+    </section>
 
-     <section id="sExplorar-destinos">
+    <section id="sExplorar-destinos">
       <h2>Explorar destinos</h2>
-      <table border="1" style="border-collapse: collapse;">
+      <table border="1" style="border-collapse: collapse">
         <thead>
           <tr>
             <th>Londres</th>
@@ -142,16 +185,32 @@
         </thead>
         <tbody>
           <tr>
-            <td><img src="" alt="Imagen de Londres"></td>
-            <td><img src="" alt="Imagen de Paris"></td>
-            <td><img src="" alt="Imagen de Venecia"></td>
-            <td><img src="" alt="Imagen de Viena"></td>
+            <td><img src="" alt="Imagen de Londres" /></td>
+            <td><img src="" alt="Imagen de Paris" /></td>
+            <td><img src="" alt="Imagen de Venecia" /></td>
+            <td><img src="" alt="Imagen de Viena" /></td>
           </tr>
           <tr>
-            <td>Descripción: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima quae fugit in amet sed ratione, ex nam quos reiciendis illum ipsum.</td>
-            <td>Descripción: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima quae fugit in amet sed ratione, ex nam quos reiciendis illum ipsum.</td>
-            <td>Descripción: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima quae fugit in amet sed ratione, ex nam quos reiciendis illum ipsum.</td>
-            <td>Descripción: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima quae fugit in amet sed ratione, ex nam quos reiciendis illum ipsum.</td>
+            <td>
+              Descripción: Lorem ipsum dolor sit amet, consectetur adipisicing
+              elit. Minima quae fugit in amet sed ratione, ex nam quos
+              reiciendis illum ipsum.
+            </td>
+            <td>
+              Descripción: Lorem ipsum dolor sit amet, consectetur adipisicing
+              elit. Minima quae fugit in amet sed ratione, ex nam quos
+              reiciendis illum ipsum.
+            </td>
+            <td>
+              Descripción: Lorem ipsum dolor sit amet, consectetur adipisicing
+              elit. Minima quae fugit in amet sed ratione, ex nam quos
+              reiciendis illum ipsum.
+            </td>
+            <td>
+              Descripción: Lorem ipsum dolor sit amet, consectetur adipisicing
+              elit. Minima quae fugit in amet sed ratione, ex nam quos
+              reiciendis illum ipsum.
+            </td>
           </tr>
           <tr>
             <td>Precio por persona</td>
@@ -168,24 +227,24 @@
         </tbody>
       </table>
     </section>
-  
+
     <section id="sHistorial-reservas">
       <h2>Historial de reservas</h2>
       <p>Nombre del destino:</p>
       <p>Cantidad de personas:</p>
       <p>Monto total de la reserva:</p>
       <p>Estado de la reserva:</p>
-      <input type="button" value="Cancelar reserva">
+      <input type="button" value="Cancelar reserva" />
     </section>
-  
+
     <section id="sDestinos-en-oferta">
       <h2>Destinos en oferta</h2>
       <!--Filtrado de explorar destinos. Destinos que cumplan condición de estar en oferta-->
     </section>
-  
+
     <section id="sManipular-reservas">
       <h2>Manipulación de reservas</h2>
-      <table border="1" style="border-collapse: collapse;">
+      <table border="1" style="border-collapse: collapse">
         <thead>
           <tr>
             <th colspan="4">Reserva</th>
@@ -204,36 +263,48 @@
             <td>3</td>
             <td>$3000</td>
             <td>Londres</td>
-            <td><input type="button" value="Aprobar"> <input type="button" value="Cancelar"></td>
+            <td>
+              <input type="button" value="Aprobar" />
+              <input type="button" value="Cancelar" />
+            </td>
           </tr>
           <tr>
             <td>Lorem ipsum dolor sit.</td>
             <td>3</td>
             <td>$3000</td>
             <td>Londres</td>
-            <td><input type="button" value="Aprobar"> <input type="button" value="Cancelar"></td>
+            <td>
+              <input type="button" value="Aprobar" />
+              <input type="button" value="Cancelar" />
+            </td>
           </tr>
           <tr>
             <td>Lorem ipsum dolor sit.</td>
             <td>3</td>
             <td>$3000</td>
             <td>Londres</td>
-            <td><input type="button" value="Aprobar"> <input type="button" value="Cancelar"></td>
+            <td>
+              <input type="button" value="Aprobar" />
+              <input type="button" value="Cancelar" />
+            </td>
           </tr>
           <tr>
             <td>Lorem ipsum dolor sit.</td>
             <td>3</td>
             <td>$3000</td>
             <td>Londres</td>
-            <td><input type="button" value="Aprobar"> <input type="button" value="Cancelar"></td>
+            <td>
+              <input type="button" value="Aprobar" />
+              <input type="button" value="Cancelar" />
+            </td>
           </tr>
         </tbody>
       </table>
     </section>
-  
+
     <section id="sInforme-ganancias">
       <h2>Informe de ganancias</h2>
-      <table border="1" style="border-collapse: collapse;">
+      <table border="1" style="border-collapse: collapse">
         <thead>
           <tr>
             <th>Destino</th>
@@ -274,7 +345,6 @@
           </tr>
         </tbody>
       </table>
-  
     </section>
 
     <script src="src/js/Admin.js"></script>
@@ -283,6 +353,5 @@
     <script src="src/js/Reserva.js"></script>
     <script src="src/js/Sistema.js"></script>
     <script src="src/js/codigo.js"></script>
-   
   </body>
 </html>
