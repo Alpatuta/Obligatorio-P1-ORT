@@ -323,8 +323,7 @@ function inicioSesion() {
 }
 
 document
-  .querySelector("#btnReservar")
-  .addEventListener("click", reservarDestino);
+  .querySelector("#btnReservar").addEventListener("click", reservarDestino);
 
 function reservarDestino() {
   let destino = document.querySelector("#slcDestino").value;
@@ -343,7 +342,9 @@ function reservarDestino() {
     }
   }
 
-  // Falta obtener nombre de Cliente usando el nombre de usuario y usar metodo de pago.
+  s.reservar(destino, cantPersonas, montoTotal, estado);
+
+  
 
   console.log(destino, cantPersonas, montoTotal, estado);
 }
