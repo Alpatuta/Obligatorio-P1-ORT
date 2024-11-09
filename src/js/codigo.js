@@ -378,13 +378,6 @@ function reservarDestino() {
         estado,
         clienteLogueado.nombre
       );
-      s.historialReservas(
-        destino,
-        cantPersonas,
-        montoTotal,
-        estado,
-        clienteLogueado.nombre
-      );
       document.querySelector("#pReservar").innerHTML =
         "Reserva realizada con éxito!";
       break;

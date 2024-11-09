@@ -238,25 +238,6 @@ class Sistema {
     );
   }
 
-  //Para funcion historial de reservas
-  historialReservas(
-    pNombreDestino,
-    pCantPersonas,
-    pMonto,
-    pEstado,
-    pNombreCliente
-  ) {
-    this.reservas.push(
-      new Reservas(
-        pNombreDestino,
-        pCantPersonas,
-        pMonto,
-        pEstado,
-        pNombreCliente
-      )
-    );
-  }
-
   //Para funcion registro
 
   obtenerClienteRegistro(pUsuario) {
