@@ -212,6 +212,31 @@ function inicioSesion() {
   document.querySelector("#pIniciarSesion").innerHTML = mensaje;
 }
 
+document.querySelector("#btnReservar").addEventListener("click", reservarDestino);
+
+function reservarDestino(){
+  let destino = document.querySelector("#slcDestino").value;
+  let cantPersonas = document.querySelector("#txtCantPersonas").value;
+  let metodoPago = document.querySelector("#slcPago").value;
+  let lugar = s.destinos;
+  let montoTotal = "";
+  let estado = "";
+
+  for (let i = 0; i < lugar.length; i++){
+    let d = lugar[i];
+
+    if (d.nombre === destino){
+      montoTotal = d.precio * cantPersonas;
+      estado = d.estado;
+    }
+  }
+
+  // Falta obtener nombre de Cliente usando el nombre de usuario y usar metodo de pago. 
+
+  console.log(destino, cantPersonas, montoTotal, estado);
+
+}
+
 // Funciones relacionadas al admin
 
 // Funciones relacionadas al destino
