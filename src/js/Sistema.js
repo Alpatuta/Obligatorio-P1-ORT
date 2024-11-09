@@ -246,8 +246,7 @@ class Sistema {
     pEstado,
     pNombreCliente
   ) {
-    let historial = [];
-    historial.push(
+    this.reservas.push(
       new Reservas(
         pNombreDestino,
         pCantPersonas,

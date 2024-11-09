@@ -360,25 +360,64 @@ function reservarDestino() {
     }
   }
 
-  for (let i = 0; i < s.reservas.length; i++){
+  for (let i = 0; i < s.reservas.length; i++) {
     let n = s.reservas[i];
 
-    if (n.nombreCliente === clienteLogueado.nombre && n.nombreDestino === destino){
-      document.querySelector("#pReservar").innerHTML = "Ya tiene una reserva para el destino seleccionado. Por favor elija otro destino."
-    } else{
-      s.reservar(destino, cantPersonas, montoTotal, estado, clienteLogueado.nombre);
-      document.querySelector("#pReservar").innerHTML = "Reserva realizada con éxito!"
-      break
+    if (
+      n.nombreCliente === clienteLogueado.nombre &&
+      n.nombreDestino === destino
+    ) {
+      document.querySelector("#pReservar").innerHTML =
+        "Ya tiene una reserva para el destino seleccionado. Por favor elija otro destino.";
+      break;
+    } else {
+      s.reservar(
+        destino,
+        cantPersonas,
+        montoTotal,
+        estado,
+        clienteLogueado.nombre
+      );
+      s.historialReservas(
+        destino,
+        cantPersonas,
+        montoTotal,
+        estado,
+        clienteLogueado.nombre
+      );
+      document.querySelector("#pReservar").innerHTML =
+        "Reserva realizada con éxito!";
+      break;
+    }
+  }
+}
+
+//Funcion historial de reservas
+document
+  .querySelector("#aHistorialReservas")
+  .addEventListener("click", historialReservas);
+
+function historialReservas() {
+  let historial = s.reservas;
+  let cuerpoTabla = "";
+
+  for (let i = 0; i < historial.length; i++) {
+    let h = historial[i];
+
+    if (h.nombreCliente === clienteLogueado.nombre) {
+      cuerpoTabla += `
+      <tr>
+        <td>${h.nombreDestino}</td>
+        <td>${h.cantPersonas}</td>
+        <td>${h.monto}</td>
+        <td>${h.estado}</td>
+      </tr>
+      `;
     }
   }
 
-<<<<<<< HEAD
-
-=======
-  console.log(destino, cantPersonas, montoTotal, estado);
->>>>>>> 40ffffe0258d0c904a4bf155747c688f2c53b1fb
+  document.querySelector("#tHistorial").innerHTML = cuerpoTabla;
 }
-
 
 // Funciones relacionadas al admin
 
