@@ -192,26 +192,47 @@ class Sistema {
     this.idCliente;
   }
 
-  historialReservas(
-    pNombreDestino,
-    pCantPersonas,
-    pMonto,
-    pEstado
+  agregarDestino(
+    pNombre,
+    pPrecio,
+    pDescripcion,
+    pImagen,
+    pCupo,
+    pEstado,
+    pDisponible
   ) {
-    let reserva = [];
-    reserva.push(
-      new Reservas(
-        pNombreDestino,
-        pCantPersonas,
-        pMonto,
-        pEstado
+    this.destinos.push(
+      new Destino(
+        this.destinos.length + 1,
+        pNombre,
+        pPrecio,
+        pDescripcion,
+        pImagen,
+        pCupo,
+        pEstado,
+        pDisponible
       )
+    );
+  }
+
+  //Para funcion de reservas
+  reservar(pNombreDestino, pCantPersonas, pMonto, pEstado) {
+    this.reservas.push(
+      new Reservas(pNombreDestino, pCantPersonas, pMonto, pEstado)
+    );
+  }
+
+  //Para funcion historial de reservas
+  historialReservas(pNombreDestino, pCantPersonas, pMonto, pEstado) {
+    let historial = [];
+    historial.push(
+      new Reservas(pNombreDestino, pCantPersonas, pMonto, pEstado)
     );
   }
 
   //Para funcion registro
 
-  obtenerClienteRegistro (pUsuario) {
+  obtenerClienteRegistro(pUsuario) {
     let objCliente = null;
 
     for (let i = 0; i < this.cliente.length; i++) {
@@ -241,7 +262,10 @@ class Sistema {
     let objCliente = null;
 
     for (let i = 0; i < this.cliente.length; i++) {
-      if (this.cliente[i].nUsuario === pUsuario && this.cliente[i].contrasenia === pContrasenia) {
+      if (
+        this.cliente[i].nUsuario === pUsuario &&
+        this.cliente[i].contrasenia === pContrasenia
+      ) {
         objCliente = this.cliente[i];
       }
     }
@@ -253,7 +277,10 @@ class Sistema {
     let objAdmin = null;
 
     for (let i = 0; i < this.admin.length; i++) {
-      if (this.admin[i].nUsuario === pUsuario && this.admin[i].contrasenia === pContrasenia) {
+      if (
+        this.admin[i].nUsuario === pUsuario &&
+        this.admin[i].contrasenia === pContrasenia
+      ) {
         objAdmin = this.admin[i];
       }
     }
