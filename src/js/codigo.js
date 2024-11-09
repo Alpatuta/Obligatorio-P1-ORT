@@ -53,6 +53,62 @@ function mostrarRegistro() {
   mostrar("sRegistro");
 }
 
+//Mostrar reservar destinos (cliente)
+document
+  .querySelector("#aReservarDestinos")
+  .addEventListener("click", mostrarReservarDestinos);
+
+function mostrarReservarDestinos() {
+  ocultarTodo();
+  document.querySelector("#sHeader").style.display = "flex";
+  mostrar("sReservarDestinos");
+}
+
+//Mostrar historial de reservas (cliente)
+document
+  .querySelector("#aHistorialReservas")
+  .addEventListener("click", mostrarHistorialReservas);
+
+function mostrarHistorialReservas() {
+  ocultarTodo();
+  document.querySelector("#sHeader").style.display = "flex";
+  mostrar("sHistorial-reservas");
+}
+
+//Mostrar destinos en oferta (cliente)
+document
+  .querySelector("#aDestinosOferta")
+  .addEventListener("click", mostrarDestinosEnOferta);
+
+function mostrarDestinosEnOferta() {
+  ocultarTodo();
+  document.querySelector("#sHeader").style.display = "flex";
+  mostrar("sDestinos-en-oferta");
+}
+
+//Mostrar explorar destinos (cliente)
+document
+  .querySelector("#aExplorarDestinos")
+  .addEventListener("click", mostrarExplorarDestinos);
+
+function mostrarExplorarDestinos() {
+  ocultarTodo();
+  document.querySelector("#sHeader").style.display = "flex";
+  mostrar("sExplorar-destinos");
+}
+
+//Cerrar sesión
+document
+  .querySelector(".aCerrarSesion")
+  .addEventListener("click", cerrarSesion);
+
+function cerrarSesion() {
+  ocultarTodo();
+  ocultar("sHeader");
+  ocultar("sHeaderAdmin");
+  mostrar("iniciarSesion");
+}
+
 // Funciones relacionadas al cliente
 
 document
@@ -195,26 +251,26 @@ function inicioSesion() {
     mensaje = "El nombre de usuario y/o contraseña no es válido.";
   } else if (admin !== null) {
     ocultarTodo();
-    mostrar("sHeaderAdmin");
+    document.querySelector("#sHeaderAdmin").style.display = "flex";
     mostrar("sAgregarDestinos");
     mostrar("sAdministrarDestino");
     mostrar("sManipular-reservas");
     mostrar("sInforme-ganancias");
   } else if (cliente !== null) {
     ocultarTodo();
-    mostrar("sHeader");
-    mostrar("sReservarDestinos");
+    document.querySelector("#sHeader").style.display = "flex";
     mostrar("sExplorar-destinos");
-    mostrar("sHistorial-reservas");
     mostrar("sDestinos-en-oferta");
   }
 
   document.querySelector("#pIniciarSesion").innerHTML = mensaje;
 }
 
-document.querySelector("#btnReservar").addEventListener("click", reservarDestino);
+document
+  .querySelector("#btnReservar")
+  .addEventListener("click", reservarDestino);
 
-function reservarDestino(){
+function reservarDestino() {
   let destino = document.querySelector("#slcDestino").value;
   let cantPersonas = document.querySelector("#txtCantPersonas").value;
   let metodoPago = document.querySelector("#slcPago").value;
@@ -222,19 +278,18 @@ function reservarDestino(){
   let montoTotal = "";
   let estado = "";
 
-  for (let i = 0; i < lugar.length; i++){
+  for (let i = 0; i < lugar.length; i++) {
     let d = lugar[i];
 
-    if (d.nombre === destino){
+    if (d.nombre === destino) {
       montoTotal = d.precio * cantPersonas;
       estado = d.estado;
     }
   }
 
-  // Falta obtener nombre de Cliente usando el nombre de usuario y usar metodo de pago. 
+  // Falta obtener nombre de Cliente usando el nombre de usuario y usar metodo de pago.
 
   console.log(destino, cantPersonas, montoTotal, estado);
-
 }
 
 // Funciones relacionadas al admin
