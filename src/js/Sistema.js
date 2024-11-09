@@ -63,7 +63,7 @@ class Sistema {
       new Administrador("Santiago", "Santi1234)"),
       new Administrador("Natalia", "Nata123"),
     ];
-
+    this.idDestino = 10;
     this.destinos = [
       new Destino(
         1,
@@ -198,7 +198,7 @@ class Sistema {
         1500
       )
     );
-    this.idCliente;
+    this.idCliente++;
   }
 
   agregarDestino(
@@ -212,7 +212,7 @@ class Sistema {
   ) {
     this.destinos.push(
       new Destino(
-        this.destinos.length + 1,
+        this.idDestino,
         pNombre,
         pPrecio,
         pDescripcion,
@@ -222,12 +222,19 @@ class Sistema {
         pDisponible
       )
     );
+    this.idDestino++;
   }
 
   //Para funcion de reservas
-  reservar(pNombreDestino, pCantPersonas, pMonto, pEstado) {
+  reservar(pNombreDestino, pCantPersonas, pMonto, pEstado, pNombreCliente) {
     this.reservas.push(
-      new Reservas(pNombreDestino, pCantPersonas, pMonto, pEstado)
+      new Reservas(
+        pNombreDestino,
+        pCantPersonas,
+        pMonto,
+        pEstado,
+        pNombreCliente
+      )
     );
   }
 
