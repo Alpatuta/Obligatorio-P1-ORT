@@ -97,12 +97,68 @@ function mostrarExplorarDestinos() {
   mostrar("sExplorar-destinos");
 }
 
-//Cerrar sesión
+//Mostrar agregar destinos (admin)
 document
-  .querySelector(".aCerrarSesion")
+  .querySelector("#aAgregarDestinos")
+  .addEventListener("click", mostrarAgregarDestinos);
+
+function mostrarAgregarDestinos() {
+  ocultarTodo();
+  document.querySelector("#sHeaderAdmin").style.display = "flex";
+  mostrar("sAgregarDestinos");
+}
+
+//Mostrar administrar destinos (admin)
+document
+  .querySelector("#aAdministrarDestino")
+  .addEventListener("click", mostrarAdministrarDestinos);
+
+function mostrarAdministrarDestinos() {
+  ocultarTodo();
+  document.querySelector("#sHeaderAdmin").style.display = "flex";
+  mostrar("sAdministrarDestino");
+}
+
+//Mostrar manipular reservas (admin)
+document
+  .querySelector("#aManipularReservas")
+  .addEventListener("click", mostrarManipularReservas);
+
+function mostrarManipularReservas() {
+  ocultarTodo();
+  document.querySelector("#sHeaderAdmin").style.display = "flex";
+  mostrar("sManipular-reservas");
+}
+
+//Mostrar informe de ganancias (admin)
+document
+  .querySelector("#aInformeGanancias")
+  .addEventListener("click", mostrarInformeGanancias);
+
+function mostrarInformeGanancias() {
+  ocultarTodo();
+  document.querySelector("#sHeaderAdmin").style.display = "flex";
+  mostrar("sInforme-ganancias");
+}
+
+//Cerrar sesión (admin)
+document
+  .querySelector("#aCerrarSesionAdmin")
   .addEventListener("click", cerrarSesion);
 
 function cerrarSesion() {
+  ocultarTodo();
+  ocultar("sHeader");
+  ocultar("sHeaderAdmin");
+  mostrar("iniciarSesion");
+}
+
+//Cerrar sesión (cliente)
+document
+  .querySelector("#aCerrarSesionCliente")
+  .addEventListener("click", cerrarSesionC);
+
+function cerrarSesionC() {
   ocultarTodo();
   ocultar("sHeader");
   ocultar("sHeaderAdmin");
