@@ -274,11 +274,17 @@
 
     <section id="sHistorial-reservas">
       <h2>Historial de reservas</h2>
-      <p>Nombre del destino:</p>
-      <p>Cantidad de personas:</p>
-      <p>Monto total de la reserva:</p>
-      <p>Estado de la reserva:</p>
-      <input type="button" value="Cancelar reserva" />
+      <table border="1">
+        <thead>
+          <tr>
+            <th>Nombre de reserva</th>
+            <th>Cantidad de personas</th>
+            <th>Precio total</th>
+            <th>Destino</th>
+          </tr>
+        </thead>
+        <tbody id="tHistorial"></tbody>
+      </table>
     </section>
 
     <section id="sDestinos-en-oferta">

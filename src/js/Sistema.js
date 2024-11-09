@@ -10,7 +10,7 @@ class Sistema {
         "Moneta",
         "JMonetaSsj23",
         "Jm1234",
-        4213 - 6874 - 9541 - 5511,
+        "4213 - 6874 - 9541 - 5511",
         159,
         1500
       ),
@@ -20,7 +20,7 @@ class Sistema {
         "Gomez",
         "LucasGomez",
         "Lg1234",
-        4213 - 6872 - 4412 - 5512,
+        "4213 - 6872 - 4412 - 5512",
         152,
         1500
       ),
@@ -30,7 +30,7 @@ class Sistema {
         "Lopez",
         "MariaLopez",
         "Ml1234",
-        4213 - 1234 - 1324 - 5555,
+        "4213 - 1234 - 1324 - 5555",
         776,
         1500
       ),
@@ -40,7 +40,7 @@ class Sistema {
         "Perez",
         "AnaPerez",
         "Ap1234",
-        4213 - 1212 - 4355 - 6533,
+        "4213 - 1212 - 4355 - 6533",
         344,
         1500
       ),
@@ -50,7 +50,7 @@ class Sistema {
         "Gonzalez",
         "PedroGonzalez",
         "Pg1234",
-        2213 - 5251 - 3537 - 6865,
+        "2213 - 5251 - 3537 - 6865",
         159,
         1500
       ),
@@ -177,17 +177,26 @@ class Sistema {
     ];
 
     this.reservas = [
-      new Reservas("Miami", 5, 2250, "pendiente"),
-      new Reservas("Monza", 3, 1800, "pendiente"),
-      new Reservas("Sao Paulo", 2, 800, "pendiente"),
-      new Reservas("Abu Dhabi", 4, 1600, "pendiente"),
-      new Reservas("Bahrein", 1, 200, "pendiente"),
+      new Reservas("Miami", 5, 2250, "pendiente", "Juan"),
+      new Reservas("Monza", 3, 1800, "pendiente", "Lucas"),
+      new Reservas("Sao Paulo", 2, 800, "pendiente", "Maria"),
+      new Reservas("Abu Dhabi", 4, 1600, "pendiente", "Ana"),
+      new Reservas("Bahrein", 1, 200, "pendiente", "Pedro"),
     ];
   }
 
-  registrarCliente(pNombre, pApellido, pUsuario, pTarjeta, pCvc) {
+  registrarCliente(pNombre, pApellido, pUsuario, pContrasenia, pTarjeta, pCvc) {
     this.cliente.push(
-      new Cliente(this.idCliente, pNombre, pApellido, pUsuario, pTarjeta, pCvc)
+      new Cliente(
+        this.idCliente,
+        pNombre,
+        pApellido,
+        pUsuario,
+        pContrasenia,
+        pTarjeta,
+        pCvc,
+        1500
+      )
     );
     this.idCliente;
   }
