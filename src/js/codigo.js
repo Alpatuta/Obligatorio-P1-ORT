@@ -97,6 +97,15 @@ function mostrarExplorarDestinos() {
   mostrar("sExplorar-destinos");
 }
 
+//Mostrar interfaz Cliente
+
+function mostrarCliente() {
+  ocultarTodo();
+  document.querySelector("#sHeader").style.display = "flex";
+  mostrar("sExplorar-destinos");
+  mostrar("sDestinos-en-oferta");
+}
+
 //Mostrar agregar destinos (admin)
 document
   .querySelector("#aAgregarDestinos")
@@ -141,6 +150,17 @@ function mostrarInformeGanancias() {
   mostrar("sInforme-ganancias");
 }
 
+// Mostrar interfaz Admin
+
+function mostrarAdmin() {
+  ocultarTodo();
+  document.querySelector("#sHeaderAdmin").style.display = "flex";
+  mostrar("sAgregarDestinos");
+  mostrar("sAdministrarDestino");
+  mostrar("sManipular-reservas");
+  mostrar("sInforme-ganancias");
+}
+
 //Cerrar sesión (admin)
 document
   .querySelector("#aCerrarSesionAdmin")
@@ -152,6 +172,8 @@ function cerrarSesion() {
   ocultar("sHeaderAdmin");
   mostrar("iniciarSesion");
 }
+
+
 
 //Cerrar sesión (cliente)
 document
@@ -296,6 +318,9 @@ function validarTarjeta(nro) {
 
 document.querySelector("#btnSesion").addEventListener("click", inicioSesion);
 
+let clienteLogueado;
+let adminLoqueado;
+
 function inicioSesion() {
   let nombreUsuario = document.querySelector("#txtUsuarioI").value;
   let contrasenia = document.querySelector("#psContra").value;
@@ -306,24 +331,17 @@ function inicioSesion() {
   if (cliente === null && admin === null) {
     mensaje = "El nombre de usuario y/o contraseña no es válido.";
   } else if (admin !== null) {
-    ocultarTodo();
-    document.querySelector("#sHeaderAdmin").style.display = "flex";
-    mostrar("sAgregarDestinos");
-    mostrar("sAdministrarDestino");
-    mostrar("sManipular-reservas");
-    mostrar("sInforme-ganancias");
+    mostrarAdmin();
+    adminLoqueado = admin;
   } else if (cliente !== null) {
-    ocultarTodo();
-    document.querySelector("#sHeader").style.display = "flex";
-    mostrar("sExplorar-destinos");
-    mostrar("sDestinos-en-oferta");
+    mostrarCliente();
+    clienteLogueado = cliente;
   }
 
   document.querySelector("#pIniciarSesion").innerHTML = mensaje;
 }
 
-document
-  .querySelector("#btnReservar").addEventListener("click", reservarDestino);
+document.querySelector("#btnReservar").addEventListener("click", reservarDestino);
 
 function reservarDestino() {
   let destino = document.querySelector("#slcDestino").value;
@@ -344,7 +362,7 @@ function reservarDestino() {
 
   s.reservar(destino, cantPersonas, montoTotal, estado);
 
-  
+
 
   console.log(destino, cantPersonas, montoTotal, estado);
 }
