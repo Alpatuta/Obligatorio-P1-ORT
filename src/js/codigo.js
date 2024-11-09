@@ -173,8 +173,6 @@ function cerrarSesion() {
   mostrar("iniciarSesion");
 }
 
-
-
 //Cerrar sesión (cliente)
 document
   .querySelector("#aCerrarSesionCliente")
@@ -341,7 +339,9 @@ function inicioSesion() {
   document.querySelector("#pIniciarSesion").innerHTML = mensaje;
 }
 
-document.querySelector("#btnReservar").addEventListener("click", reservarDestino);
+document
+  .querySelector("#btnReservar")
+  .addEventListener("click", reservarDestino);
 
 function reservarDestino() {
   let destino = document.querySelector("#slcDestino").value;
@@ -372,7 +372,11 @@ function reservarDestino() {
     }
   }
 
+<<<<<<< HEAD
 
+=======
+  console.log(destino, cantPersonas, montoTotal, estado);
+>>>>>>> 40ffffe0258d0c904a4bf155747c688f2c53b1fb
 }
 
 

@@ -239,10 +239,22 @@ class Sistema {
   }
 
   //Para funcion historial de reservas
-  historialReservas(pNombreDestino, pCantPersonas, pMonto, pEstado) {
+  historialReservas(
+    pNombreDestino,
+    pCantPersonas,
+    pMonto,
+    pEstado,
+    pNombreCliente
+  ) {
     let historial = [];
     historial.push(
-      new Reservas(pNombreDestino, pCantPersonas, pMonto, pEstado)
+      new Reservas(
+        pNombreDestino,
+        pCantPersonas,
+        pMonto,
+        pEstado,
+        pNombreCliente
+      )
     );
   }
 
