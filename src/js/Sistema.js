@@ -72,7 +72,7 @@ class Sistema {
         "Miami es god",
         "img/miami.jpg",
         100,
-        "activo",
+        "Pendiente",
         "no"
       ),
 
@@ -83,7 +83,7 @@ class Sistema {
         "Monza es god",
         "img/monza.jpg",
         100,
-        "activo",
+        "Pendiente",
         "no"
       ),
 
@@ -94,7 +94,7 @@ class Sistema {
         "Sao Paulo es god",
         "img/saopaulo.jpg",
         100,
-        "activo",
+        "Pendiente",
         "no"
       ),
 
@@ -105,7 +105,7 @@ class Sistema {
         "Abu Dhabi es god",
         "img/abudhabi.jpg",
         100,
-        "activo",
+        "Pendiente",
         "no"
       ),
 
@@ -116,7 +116,7 @@ class Sistema {
         "Bahrein es god",
         "img/bahrein.jpg",
         100,
-        "activo",
+        "Pendiente",
         "no"
       ),
 
@@ -127,7 +127,7 @@ class Sistema {
         "Las vegas god",
         "img/lasVegas.jpg",
         100,
-        "activo",
+        "Pendiente",
         "no"
       ),
 
@@ -138,7 +138,7 @@ class Sistema {
         "Barcelona es god",
         "img/barcelona.jpg",
         100,
-        "activo",
+        "Pendiente",
         "no"
       ),
 
@@ -149,7 +149,7 @@ class Sistema {
         "Tokio es god",
         "img/tokio.jpg",
         100,
-        "activo",
+        "Pendiente",
         "no"
       ),
 
@@ -160,7 +160,7 @@ class Sistema {
         "Mexico es god",
         "img/mexico.jpg",
         100,
-        "activo",
+        "Pendiente",
         "no"
       ),
 
@@ -171,17 +171,17 @@ class Sistema {
         "Monaco es god",
         "img/monaco.jpg",
         100,
-        "activo",
+        "Pendiente",
         "no"
       ),
     ];
 
     this.reservas = [
-      new Reservas("Miami", 5, 2250, "pendiente", "Juan"),
-      new Reservas("Monza", 3, 1800, "pendiente", "Lucas"),
-      new Reservas("Sao Paulo", 2, 800, "pendiente", "Maria"),
-      new Reservas("Abu Dhabi", 4, 1600, "pendiente", "Ana"),
-      new Reservas("Bahrein", 1, 200, "pendiente", "Pedro"),
+      new Reservas("Miami", 5, 2250, "pendiente"),
+      new Reservas("Monza", 3, 1800, "pendiente"),
+      new Reservas("Sao Paulo", 2, 800, "pendiente"),
+      new Reservas("Abu Dhabi", 4, 1600, "pendiente"),
+      new Reservas("Bahrein", 1, 200, "pendiente"),
     ];
   }
 
@@ -196,8 +196,7 @@ class Sistema {
     pNombreDestino,
     pCantPersonas,
     pMonto,
-    pEstado,
-    pNombreCliente
+    pEstado
   ) {
     let reserva = [];
     reserva.push(
@@ -205,8 +204,7 @@ class Sistema {
         pNombreDestino,
         pCantPersonas,
         pMonto,
-        pEstado,
-        pNombreCliente
+        pEstado
       )
     );
   }
