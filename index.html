@@ -159,6 +159,8 @@
       <input type="text" id="txtCupos" /><br /><br />
 
       <input type="button" value="Crear destino" id="btnCrear" />
+
+      <p id="pCrear"></p>
     </section>
 
     <!-- Administrar destinos -->
@@ -223,54 +225,14 @@
       <table border="1" style="border-collapse: collapse">
         <thead>
           <tr>
-            <th>Londres</th>
-            <th>Paris</th>
-            <th>Venecia</th>
-            <th>Viena</th>
+            <th>Nombre</th>
+            <th>Imagen</th>
+            <th>Precio</th>
+            <th>Descripción</th>
+            <th>Cupos</th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <td><img src="" alt="Imagen de Londres" /></td>
-            <td><img src="" alt="Imagen de Paris" /></td>
-            <td><img src="" alt="Imagen de Venecia" /></td>
-            <td><img src="" alt="Imagen de Viena" /></td>
-          </tr>
-          <tr>
-            <td>
-              Descripción: Lorem ipsum dolor sit amet, consectetur adipisicing
-              elit. Minima quae fugit in amet sed ratione, ex nam quos
-              reiciendis illum ipsum.
-            </td>
-            <td>
-              Descripción: Lorem ipsum dolor sit amet, consectetur adipisicing
-              elit. Minima quae fugit in amet sed ratione, ex nam quos
-              reiciendis illum ipsum.
-            </td>
-            <td>
-              Descripción: Lorem ipsum dolor sit amet, consectetur adipisicing
-              elit. Minima quae fugit in amet sed ratione, ex nam quos
-              reiciendis illum ipsum.
-            </td>
-            <td>
-              Descripción: Lorem ipsum dolor sit amet, consectetur adipisicing
-              elit. Minima quae fugit in amet sed ratione, ex nam quos
-              reiciendis illum ipsum.
-            </td>
-          </tr>
-          <tr>
-            <td>Precio por persona</td>
-            <td>Precio por persona</td>
-            <td>Precio por persona</td>
-            <td>Precio por persona</td>
-          </tr>
-          <tr>
-            <td><a href="">Comprar</a></td>
-            <td><a href="">Comprar</a></td>
-            <td><a href="">Comprar</a></td>
-            <td><a href="">Comprar</a></td>
-          </tr>
-        </tbody>
+        <tbody id="tExplorarDestinos"></tbody>
       </table>
     </section>
 

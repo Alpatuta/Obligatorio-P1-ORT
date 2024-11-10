@@ -403,6 +403,56 @@ function historialReservas() {
   document.querySelector("#tHistorial").innerHTML = cuerpoTabla;
 }
 
+//Funcion explorar destinos
+document
+  .querySelector("#aExplorarDestinos")
+  .addEventListener("click", explorar);
+
+function explorar() {
+  let destinos = s.destinos;
+  let cuerpoTabla = "";
+
+  for (let i = 0; i < destinos.length; i++) {
+    let d = destinos[i];
+
+    cuerpoTabla += `
+    <tr>
+      <td>${d.nombre}</td>
+      <td><img src="${d.img}"></td>
+      <td>${d.precio}</td>
+      <td>${d.desc}</td>
+      <td>${d.cupos}</td>
+    </tr>
+    `;
+  }
+
+  document.querySelector("#tExplorarDestinos").innerHTML = cuerpoTabla;
+}
+
 // Funciones relacionadas al admin
 
+//Funcion para crear un destino
+document.querySelector("#btnCrear").addEventListener("click", crearDestino);
+
+function crearDestino() {
+  let nombre = document.querySelector("#txtNombreDestino").value;
+  let precio = document.querySelector("#txtPrecio").value;
+  let desc = document.querySelector("#txtDesc").value;
+  let imagen = document.querySelector("#txtImagen").value;
+  let cupos = document.querySelector("#txtCupos").value;
+
+  if (
+    nombre === "" ||
+    precio === "" ||
+    desc === "" ||
+    imagen === "" ||
+    cupos === ""
+  ) {
+    document.querySelector("#pCrear").innerHTML =
+      "Debe completar todos los campos.";
+  } else {
+    s.agregarDestino(nombre, precio, desc, imagen, cupos);
+    document.querySelector("#pCrear").innerHTML = "Destino creado con éxito!";
+  }
+}
 // Funciones relacionadas al destino

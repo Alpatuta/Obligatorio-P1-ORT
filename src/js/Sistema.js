@@ -70,7 +70,7 @@ class Sistema {
         "Miami",
         450,
         "Miami es god",
-        "img/miami.jpg",
+        "https://s40320.pcdn.co/wp-content/uploads/2021/01/T18-Aerial-scaled.jpg",
         100,
         "Pendiente",
         "no"
@@ -81,7 +81,7 @@ class Sistema {
         "Monza",
         600,
         "Monza es god",
-        "img/monza.jpg",
+        "https://images.daznservices.com/di/library/DAZN_News/24/ca/monza-gp-italia-gran-premio-de-italia-formula-1-f1_9bag38iciu1f118g6l71uo0qg.jpg?t=314989067",
         100,
         "Pendiente",
         "no"
@@ -92,7 +92,7 @@ class Sistema {
         "Sao Paulo",
         400,
         "Sao Paulo es god",
-        "img/saopaulo.jpg",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQhyQcL-7BNtDd4RR1WppdgvQSfahsJBup1g&s",
         100,
         "Pendiente",
         "no"
@@ -103,7 +103,7 @@ class Sistema {
         "Abu Dhabi",
         400,
         "Abu Dhabi es god",
-        "img/abudhabi.jpg",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZYY-Pfsz1phVMaxdXv75MuV9LNYh8M6cGBA&s",
         100,
         "Pendiente",
         "no"
@@ -114,7 +114,7 @@ class Sistema {
         "Bahrein",
         200,
         "Bahrein es god",
-        "img/bahrein.jpg",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhUhh4T_AD2kXnybEiS9UvwRxZyHh_1fNG8A&s",
         100,
         "Pendiente",
         "no"
@@ -125,7 +125,7 @@ class Sistema {
         "Las vegas",
         200,
         "Las vegas god",
-        "img/lasVegas.jpg",
+        "https://cdn-7.motorsport.com/images/amp/254NWpx0/s1000/las-vegas-gp-rendering-1.jpg",
         100,
         "Pendiente",
         "no"
@@ -136,7 +136,7 @@ class Sistema {
         "Barcelona",
         500,
         "Barcelona es god",
-        "img/barcelona.jpg",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfo8hxm-Lx2D3NxBruJseRB4Uz7genKl1ZlA&s",
         100,
         "Pendiente",
         "no"
@@ -147,7 +147,7 @@ class Sistema {
         "Tokio",
         400,
         "Tokio es god",
-        "img/tokio.jpg",
+        "https://f1destinations.com/wp-content/uploads/2023/08/2023_Japanese_GP_F1D_Saturday_06380-1024x683.jpg",
         100,
         "Pendiente",
         "no"
@@ -158,7 +158,7 @@ class Sistema {
         "Mexico",
         300,
         "Mexico es god",
-        "img/mexico.jpg",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJF5iSGI1qKi3yuKi-OlvBdYFrQmZgLW8ADA&s",
         100,
         "Pendiente",
         "no"
@@ -169,7 +169,7 @@ class Sistema {
         "Monaco",
         600,
         "Monaco es god",
-        "img/monaco.jpg",
+        "https://cdn-imgix.headout.com/media/images/7d0797d8d3e5a6961697266f94016da9-Monaco%201.jpg",
         100,
         "Pendiente",
         "no"
