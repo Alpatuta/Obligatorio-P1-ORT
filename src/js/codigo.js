@@ -360,21 +360,100 @@ function reservarDestino() {
     }
   }
 
-  for (let i = 0; i < s.reservas.length; i++){
-    let n = s.reservas[i];
+  if (s.existeReserva(destino, clienteLogueado.nombre) === true) {
+    document.querySelector("#pReservar").innerHTML =
+      "Ya tiene una reserva para el destino seleccionado. Por favor elija otro destino.";
+  } else {
+    s.reservar(
+      destino,
+      cantPersonas,
+      montoTotal,
+      estado,
+      clienteLogueado.nombre
+    );
+    document.querySelector("#pReservar").innerHTML =
+      "Reserva realizada con éxito!";
+  }
+}
 
-    if (n.nombreCliente === clienteLogueado.nombre){
-      document.querySelector("#pReservar").innerHTML = "Ya tiene una reserva para el destino seleccionado. Por favor elija otro destino."
-    } else{
-      s.reservar(destino, cantPersonas, montoTotal, estado, clienteLogueado.nombre);
-      document.querySelector("#pReservar").innerHTML = "Reserva realizada con éxito!"
+//Funcion historial de reservas
+document
+  .querySelector("#aHistorialReservas")
+  .addEventListener("click", historialReservas);
+
+function historialReservas() {
+  let historial = s.reservas;
+  let cuerpoTabla = "";
+
+  for (let i = 0; i < historial.length; i++) {
+    let h = historial[i];
+
+    if (h.nombreCliente === clienteLogueado.nombre) {
+      cuerpoTabla += `
+      <tr>
+        <td>${h.nombreDestino}</td>
+        <td>${h.cantPersonas}</td>
+        <td>${h.monto}</td>
+        <td>${h.estado}</td>
+      </tr>
+      `;
     }
   }
 
-
+  document.querySelector("#tHistorial").innerHTML = cuerpoTabla;
 }
 
+//Funcion explorar destinos
+document
+  .querySelector("#aExplorarDestinos")
+  .addEventListener("click", explorar);
+
+function explorar() {
+  let destinos = s.destinos;
+  let cuerpoTabla = "";
+
+  for (let i = 0; i < destinos.length; i++) {
+    let d = destinos[i];
+
+    cuerpoTabla += `
+    <tr>
+      <td>${d.nombre}</td>
+      <td><img src="${d.img}"></td>
+      <td>${d.precio}</td>
+      <td>${d.desc}</td>
+      <td>${d.cupos}</td>
+    </tr>
+    `;
+  }
+
+  document.querySelector("#tExplorarDestinos").innerHTML = cuerpoTabla;
+}
 
 // Funciones relacionadas al admin
 
+//Funcion para crear un destino
+document.querySelector("#btnCrear").addEventListener("click", crearDestino);
+
+function crearDestino() {
+  let nombre = document.querySelector("#txtNombreDestino").value;
+  let precio = document.querySelector("#txtPrecio").value;
+  let desc = document.querySelector("#txtDesc").value;
+  let imagen = document.querySelector("#txtImagen").value;
+  let cupos = document.querySelector("#txtCupos").value;
+
+  if (
+    nombre === "" ||
+    precio === "" ||
+    desc === "" ||
+    imagen === "" ||
+    cupos === ""
+  ) {
+    document.querySelector("#pCrear").innerHTML =
+      "Debe completar todos los campos.";
+  } else {
+    s.agregarDestino(nombre, precio, desc, imagen, cupos);
+    document.querySelector("#pCrear").innerHTML = "Destino creado con éxito!";
+  }
+}
 // Funciones relacionadas al destino
+
