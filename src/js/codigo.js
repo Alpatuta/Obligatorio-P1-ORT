@@ -360,28 +360,19 @@ function reservarDestino() {
     }
   }
 
-  for (let i = 0; i < s.reservas.length; i++) {
-    let n = s.reservas[i];
-
-    if (
-      n.nombreCliente === clienteLogueado.nombre &&
-      n.nombreDestino === destino
-    ) {
-      document.querySelector("#pReservar").innerHTML =
-        "Ya tiene una reserva para el destino seleccionado. Por favor elija otro destino.";
-      break;
-    } else {
-      s.reservar(
-        destino,
-        cantPersonas,
-        montoTotal,
-        estado,
-        clienteLogueado.nombre
-      );
-      document.querySelector("#pReservar").innerHTML =
-        "Reserva realizada con éxito!";
-      break;
-    }
+  if (s.existeReserva(destino, clienteLogueado.nombre) === true) {
+    document.querySelector("#pReservar").innerHTML =
+      "Ya tiene una reserva para el destino seleccionado. Por favor elija otro destino.";
+  } else {
+    s.reservar(
+      destino,
+      cantPersonas,
+      montoTotal,
+      estado,
+      clienteLogueado.nombre
+    );
+    document.querySelector("#pReservar").innerHTML =
+      "Reserva realizada con éxito!";
   }
 }
 

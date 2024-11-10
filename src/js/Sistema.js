@@ -238,6 +238,21 @@ class Sistema {
     );
   }
 
+  existeReserva(pNombreDestino, pNombreCliente) {
+    let existe = false;
+
+    for (let i = 0; i < this.reservas.length; i++) {
+      if (
+        this.reservas[i].nombreDestino === pNombreDestino &&
+        this.reservas[i].nombreCliente === pNombreCliente
+      ) {
+        existe = true;
+      }
+    }
+
+    return existe;
+  }
+
   //Para funcion registro
 
   obtenerClienteRegistro(pUsuario) {
