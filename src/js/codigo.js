@@ -173,6 +173,8 @@ function cerrarSesion() {
   mostrar("iniciarSesion");
 }
 
+
+
 //Cerrar sesión (cliente)
 document
   .querySelector("#aCerrarSesionCliente")
@@ -339,9 +341,7 @@ function inicioSesion() {
   document.querySelector("#pIniciarSesion").innerHTML = mensaje;
 }
 
-document
-  .querySelector("#btnReservar")
-  .addEventListener("click", reservarDestino);
+document.querySelector("#btnReservar").addEventListener("click", reservarDestino);
 
 function reservarDestino() {
   let destino = document.querySelector("#slcDestino").value;
@@ -363,20 +363,15 @@ function reservarDestino() {
   for (let i = 0; i < s.reservas.length; i++){
     let n = s.reservas[i];
 
-    if (n.nombreCliente === clienteLogueado.nombre && n.nombreDestino === destino){
+    if (n.nombreCliente === clienteLogueado.nombre){
       document.querySelector("#pReservar").innerHTML = "Ya tiene una reserva para el destino seleccionado. Por favor elija otro destino."
     } else{
       s.reservar(destino, cantPersonas, montoTotal, estado, clienteLogueado.nombre);
       document.querySelector("#pReservar").innerHTML = "Reserva realizada con éxito!"
-      break
     }
   }
 
-<<<<<<< HEAD
 
-=======
-  console.log(destino, cantPersonas, montoTotal, estado);
->>>>>>> 40ffffe0258d0c904a4bf155747c688f2c53b1fb
 }
 
 
