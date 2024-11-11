@@ -60,6 +60,7 @@ document
 
 function mostrarReservarDestinos() {
   ocultarTodo();
+  mostrarMillas();
   document.querySelector("#sHeader").style.display = "flex";
   mostrar("sReservarDestinos");
 }
@@ -319,7 +320,7 @@ function validarTarjeta(nro) {
 document.querySelector("#btnSesion").addEventListener("click", inicioSesion);
 
 let clienteLogueado;
-let adminLoqueado;
+let adminLogueado;
 
 function inicioSesion() {
   let nombreUsuario = document.querySelector("#txtUsuarioI").value;
@@ -332,7 +333,7 @@ function inicioSesion() {
     mensaje = "El nombre de usuario y/o contraseña no es válido.";
   } else if (admin !== null) {
     mostrarAdmin();
-    adminLoqueado = admin;
+    adminLogueado = admin;
   } else if (cliente !== null) {
     mostrarCliente();
     clienteLogueado = cliente;
@@ -348,8 +349,10 @@ function reservarDestino() {
   let cantPersonas = document.querySelector("#txtCantPersonas").value;
   let metodoPago = document.querySelector("#slcPago").value;
   let lugar = s.destinos;
-  let montoTotal = "";
+  let montoTotal = lugar.precio;
   let estado = "";
+  acumularMillas(metodoPago, montoTotal);
+  mostrarMillas()
 
   for (let i = 0; i < lugar.length; i++) {
     let d = lugar[i];
@@ -374,6 +377,33 @@ function reservarDestino() {
     document.querySelector("#pReservar").innerHTML =
       "Reserva realizada con éxito!";
   }
+}
+
+// sistema de millas
+
+function mostrarMillas (){
+  document.querySelector("#pMillas").innerHTML = `Millas acumuladas: ${acumularMillas()}`;
+}
+
+/*
+cuando reserva confirmada: usuarios acumulan millas 100 pesos gastados - 1 milla.
+
+ver millas acumuladas cuando reservan.
+
+si usan millas, primero se gastan las millas y desp el saldo del usuario. 
+
+al gastar millas: 1 milla - 1 peso. (se hace si admin aprueba reserva)
+*/
+
+function acumularMillas (pMetodoPago, pMontoTotal){
+  let millasTot = clienteLogueado.millas;
+
+  if (pMetodoPago === "Tarjeta" && !isNaN(pMontoTotal)){
+    millasTot += pMontoTotal / 100;
+  }
+
+  return millasTot;
+
 }
 
 //Funcion historial de reservas

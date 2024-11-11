@@ -1,5 +1,5 @@
 class Cliente {
-    constructor (_id, _nombre, _apellido, _nUsuario, _contrasenia, _tarjetaCredito, _cvc, _saldo){
+    constructor (_id, _nombre, _apellido, _nUsuario, _contrasenia, _tarjetaCredito, _cvc, _millas){
         this.id = _id;
         this.nombre = _nombre;
         this.apellido = _apellido;
@@ -7,6 +7,6 @@ class Cliente {
         this.contrasenia = _contrasenia;
         this.tarjetaCredito = _tarjetaCredito;
         this.cvc = _cvc;
-        this.saldo = _saldo;
+        this.millas = _millas;
     }
 }
