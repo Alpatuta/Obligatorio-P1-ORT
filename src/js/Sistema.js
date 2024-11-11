@@ -122,7 +122,7 @@ class Sistema {
 
       new Destino(
         6,
-        "Las vegas",
+        "Las Vegas",
         200,
         "Las vegas god",
         "https://cdn-7.motorsport.com/images/amp/254NWpx0/s1000/las-vegas-gp-rendering-1.jpg",
