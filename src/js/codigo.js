@@ -378,7 +378,7 @@ function historialReservas() {
     let h = historial[i];
     let objDestino = s.obtenerDestinoById(h.idDestino);
 
-    if (objDestino === historial.idDestino) {
+    if (objDestino.id === h.idDestino && h.nombreCliente === clienteLogueado.nombre) {
       cuerpoTabla += `
       <tr>
         <td>${objDestino.nombre}</td>
