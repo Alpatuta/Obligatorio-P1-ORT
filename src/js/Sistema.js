@@ -182,11 +182,11 @@ class Sistema {
     ];
 
     this.reservas = [
-      new Reservas("DEST_ID_1", 5, 2250, "pendiente", "Juan", "Tarjeta"),
-      new Reservas("DEST_ID_2", 3, 1800, "pendiente", "Lucas", "Millas"),
-      new Reservas("DEST_ID_3", 2, 800, "pendiente", "Maria", "Tarjeta"),
-      new Reservas("DEST_ID_4", 4, 1600, "pendiente", "Ana", "Millas"),
-      new Reservas("DEST_ID_5", 1, 200, "pendiente", "Pedro", "Tarjeta"),
+      new Reservas("DEST_ID_1", 5, 2250, "Aprobada", "Juan", "Tarjeta"),
+      new Reservas("DEST_ID_2", 3, 1800, "Aprobada", "Lucas", "Millas"),
+      new Reservas("DEST_ID_3", 2, 800, "Aprobada", "Maria", "Tarjeta"),
+      new Reservas("DEST_ID_4", 4, 1600, "Aprobada", "Ana", "Millas"),
+      new Reservas("DEST_ID_5", 1, 200, "Aprobada", "Pedro", "Tarjeta"),
     ];
   }
 

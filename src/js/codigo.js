@@ -455,7 +455,7 @@ function aprobarReserva() {
   let pago = reserva.metodoPago;
 
   
-  if(saldoCliente >= precioTotal || totMillas >= precioTotal || cupos >= cantidadPersonas){
+  if(saldoCliente >= precioTotal || totMillas >= precioTotal || cupos >= cantidadPersonas && reserva.estado === "Pendiente"){
 
     if(pago === "Tarjeta"){
       totMillas += precioTotal / 100;
