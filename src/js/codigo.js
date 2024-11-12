@@ -60,7 +60,6 @@ document
 
 function mostrarReservarDestinos() {
   ocultarTodo();
-  mostrarMillas();
   document.querySelector("#sHeader").style.display = "flex";
   mostrar("sReservarDestinos");
 }
@@ -156,10 +155,7 @@ function mostrarInformeGanancias() {
 function mostrarAdmin() {
   ocultarTodo();
   document.querySelector("#sHeaderAdmin").style.display = "flex";
-  mostrar("sAgregarDestinos");
-  mostrar("sAdministrarDestino");
   mostrar("sManipular-reservas");
-  mostrar("sInforme-ganancias");
 }
 
 //Cerrar sesión (admin)
@@ -344,7 +340,7 @@ function inicioSesion() {
 
 document.querySelector("#btnReservar").addEventListener("click", reservarDestino);
 
-totMillas = 0;
+let totMillas = 0;
 
 function reservarDestino() {
   let destino = document.querySelector("#slcDestino").value;
@@ -380,25 +376,20 @@ function reservarDestino() {
       `Reserva realizada con éxito!`;
   }
 
-  acumularMillas(metodoPago, montoTotal);
+  acumularMillas(metodoPago, montoTotal)
   console.log(metodoPago, montoTotal, totMillas);
-
 }
 
 // sistema de millas
 /*
-cuando reserva confirmada: usuarios acumulan millas 100 pesos gastados - 1 milla.
+cuando reserva confirmada (aprobada por admin): usuarios acumulan millas 100 pesos gastados = + 1 milla.
 
 ver millas acumuladas cuando reservan.
 
-si usan millas, primero se gastan las millas y desp el saldo del usuario. 
-
-al gastar millas: 1 milla - 1 peso. (se hace si admin aprueba reserva)
+si usan millas, primero se gastan las millas y desp el saldo del usuario: al gastar millas: 1 milla - 1 peso. (se hace si admin aprueba reserva)
 */
 
 function acumularMillas (pMetodoPago, pMontoTotal){
-  let m = clienteLogueado.millas;
-  totMillas = m;
 
   if (pMetodoPago === "Tarjeta" && !isNaN(pMontoTotal)){
     totMillas += pMontoTotal / 100;
@@ -406,10 +397,6 @@ function acumularMillas (pMetodoPago, pMontoTotal){
 
   return totMillas;
 
-}
-
-function mostrarMillas () {
-  document.querySelector("#pMillas").innerHTML = `Total de millas: ${totMillas}`;
 }
 
 
@@ -492,5 +479,16 @@ function crearDestino() {
     document.querySelector("#pCrear").innerHTML = "Destino creado con éxito!";
   }
 }
+
+// Aprobar reservas
+
+document.querySelector(".btnAprobar").addEventListener("click", aprobarReserva);
+
+function aprobarReserva(){
+  alert("Hola");
+}
+
+
+
 // Funciones relacionadas al destino
 
