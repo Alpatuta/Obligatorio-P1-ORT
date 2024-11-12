@@ -12,7 +12,8 @@ class Sistema {
         "Jm1234",
         "4213 - 6874 - 9541 - 5511",
         159,
-        15000
+        15000, 
+        0
       ),
       new Cliente(
         2,
@@ -22,7 +23,8 @@ class Sistema {
         "Lg1234",
         "4213 - 6872 - 4412 - 5512",
         152,
-        15000
+        15000, 
+        0
       ),
       new Cliente(
         3,
@@ -32,7 +34,8 @@ class Sistema {
         "Ml1234",
         "4213 - 1234 - 1324 - 5555",
         776,
-        15000
+        15000, 
+        0
       ),
       new Cliente(
         4,
@@ -42,7 +45,8 @@ class Sistema {
         "Ap1234",
         "4213 - 1212 - 4355 - 6533",
         344,
-        15000
+        15000, 
+        0
       ),
       new Cliente(
         5,
@@ -52,7 +56,8 @@ class Sistema {
         "Pg1234",
         "2213 - 5251 - 3537 - 6865",
         159,
-        15000
+        15000, 
+        0
       ),
     ];
 
@@ -185,7 +190,7 @@ class Sistema {
     ];
   }
 
-  registrarCliente(pNombre, pApellido, pUsuario, pContrasenia, pTarjeta, pCvc) {
+  registrarCliente(pNombre, pApellido, pUsuario, pContrasenia, pTarjeta, pCvc,) {
     this.cliente.push(
       new Cliente(
         this.idCliente,
@@ -195,7 +200,8 @@ class Sistema {
         pContrasenia,
         pTarjeta,
         pCvc,
-        1500
+        15000,
+        0
       )
     );
     this.idCliente++;

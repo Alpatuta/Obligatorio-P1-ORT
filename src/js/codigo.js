@@ -237,7 +237,7 @@ function registroUsuario() {
       nombreUsuario,
       contrasenia,
       tarjeta,
-      nbrCvc
+      nbrCvc,
     );
     mensaje = "Registro exitoso!";
   }
@@ -365,14 +365,15 @@ function reservarDestino() {
     document.querySelector("#pReservar").innerHTML =
       "Ya tiene una reserva para el destino seleccionado. Por favor elija otro destino.";
   } else {
-    saldoCliente -= montoTotal;
+    saldoCliente -= precioTotal;
     clienteLogueado.saldo = saldoCliente;
     s.reservar(
       destino,
       cantPersonas,
-      montoTotal,
+      precioTotal,
       estado,
-      clienteLogueado.nombre
+      clienteLogueado.nombre,
+      clienteLogueado.millas
     );
 
     document.querySelector(
@@ -380,7 +381,7 @@ function reservarDestino() {
     ).innerHTML = `Reserva realizada con éxito!`;
   }
 
-  acumularMillas(metodoPago, montoTotal);
+  acumularMillas(metodoPago, precioTotal);
 }
 
 // sistema de millas
