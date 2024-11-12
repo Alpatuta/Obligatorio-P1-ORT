@@ -71,7 +71,7 @@ class Sistema {
     this.idDestino = 10;
     this.destinos = [
       new Destino(
-        1,
+        "DEST_ID_1",
         "Miami",
         450,
         "Miami es god",
@@ -82,7 +82,7 @@ class Sistema {
       ),
 
       new Destino(
-        2,
+        "DEST_ID_2",
         "Monza",
         600,
         "Monza es god",
@@ -93,7 +93,7 @@ class Sistema {
       ),
 
       new Destino(
-        3,
+        "DEST_ID_3",
         "Sao Paulo",
         400,
         "Sao Paulo es god",
@@ -104,7 +104,7 @@ class Sistema {
       ),
 
       new Destino(
-        4,
+        "DEST_ID_4",
         "Abu Dhabi",
         400,
         "Abu Dhabi es god",
@@ -115,7 +115,7 @@ class Sistema {
       ),
 
       new Destino(
-        5,
+        "DEST_ID_5",
         "Bahrein",
         200,
         "Bahrein es god",
@@ -126,7 +126,7 @@ class Sistema {
       ),
 
       new Destino(
-        6,
+        "DEST_ID_6",
         "Las Vegas",
         200,
         "Las vegas god",
@@ -137,7 +137,7 @@ class Sistema {
       ),
 
       new Destino(
-        7,
+        "DEST_ID_7",
         "Barcelona",
         500,
         "Barcelona es god",
@@ -148,7 +148,7 @@ class Sistema {
       ),
 
       new Destino(
-        8,
+       "DEST_ID_8",
         "Tokio",
         400,
         "Tokio es god",
@@ -159,7 +159,7 @@ class Sistema {
       ),
 
       new Destino(
-        9,
+        "DEST_ID_9",
         "Mexico",
         300,
         "Mexico es god",
@@ -170,7 +170,7 @@ class Sistema {
       ),
 
       new Destino(
-        10,
+        "DEST_ID_10",
         "Monaco",
         600,
         "Monaco es god",
@@ -182,11 +182,11 @@ class Sistema {
     ];
 
     this.reservas = [
-      new Reservas("Miami", 5, 2250, "pendiente", "Juan"),
-      new Reservas("Monza", 3, 1800, "pendiente", "Lucas"),
-      new Reservas("Sao Paulo", 2, 800, "pendiente", "Maria"),
-      new Reservas("Abu Dhabi", 4, 1600, "pendiente", "Ana"),
-      new Reservas("Bahrein", 1, 200, "pendiente", "Pedro"),
+      new Reservas("DEST_ID_1", 5, 2250, "pendiente", "Juan", "Tarjeta"),
+      new Reservas("DEST_ID_2", 3, 1800, "pendiente", "Lucas", "Millas"),
+      new Reservas("DEST_ID_3", 2, 800, "pendiente", "Maria", "Tarjeta"),
+      new Reservas("DEST_ID_4", 4, 1600, "pendiente", "Ana", "Millas"),
+      new Reservas("DEST_ID_5", 1, 200, "pendiente", "Pedro", "Tarjeta"),
     ];
   }
 
@@ -218,7 +218,7 @@ class Sistema {
   ) {
     this.destinos.push(
       new Destino(
-        this.idDestino,
+        "DEST_ID_" + this.idDestino,
         pNombre,
         pPrecio,
         pDescripcion,
@@ -232,16 +232,33 @@ class Sistema {
   }
 
   //Para funcion de reservas
-  reservar(pNombreDestino, pCantPersonas, pMonto, pEstado, pNombreCliente) {
+  reservar(pIdDestino, pCantPersonas, pMonto, pEstado, pNombreCliente, pMetodoPago) {
+
+    for (let i = 0; i < this.destinos.length; i++) {
+      let d = this.destinos[i];
+  
+      if (d.id === pIdDestino) {
+        pMonto = d.precio * pCantPersonas;
+        pEstado = d.estado;
+        break;
+      }
+    }
+
     this.reservas.push(
       new Reservas(
-        pNombreDestino,
+        pIdDestino,
         pCantPersonas,
         pMonto,
         pEstado,
-        pNombreCliente
+        pNombreCliente,
+        pMetodoPago
       )
-    );
+      
+    )
+    
+    ;
+
+    // calculo de monto total, id destino, metodo de pago (m o e);
   }
 
   existeReserva(pNombreDestino, pNombreCliente) {
@@ -315,5 +332,20 @@ class Sistema {
     }
 
     return objAdmin;
+  }
+
+  obtenerDestinoById (pIdDestino){
+    let objDest = null;
+    
+    for(let i = 0; i < this.destinos.length; i++){
+      let d = this.destinos[i];
+
+      if (pIdDestino === d.id){
+        objDest = d;
+        break
+      }
+    }
+
+    return objDest;
   }
 }

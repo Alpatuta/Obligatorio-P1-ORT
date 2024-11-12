@@ -340,84 +340,48 @@ document
   .querySelector("#btnReservar")
   .addEventListener("click", reservarDestino);
 
-let totMillas = 0;
-let precioTotal = 0;
-
 function reservarDestino() {
   let destino = document.querySelector("#slcDestino").value;
   let cantPersonas = document.querySelector("#txtCantPersonas").value;
   let metodoPago = document.querySelector("#slcPago").value;
-  let lugar = s.destinos;
-  let estado = "";
+  let monto = s.destinos.precio;
+  let estado = s.destinos.estado;
+
   let saldoCliente = clienteLogueado.saldo;
 
-  for (let i = 0; i < lugar.length; i++) {
-    let d = lugar[i];
 
-    if (d.nombre === destino) {
-      precioTotal = d.precio * cantPersonas;
-      estado = d.estado;
-      break;
-    }
-  }
 
   if (s.existeReserva(destino, clienteLogueado.nombre) === true) {
     document.querySelector("#pReservar").innerHTML =
       "Ya tiene una reserva para el destino seleccionado. Por favor elija otro destino.";
   } else {
-    saldoCliente -= precioTotal;
+    saldoCliente -= monto;
     clienteLogueado.saldo = saldoCliente;
-    s.reservar(
-      destino,
-      cantPersonas,
-      precioTotal,
-      estado,
-      clienteLogueado.nombre,
-      clienteLogueado.millas
-    );
+    s.reservar(destino, cantPersonas, monto, estado, clienteLogueado.nombre, metodoPago);
 
     document.querySelector(
       "#pReservar"
     ).innerHTML = `Reserva realizada con éxito!`;
   }
 
-  acumularMillas(metodoPago, precioTotal);
-}
-
-// sistema de millas
-/*
-cuando reserva confirmada (aprobada por admin): usuarios acumulan millas 100 pesos gastados = + 1 milla.
-
-ver millas acumuladas cuando reservan.
-
-si usan millas, primero se gastan las millas y desp el saldo del usuario: al gastar millas: 1 milla - 1 peso. (se hace si admin aprueba reserva)
-*/
-
-function acumularMillas(pMetodoPago, pPrecioTotal) {
-
-  if (pMetodoPago === "Tarjeta" && !isNaN(pPrecioTotal)) {
-    totMillas += pPrecioTotal / 100;
-  }
-
-  return totMillas;
 }
 
 //Funcion historial de reservas
-document
-  .querySelector("#aHistorialReservas")
-  .addEventListener("click", historialReservas);
+document.querySelector("#aHistorialReservas").addEventListener("click", historialReservas);
 
 function historialReservas() {
   let historial = s.reservas;
   let cuerpoTabla = "";
+  
 
   for (let i = 0; i < historial.length; i++) {
     let h = historial[i];
+    let objDestino = s.obtenerDestinoById(h.idDestino);
 
-    if (h.nombreCliente === clienteLogueado.nombre) {
+    if (objDestino === historial.idDestino) {
       cuerpoTabla += `
       <tr>
-        <td>${h.nombreDestino}</td>
+        <td>${objDestino.nombre}</td>
         <td>${h.cantPersonas}</td>
         <td>${h.monto}</td>
         <td>${h.estado}</td>
@@ -486,14 +450,30 @@ function crearDestino() {
 
 document.querySelector(".btnAprobar").addEventListener("click", aprobarReserva);
 
-function aprobarReserva() {
+function aprobarReserva(pMetodoPago) {
   let saldo = clienteLogueado.saldo;
   let cupos = s.destinos.cupos;
+  let reserva = s.reservas;
+  let cantidadPersonas = reserva.cantPersonas;
+  let precioTotal = reserva.monto;
+  let totMillas = clienteLogueado.millas;
+  let saldoCliente = clienteLogueado.saldo;
 
   
-  if(saldo > precioTotal || pSaldo > totMillas || cupos > 0){
-    acumularMillas();
+  if(saldo >= precioTotal || totMillas >= precioTotal || cupos >= cantidadPersonas){
+
+
+    if(metodoPago === "Tarjeta"){
+      totMillas += precioTotal / 100;
+      clienteLogueado.millas = totMillas;
+
+    }
+    saldoCliente -= precioTotal;
+    clienteLogueado.saldo = saldoCliente;
+    cupos -= cantidadPersonas;
   }
+
+
 
 }
 
