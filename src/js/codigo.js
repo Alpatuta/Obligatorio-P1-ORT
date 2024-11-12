@@ -155,7 +155,6 @@ function mostrarInformeGanancias() {
 function mostrarAdmin() {
   ocultarTodo();
   document.querySelector("#sHeaderAdmin").style.display = "flex";
-  mostrar("sManipular-reservas");
 }
 
 //Cerrar sesión (admin)
@@ -347,21 +346,15 @@ function reservarDestino() {
   let monto = s.destinos.precio;
   let estado = s.destinos.estado;
 
-  let saldoCliente = clienteLogueado.saldo;
-
 
 
   if (s.existeReserva(destino, clienteLogueado.nombre) === true) {
     document.querySelector("#pReservar").innerHTML =
       "Ya tiene una reserva para el destino seleccionado. Por favor elija otro destino.";
   } else {
-    saldoCliente -= monto;
-    clienteLogueado.saldo = saldoCliente;
     s.reservar(destino, cantPersonas, monto, estado, clienteLogueado.nombre, metodoPago);
 
-    document.querySelector(
-      "#pReservar"
-    ).innerHTML = `Reserva realizada con éxito!`;
+    document.querySelector("#pReservar").innerHTML = `Reserva realizada con éxito!`;
   }
 
 }
@@ -450,30 +443,56 @@ function crearDestino() {
 
 document.querySelector(".btnAprobar").addEventListener("click", aprobarReserva);
 
-function aprobarReserva(pMetodoPago) {
-  let saldo = clienteLogueado.saldo;
-  let cupos = s.destinos.cupos;
-  let reserva = s.reservas;
+function aprobarReserva() {
+  
+  let saldoCliente = clienteLogueado.saldo;
+  let totMillas = clienteLogueado.millas;
+  let reserva = s.ObtenerReserva(clienteLogueado.nombre);
+  let dest = s.obtenerDestinoById(reserva.idDestino);
+  let cupos = dest.cupos;
   let cantidadPersonas = reserva.cantPersonas;
   let precioTotal = reserva.monto;
-  let totMillas = clienteLogueado.millas;
-  let saldoCliente = clienteLogueado.saldo;
+  let pago = reserva.metodoPago;
 
   
-  if(saldo >= precioTotal || totMillas >= precioTotal || cupos >= cantidadPersonas){
+  if(saldoCliente >= precioTotal || totMillas >= precioTotal || cupos >= cantidadPersonas){
 
-
-    if(metodoPago === "Tarjeta"){
+    if(pago === "Tarjeta"){
       totMillas += precioTotal / 100;
       clienteLogueado.millas = totMillas;
+      saldoCliente -= precioTotal;
+      clienteLogueado.saldo = saldoCliente;
+      cupos -= cantidadPersonas;
+      dest.cupos = cupos;
+    } else {
+
+      
+      if (totMillas < precioTotal){
+        clienteLogueado.millas = 0;
+        saldoCliente -= precioTotal - totMillas;
+        clienteLogueado.saldo = saldoCliente;
+        cupos -= cantidadPersonas;
+        dest.cupos = cupos;
+      } else {
+        totMillas -= precioTotal;
+        clienteLogueado.millas = totMillas;
+      }
 
     }
-    saldoCliente -= precioTotal;
-    clienteLogueado.saldo = saldoCliente;
-    cupos -= cantidadPersonas;
+    
+    reserva.estado = "Aprobada";
+
+  } else {
+
+    reserva.estado = "Cancelada";
+
   }
 
+  if (cupos === 0){
+    dest.estado = "Pausado";
+  }
 
+  console.log(reserva, cantidadPersonas, precioTotal, pago, cupos);
 
 }
 

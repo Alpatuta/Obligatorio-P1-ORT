@@ -254,9 +254,7 @@ class Sistema {
         pMetodoPago
       )
       
-    )
-    
-    ;
+    );
 
     // calculo de monto total, id destino, metodo de pago (m o e);
   }
@@ -348,4 +346,21 @@ class Sistema {
 
     return objDest;
   }
+
+  ObtenerReserva(pNombreCliente){
+    let objReserva = null;
+
+    for(let i = 0; i < this.reservas.length; i++){
+      let r = this.reservas[i];
+
+      if(pNombreCliente === r.nombreCliente){
+        objReserva = r;
+        break
+      }
+
+    }
+
+    return objReserva;
+  }
+
 }
