@@ -170,8 +170,6 @@ function cerrarSesion() {
   mostrar("iniciarSesion");
 }
 
-
-
 //Cerrar sesión (cliente)
 document
   .querySelector("#aCerrarSesionCliente")
@@ -338,7 +336,9 @@ function inicioSesion() {
   document.querySelector("#pIniciarSesion").innerHTML = mensaje;
 }
 
-document.querySelector("#btnReservar").addEventListener("click", reservarDestino);
+document
+  .querySelector("#btnReservar")
+  .addEventListener("click", reservarDestino);
 
 let totMillas = 0;
 
@@ -349,6 +349,7 @@ function reservarDestino() {
   let lugar = s.destinos;
   let montoTotal = 0;
   let estado = "";
+  let saldoCliente = clienteLogueado.saldo;
 
   for (let i = 0; i < lugar.length; i++) {
     let d = lugar[i];
@@ -356,15 +357,16 @@ function reservarDestino() {
     if (d.nombre === destino) {
       montoTotal = d.precio * cantPersonas;
       estado = d.estado;
-      break
+      break;
     }
   }
-
 
   if (s.existeReserva(destino, clienteLogueado.nombre) === true) {
     document.querySelector("#pReservar").innerHTML =
       "Ya tiene una reserva para el destino seleccionado. Por favor elija otro destino.";
   } else {
+    saldoCliente -= montoTotal;
+    clienteLogueado.saldo = saldoCliente;
     s.reservar(
       destino,
       cantPersonas,
@@ -372,12 +374,13 @@ function reservarDestino() {
       estado,
       clienteLogueado.nombre
     );
-    document.querySelector("#pReservar").innerHTML =
-      `Reserva realizada con éxito!`;
+
+    document.querySelector(
+      "#pReservar"
+    ).innerHTML = `Reserva realizada con éxito!`;
   }
 
-  acumularMillas(metodoPago, montoTotal)
-  console.log(metodoPago, montoTotal, totMillas);
+  acumularMillas(metodoPago, montoTotal);
 }
 
 // sistema de millas
@@ -389,16 +392,13 @@ ver millas acumuladas cuando reservan.
 si usan millas, primero se gastan las millas y desp el saldo del usuario: al gastar millas: 1 milla - 1 peso. (se hace si admin aprueba reserva)
 */
 
-function acumularMillas (pMetodoPago, pMontoTotal){
-
-  if (pMetodoPago === "Tarjeta" && !isNaN(pMontoTotal)){
+function acumularMillas(pMetodoPago, pMontoTotal) {
+  if (pMetodoPago === "Tarjeta" && !isNaN(pMontoTotal)) {
     totMillas += pMontoTotal / 100;
   }
 
   return totMillas;
-
 }
-
 
 //Funcion historial de reservas
 document
@@ -484,11 +484,8 @@ function crearDestino() {
 
 document.querySelector(".btnAprobar").addEventListener("click", aprobarReserva);
 
-function aprobarReserva(){
+function aprobarReserva() {
   alert("Hola");
 }
 
-
-
 // Funciones relacionadas al destino
-
