@@ -341,13 +341,13 @@ document
   .addEventListener("click", reservarDestino);
 
 let totMillas = 0;
+let precioTotal = 0;
 
 function reservarDestino() {
   let destino = document.querySelector("#slcDestino").value;
   let cantPersonas = document.querySelector("#txtCantPersonas").value;
   let metodoPago = document.querySelector("#slcPago").value;
   let lugar = s.destinos;
-  let montoTotal = 0;
   let estado = "";
   let saldoCliente = clienteLogueado.saldo;
 
@@ -355,7 +355,7 @@ function reservarDestino() {
     let d = lugar[i];
 
     if (d.nombre === destino) {
-      montoTotal = d.precio * cantPersonas;
+      precioTotal = d.precio * cantPersonas;
       estado = d.estado;
       break;
     }
@@ -392,9 +392,10 @@ ver millas acumuladas cuando reservan.
 si usan millas, primero se gastan las millas y desp el saldo del usuario: al gastar millas: 1 milla - 1 peso. (se hace si admin aprueba reserva)
 */
 
-function acumularMillas(pMetodoPago, pMontoTotal) {
-  if (pMetodoPago === "Tarjeta" && !isNaN(pMontoTotal)) {
-    totMillas += pMontoTotal / 100;
+function acumularMillas(pMetodoPago, pPrecioTotal) {
+
+  if (pMetodoPago === "Tarjeta" && !isNaN(pPrecioTotal)) {
+    totMillas += pPrecioTotal / 100;
   }
 
   return totMillas;
@@ -485,7 +486,14 @@ function crearDestino() {
 document.querySelector(".btnAprobar").addEventListener("click", aprobarReserva);
 
 function aprobarReserva() {
-  alert("Hola");
+  let saldo = clienteLogueado.saldo;
+  let cupos = s.destinos.cupos;
+
+  
+  if(saldo > precioTotal || pSaldo > totMillas || cupos > 0){
+    acumularMillas();
+  }
+
 }
 
 // Funciones relacionadas al destino
