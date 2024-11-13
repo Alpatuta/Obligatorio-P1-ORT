@@ -562,7 +562,7 @@ function aprobarReservas(idReserva) {
 // Funciones relacionadas al destino
 
 function bindearAdminDestinos() {
-  let botones = document.querySelectorAll(".btnCambiarCupos");
+  let botones = document.querySelectorAll(".btnEditarDestinos");
 
   for (let i = 0; i < botones.length; i++) {
     let boton = botones[i];
@@ -581,19 +581,18 @@ function bindearBotonesCupos(){
 }
 
 function modificarCupos(){
-  let idDestino = Number(this.getAttribute("data-id-destino"));
-  let botonesCupos = document.querySelector(".btnCupos").value;
-  let stock = document.querySelector(".pStock").value;
+  let idDestino = this.getAttribute("data-id-destino");
   let d = s.obtenerDestinoById(idDestino);
+  let botonesCupos = document.querySelector(".btnCupos").value;
+  let stock = d.cupos;
 
   if(botonesCupos === "+"){
     stock++;
-  } else {
+  } else if (botonesCupos === "-"){
     stock--;
   }
 
   d.cupos = stock;
-
 }
 
 function modificarDestinos() {
@@ -633,7 +632,7 @@ function insertarAdminDestino() {
             </select>
           </td>
           <td>
-            <input type="button" value="Aceptar" class="btnCambiarCupos" data-id-destino="${d.id}">
+            <input type="button" value="Aceptar" class="btnEditarDestinos" data-id-destino="${d.id}">
           </td>
     </tr>
     `;
