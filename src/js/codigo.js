@@ -127,6 +127,7 @@ function mostrarAdministrarDestinos() {
   ocultarTodo();
   document.querySelector("#sHeaderAdmin").style.display = "flex";
   mostrar("sAdministrarDestino");
+  insertarAdminDestino();
 }
 
 //Mostrar manipular reservas (admin)
@@ -559,3 +560,61 @@ function aprobarReservas (idReserva){
 }
 
 // Funciones relacionadas al destino
+function insertarAdminDestino(){
+  let destinos = s.destinos;
+  let cuerpoTabla = "";
+
+  for (let i = 0; i < destinos.length; i++) {
+    let d = destinos[i];
+
+    cuerpoTabla += `
+    <tr>
+     <td>${d.nombre}</td>
+          <td>
+            <label for="stock">Cupos:</label>
+            <input type="text" class="stock">
+          </td>
+          <td>
+            <select class="slcAP">
+              <option value="#">Seleccione...</option>
+              <option value="Activo">Activo</option>
+              <option value="Pausado">Pausado</option>
+            </select>
+          </td>
+          <td>
+            <select class="slcOferta">
+              <option value="#">Seleccione...</option>
+              <option value="S">Si</option>
+              <option value="N">No</option>
+            </select>
+          </td>
+          <td>
+            <input type="button" value="Aceptar" class="btnCambiarCupos" data-id-destino="${d.id}">
+          </td>
+    </tr>
+    `;
+  }
+
+  document.querySelector("#tAdminDestinos").innerHTML = cuerpoTabla;
+  bindearAdminDestinos();
+}
+
+function bindearAdminDestinos(){
+  let botones = document.querySelectorAll(".btnCambiarCupos");
+
+  for(let i = 0; i < botones.length; i++){
+    let boton = botones[i];
+
+    boton.addEventListener("click", modificarDestinos)
+  }
+}
+
+function modificarDestinos(){
+  insertarAdminDestino();
+  let idDestino = Number(this.getAttribute("data-id-destino"));
+  let nuevosCupos = document.querySelector(".stock").value;
+  let d = s.obtenerDestinoById(idDestino);
+
+  console.log(nuevosCupos, d);
+}
+

@@ -1,356 +1,302 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Obligatorio-P1</title>
-    <link rel="stylesheet" href="estilos.css" />
-  </head>
-  <body>
-    <header id="sHeader">
-      <img
-        id="logo"
-        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBRWovuUPFEU2kx5mlt5sjfigAccmFr8Jq8w&s"
-        alt="logo"
-      />
-      <nav>
-        <ul id="navPrincipal">
-          <li><a id="aExplorarDestinos">Explorar destinos</a></li>
-          <li><a id="aReservarDestinos">Reservar destinos</a></li>
-          <li><a id="aHistorialReservas">Historial reservas</a></li>
-          <li><a id="aDestinosOferta">Destinos en oferta</a></li>
-          <li><a id="aCerrarSesionCliente">Cerrar sesion</a></li>
-        </ul>
-      </nav>
-    </header>
 
-    <header id="sHeaderAdmin">
-      <img
-        id="logo"
-        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBRWovuUPFEU2kx5mlt5sjfigAccmFr8Jq8w&s"
-        alt="logo"
-      />
-      <nav>
-        <ul id="navPrincipal">
-          <li><a id="aAgregarDestinos">Agregar destinos</a></li>
-          <li><a id="aAdministrarDestino">Administrar Destino</a></li>
-          <li><a id="aManipularReservas">Manipular reservas</a></li>
-          <li><a id="aInformeGanancias">Informe ganancias</a></li>
-          <li><a id="aCerrarSesionAdmin">Cerrar sesion</a></li>
-        </ul>
-      </nav>
-    </header>
-    <!-- Registro -->
-    <main id="sRegistro">
-      <section>
-        <h2>Registro de usuario</h2>
+<head>
+  <meta charset="UTF-8" />
+  <title>Obligatorio-P1</title>
+  <link rel="stylesheet" href="estilos.css" />
+</head>
 
-        <label for="txtNombre">Ingrese su nombre: </label>
-        <input type="text" id="txtNombre" /><br /><br />
+<body>
+  <header id="sHeader">
+    <img id="logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBRWovuUPFEU2kx5mlt5sjfigAccmFr8Jq8w&s"
+      alt="logo" />
+    <nav>
+      <ul id="navPrincipal">
+        <li><a id="aExplorarDestinos">Explorar destinos</a></li>
+        <li><a id="aReservarDestinos">Reservar destinos</a></li>
+        <li><a id="aHistorialReservas">Historial reservas</a></li>
+        <li><a id="aDestinosOferta">Destinos en oferta</a></li>
+        <li><a id="aCerrarSesionCliente">Cerrar sesion</a></li>
+      </ul>
+    </nav>
+  </header>
 
-        <label for="txtApellido">Ingrese su apellido</label>
-        <input type="text" id="txtApellido" /><br /><br />
+  <header id="sHeaderAdmin">
+    <img id="logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBRWovuUPFEU2kx5mlt5sjfigAccmFr8Jq8w&s"
+      alt="logo" />
+    <nav>
+      <ul id="navPrincipal">
+        <li><a id="aAgregarDestinos">Agregar destinos</a></li>
+        <li><a id="aAdministrarDestino">Administrar Destino</a></li>
+        <li><a id="aManipularReservas">Manipular reservas</a></li>
+        <li><a id="aInformeGanancias">Informe ganancias</a></li>
+        <li><a id="aCerrarSesionAdmin">Cerrar sesion</a></li>
+      </ul>
+    </nav>
+  </header>
+  <!-- Registro -->
+  <main id="sRegistro">
+    <section>
+      <h2>Registro de usuario</h2>
 
-        <label for="txtUsuario">Ingrese su nombre de usuario: </label>
-        <input type="text" id="txtUsuario" /><br /><br />
+      <label for="txtNombre">Ingrese su nombre: </label>
+      <input type="text" id="txtNombre" /><br /><br />
 
-        <label for="psContrasenia">Ingrese su contraseña</label>
-        <input
-          type="password"
-          name="contrasenia"
-          id="psContrasenia"
-        /><br /><br />
+      <label for="txtApellido">Ingrese su apellido</label>
+      <input type="text" id="txtApellido" /><br /><br />
 
-        <label for="txtTarjeta"
-          >Número de tarjeta de crédito (formato WWWW-XXXX-YYYY-ZZZZ):
-        </label>
-        <input type="text" id="txtTarjeta" /><br /><br />
+      <label for="txtUsuario">Ingrese su nombre de usuario: </label>
+      <input type="text" id="txtUsuario" /><br /><br />
 
-        <label for="txtCvc">CVC (3 dígitos): </label>
-        <input type="text" id="txtCvc" /><br /><br />
+      <label for="psContrasenia">Ingrese su contraseña</label>
+      <input type="password" name="contrasenia" id="psContrasenia" /><br /><br />
 
-        <input type="button" value="Registrarse" id="btnRegistro" /><br /><br />
+      <label for="txtTarjeta">Número de tarjeta de crédito (formato WWWW-XXXX-YYYY-ZZZZ):
+      </label>
+      <input type="text" id="txtTarjeta" /><br /><br />
 
-        <p>
-          Ya tienes una cuenta?
-          <a id="aIniciarSesion" style="cursor: pointer; color: blue"
-            >Inicia sesion aqui</a
-          >
-        </p>
+      <label for="txtCvc">CVC (3 dígitos): </label>
+      <input type="text" id="txtCvc" /><br /><br />
 
-        <p id="pRegistro"></p>
-      </section>
-    </main>
+      <input type="button" value="Registrarse" id="btnRegistro" /><br /><br />
 
-    <!-- Iniciar sesión -->
-    <main id="iniciarSesion">
-      <section>
-        <h2>Iniciar sesión</h2>
+      <p>
+        Ya tienes una cuenta?
+        <a id="aIniciarSesion" style="cursor: pointer; color: blue">Inicia sesion aqui</a>
+      </p>
 
-        <label for="txtUsuarioI">Nombre de usuario: </label>
-        <input type="text" id="txtUsuarioI" /><br /><br />
-
-        <label for="psContra">Contraseña: </label>
-        <input type="password" id="psContra" /><br /><br />
-
-        <input type="button" value="Iniciar sesión" id="btnSesion" />
-
-        <p id="pIniciarSesion"></p>
-
-        <p>
-          No tienes una cuenta?
-          <a id="aRegistro" style="cursor: pointer; color: blue"
-            >Registrate aqui</a
-          >
-        </p>
-      </section>
-    </main>
-
-    <!-- Reservar destinos -->
-    <section id="sReservarDestinos">
-      <h2>Reservar destinos</h2>
-
-      <label for="txtCantPersonas">Ingrese la cantidad de personas:</label>
-      <input type="text" id="txtCantPersonas" /><br /><br />
-
-      <label for="slcDestino">Seleccione un destino: </label>
-      <select id="slcDestino">
-        <option value="#">Destino...</option>
-        <option value="DEST_ID_1">Miami</option>
-        <option value="DEST_ID_2">Monza</option>
-        <option value="DEST_ID_3">Sao Paulo</option>
-        <option value="DEST_ID_4">Abu Dhabi</option>
-        <option value="DEST_ID_5">Bahrein</option>
-        <option value="DEST_ID_6">Las Vegas</option>
-        <option value="DEST_ID_7">Barcelona</option>
-        <option value="DEST_ID_8">Tokio</option>
-        <option value="DEST_ID_9">Mexico</option>
-        <option value="DEST_ID_10">Monaco</option></select
-      ><br /><br />
-
-      <label for="slcPago">Seleccione método de pago: </label>
-      <select id="slcPago">
-        <option value="#">Seleccione una opción...</option>
-        <option value="Tarjeta">Tarjeta</option>
-        <option value="Millas">Millas</option></select
-      ><br />
-
-      <p id="pMillas"></p>
-      <br /><br />
-
-      <input type="button" value="Reservar" id="btnReservar" />
-
-      <p id="pReservar"></p>
+      <p id="pRegistro"></p>
     </section>
+  </main>
 
-    <!-- Agregar destinos -->
-    <section id="sAgregarDestinos">
-      <h2>Agregar destinos</h2>
+  <!-- Iniciar sesión -->
+  <main id="iniciarSesion">
+    <section>
+      <h2>Iniciar sesión</h2>
 
-      <label for="txtNombreDestino">Nombre del destino: </label>
-      <input type="text" id="txtNombreDestino" /><br /><br />
+      <label for="txtUsuarioI">Nombre de usuario: </label>
+      <input type="text" id="txtUsuarioI" /><br /><br />
 
-      <label for="txtPrecio">Precio por persona: </label>
-      <input type="text" id="txtPrecio" /><br /><br />
+      <label for="psContra">Contraseña: </label>
+      <input type="password" id="psContra" /><br /><br />
 
-      <label for="txtDesc">Descripción: </label>
-      <input type="text" id="txtDesc" /><br /><br />
+      <input type="button" value="Iniciar sesión" id="btnSesion" />
 
-      <label for="txtImagen">Imagen (URL): </label>
-      <input type="text" id="txtImagen" /><br /><br />
+      <p id="pIniciarSesion"></p>
 
-      <label for="txtCupos">Cupos disponibles: </label>
-      <input type="text" id="txtCupos" /><br /><br />
-
-      <input type="button" value="Crear destino" id="btnCrear" />
-
-      <p id="pCrear"></p>
+      <p>
+        No tienes una cuenta?
+        <a id="aRegistro" style="cursor: pointer; color: blue">Registrate aqui</a>
+      </p>
     </section>
+  </main>
 
-    <!-- Administrar destinos -->
-    <section id="sAdministrarDestino">
-      <h2>Administrar destinos</h2>
-      <table border="1" style="border-collapse: collapse">
-        <thead>
-          <th>Londres</th>
-          <th>París</th>
-          <th>Venecia</th>
-          <th>Viena</th>
-        </thead>
-        <tbody>
-          <tr>
-            <td>
-              Stock <input type="button" value="-" /> 1
-              <input type="button" value="+" />
-            </td>
-            <td>
-              Stock <input type="button" value="-" /> 1
-              <input type="button" value="+" />
-            </td>
-            <td>
-              Stock <input type="button" value="-" /> 1
-              <input type="button" value="+" />
-            </td>
-            <td>
-              Stock <input type="button" value="-" /> 1
-              <input type="button" value="+" />
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <input type="button" value="Pausar" /> o
-              <input type="button" value="Activar" />
-            </td>
-            <td>
-              <input type="button" value="Pausar" /> o
-              <input type="button" value="Activar" />
-            </td>
-            <td>
-              <input type="button" value="Pausar" /> o
-              <input type="button" value="Activar" />
-            </td>
-            <td>
-              <input type="button" value="Pausar" /> o
-              <input type="button" value="Activar" />
-            </td>
-          </tr>
-          <tr>
-            <td>Poner en oferta: <input type="button" value="Oferta" /></td>
-            <td>Poner en oferta: <input type="button" value="Oferta" /></td>
-            <td>Poner en oferta: <input type="button" value="Oferta" /></td>
-            <td>Poner en oferta: <input type="button" value="Oferta" /></td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
+  <!-- Reservar destinos -->
+  <section id="sReservarDestinos">
+    <h2>Reservar destinos</h2>
 
-    <section id="sExplorar-destinos">
-      <h2>Explorar destinos</h2>
-      <table border="1" style="border-collapse: collapse">
-        <thead>
-          <tr>
-            <th>Nombre</th>
-            <th>Imagen</th>
-            <th>Precio</th>
-            <th>Descripción</th>
-            <th>Cupos</th>
-          </tr>
-        </thead>
-        <tbody id="tExplorarDestinos"></tbody>
-      </table>
-    </section>
+    <label for="txtCantPersonas">Ingrese la cantidad de personas:</label>
+    <input type="text" id="txtCantPersonas" /><br /><br />
 
-    <section id="sHistorial-reservas">
-      <h2>Historial de reservas</h2>
-      <table border="1">
-        <thead>
-          <tr>
-            <th>Nombre de reserva</th>
-            <th>Cantidad de personas</th>
-            <th>Precio total</th>
-            <th>Destino</th>
-          </tr>
-        </thead>
-        <tbody id="tHistorial"></tbody>
-      </table>
-    </section>
+    <label for="slcDestino">Seleccione un destino: </label>
+    <select id="slcDestino">
+      <option value="#">Destino...</option>
+      <option value="DEST_ID_1">Miami</option>
+      <option value="DEST_ID_2">Monza</option>
+      <option value="DEST_ID_3">Sao Paulo</option>
+      <option value="DEST_ID_4">Abu Dhabi</option>
+      <option value="DEST_ID_5">Bahrein</option>
+      <option value="DEST_ID_6">Las Vegas</option>
+      <option value="DEST_ID_7">Barcelona</option>
+      <option value="DEST_ID_8">Tokio</option>
+      <option value="DEST_ID_9">Mexico</option>
+      <option value="DEST_ID_10">Monaco</option>
+    </select><br /><br />
 
-    <section id="sDestinos-en-oferta">
-      <h2>Destinos en oferta</h2>
-      <!--Filtrado de explorar destinos. Destinos que cumplan condición de estar en oferta-->
-    </section>
+    <label for="slcPago">Seleccione método de pago: </label>
+    <select id="slcPago">
+      <option value="#">Seleccione una opción...</option>
+      <option value="Tarjeta">Tarjeta</option>
+      <option value="Millas">Millas</option>
+    </select><br />
 
-    <section id="sManipular-reservas">
-      <h2>Manipulación de reservas</h2>
-      <table border="1" style="border-collapse: collapse">
-        <caption>Aprobadas</caption>
-        <thead>
-          <tr>
-            <th>Nombre</th>
-            <th>Destino</th>
-            <th>Cant personas</th>
-            <th>Precio</th>
-          </tr>
-        </thead>
-        <tbody id="tManipularReservasAprobadas">
-  
-        </tbody>
-      </table>
-      <table border="1" style="border-collapse: collapse">
-        <caption>Pendientes</caption>
-        <thead>
-          <tr>
-            <th>Nombre</th>
-            <th>Destino</th>
-            <th>Cant personas</th>
-            <th>Precio</th>
-          </tr>
-        </thead>
-        <tbody id="tManipularReservasPendientes">
-  
-        </tbody>
-      </table>
-      <table border="1" style="border-collapse: collapse">
-        <thead>
-          <tr>
-            <th>Rechazadas</th>
-          </tr>
-        </thead>
-        <tbody id="tManipularReservasRechazadas">
-  
-        </tbody>
-      </table>
-    </section>
+    <p id="pMillas"></p>
+    <br /><br />
 
-    <section id="sInforme-ganancias">
-      <h2>Informe de ganancias</h2>
-      <table border="1" style="border-collapse: collapse">
-        <thead>
-          <tr>
-            <th>Destino</th>
-            <th>Cantidad de reservas</th>
-            <th>Cantidad de personas</th>
-            <th>Ganancias asociadas</th>
-            <th>Ganancia total</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Nombre de destino</td>
-            <td>4</td>
-            <td>6</td>
-            <td>500</td>
-            <td>3000</td>
-          </tr>
-          <tr>
-            <td>Nombre de destino</td>
-            <td>4</td>
-            <td>6</td>
-            <td>500</td>
-            <td>3000</td>
-          </tr>
-          <tr>
-            <td>Nombre de destino</td>
-            <td>4</td>
-            <td>6</td>
-            <td>500</td>
-            <td>3000</td>
-          </tr>
-          <tr>
-            <td>Nombre de destino</td>
-            <td>4</td>
-            <td>6</td>
-            <td>500</td>
-            <td>3000</td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
+    <input type="button" value="Reservar" id="btnReservar" />
 
-    <script src="src/js/Admin.js"></script>
-    <script src="src/js/Cliente.js"></script>
-    <script src="src/js/Destino.js"></script>
-    <script src="src/js/Reserva.js"></script>
-    <script src="src/js/Sistema.js"></script>
-    <script src="src/js/codigo.js"></script>
-  </body>
+    <p id="pReservar"></p>
+  </section>
+
+  <!-- Agregar destinos -->
+  <section id="sAgregarDestinos">
+    <h2>Agregar destinos</h2>
+
+    <label for="txtNombreDestino">Nombre del destino: </label>
+    <input type="text" id="txtNombreDestino" /><br /><br />
+
+    <label for="txtPrecio">Precio por persona: </label>
+    <input type="text" id="txtPrecio" /><br /><br />
+
+    <label for="txtDesc">Descripción: </label>
+    <input type="text" id="txtDesc" /><br /><br />
+
+    <label for="txtImagen">Imagen (URL): </label>
+    <input type="text" id="txtImagen" /><br /><br />
+
+    <label for="txtCupos">Cupos disponibles: </label>
+    <input type="text" id="txtCupos" /><br /><br />
+
+    <input type="button" value="Crear destino" id="btnCrear" />
+
+    <p id="pCrear"></p>
+  </section>
+
+  <!-- Administrar destinos -->
+  <section id="sAdministrarDestino">
+    <h2>Administrar destinos</h2>
+    <table border="1" style="border-collapse: collapse">
+      <thead>
+        <th>Destino</th>
+        <th>Stock</th>
+        <th>Estado</th>
+        <th>En oferta</th>
+      </thead>
+      <tbody id="tAdminDestinos">
+      </tbody>
+    </table>
+  </section>
+
+  <section id="sExplorar-destinos">
+    <h2>Explorar destinos</h2>
+    <table border="1" style="border-collapse: collapse">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Imagen</th>
+          <th>Precio</th>
+          <th>Descripción</th>
+          <th>Cupos</th>
+        </tr>
+      </thead>
+      <tbody id="tExplorarDestinos"></tbody>
+    </table>
+  </section>
+
+  <section id="sHistorial-reservas">
+    <h2>Historial de reservas</h2>
+    <table border="1">
+      <thead>
+        <tr>
+          <th>Nombre de reserva</th>
+          <th>Cantidad de personas</th>
+          <th>Precio total</th>
+          <th>Destino</th>
+        </tr>
+      </thead>
+      <tbody id="tHistorial"></tbody>
+    </table>
+  </section>
+
+  <section id="sDestinos-en-oferta">
+    <h2>Destinos en oferta</h2>
+    <!--Filtrado de explorar destinos. Destinos que cumplan condición de estar en oferta-->
+  </section>
+
+  <section id="sManipular-reservas">
+    <h2>Manipulación de reservas</h2>
+    <table border="1" style="border-collapse: collapse">
+      <caption>Aprobadas</caption>
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Destino</th>
+          <th>Cant personas</th>
+          <th>Precio</th>
+        </tr>
+      </thead>
+      <tbody id="tManipularReservasAprobadas">
+
+      </tbody>
+    </table>
+    <table border="1" style="border-collapse: collapse">
+      <caption>Pendientes</caption>
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Destino</th>
+          <th>Cant personas</th>
+          <th>Precio</th>
+        </tr>
+      </thead>
+      <tbody id="tManipularReservasPendientes">
+
+      </tbody>
+    </table>
+    <table border="1" style="border-collapse: collapse">
+      <thead>
+        <tr>
+          <th>Rechazadas</th>
+        </tr>
+      </thead>
+      <tbody id="tManipularReservasRechazadas">
+
+      </tbody>
+    </table>
+  </section>
+
+  <section id="sInforme-ganancias">
+    <h2>Informe de ganancias</h2>
+    <table border="1" style="border-collapse: collapse">
+      <thead>
+        <tr>
+          <th>Destino</th>
+          <th>Cantidad de reservas</th>
+          <th>Cantidad de personas</th>
+          <th>Ganancias asociadas</th>
+          <th>Ganancia total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Nombre de destino</td>
+          <td>4</td>
+          <td>6</td>
+          <td>500</td>
+          <td>3000</td>
+        </tr>
+        <tr>
+          <td>Nombre de destino</td>
+          <td>4</td>
+          <td>6</td>
+          <td>500</td>
+          <td>3000</td>
+        </tr>
+        <tr>
+          <td>Nombre de destino</td>
+          <td>4</td>
+          <td>6</td>
+          <td>500</td>
+          <td>3000</td>
+        </tr>
+        <tr>
+          <td>Nombre de destino</td>
+          <td>4</td>
+          <td>6</td>
+          <td>500</td>
+          <td>3000</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <script src="src/js/Admin.js"></script>
+  <script src="src/js/Cliente.js"></script>
+  <script src="src/js/Destino.js"></script>
+  <script src="src/js/Reserva.js"></script>
+  <script src="src/js/Sistema.js"></script>
+  <script src="src/js/codigo.js"></script>
+</body>
+
 </html>
