@@ -559,7 +559,9 @@ function aprobarReservas(idReserva) {
 
 }
 
-// Funciones relacionadas al destino
+/* Funciones relacionadas al destino */
+
+// bindeos
 
 function bindearAdminDestinos() {
   let botones = document.querySelectorAll(".btnEditarDestinos");
@@ -571,29 +573,46 @@ function bindearAdminDestinos() {
   }
 }
 
-function bindearBotonesCupos(){
-  let botones = document.querySelectorAll(".btnCupos");
+function bindearBotonesSumar(){
+  let botones = document.querySelectorAll(".btnSumar");
 
   for (let i = 0; i < botones.length; i++){
     let boton = botones[i];
-    boton.addEventListener("click", modificarCupos);
+    boton.addEventListener("click", sumarCupos);
   }
 }
 
-function modificarCupos(){
+function bindearBotonesRestar(){
+  let botones = document.querySelectorAll(".btnRestar");
+
+  for (let i = 0; i < botones.length; i++){
+    let boton = botones[i];
+    boton.addEventListener("click", restarCupos);
+  }
+}
+
+
+
+function sumarCupos(){
   let idDestino = this.getAttribute("data-id-destino");
   let d = s.obtenerDestinoById(idDestino);
-  let botonesCupos = document.querySelector(".btnCupos").value;
   let stock = d.cupos;
-
-  if(botonesCupos === "+"){
-    stock++;
-  } else if (botonesCupos === "-"){
-    stock--;
-  }
-
+  stock++;
   d.cupos = stock;
+  insertarAdminDestino();
 }
+
+
+function restarCupos(){
+  let idDestino = this.getAttribute("data-id-destino");
+  let d = s.obtenerDestinoById(idDestino);
+  let stock = d.cupos;
+  stock--;
+  d.cupos = stock;
+
+  insertarAdminDestino();
+}
+
 
 function modificarDestinos() {
   insertarAdminDestino();
@@ -613,9 +632,9 @@ function insertarAdminDestino() {
     <tr>
      <td>${d.nombre}</td>
           <td>
-          <input type="button" value="+" class="btnCupos" data-id-destino="${d.id}">
+          <input type="button" value="+" class="btnSumar" data-id-destino="${d.id}">
           <p class="pStock">${d.cupos}</p>
-          <input type="button" value="-" class="btnCupos" data-id-destino="${d.id}">
+          <input type="button" value="-" class="btnRestar" data-id-destino="${d.id}">
           </td>
           <td>
             <select class="slcAP">
@@ -640,6 +659,7 @@ function insertarAdminDestino() {
 
   document.querySelector("#tAdminDestinos").innerHTML = cuerpoTabla;
   bindearAdminDestinos();
-  bindearBotonesCupos();
+  bindearBotonesSumar();
+  bindearBotonesRestar();
 }
 
