@@ -12,7 +12,7 @@ class Sistema {
         "Jm1234",
         "4213 - 6874 - 9541 - 5511",
         159,
-        15000, 
+        15000,
         0
       ),
       new Cliente(
@@ -23,7 +23,7 @@ class Sistema {
         "Lg1234",
         "4213 - 6872 - 4412 - 5512",
         152,
-        15000, 
+        15000,
         0
       ),
       new Cliente(
@@ -34,7 +34,7 @@ class Sistema {
         "Ml1234",
         "4213 - 1234 - 1324 - 5555",
         776,
-        15000, 
+        15000,
         0
       ),
       new Cliente(
@@ -45,7 +45,7 @@ class Sistema {
         "Ap1234",
         "4213 - 1212 - 4355 - 6533",
         344,
-        15000, 
+        15000,
         0
       ),
       new Cliente(
@@ -56,7 +56,7 @@ class Sistema {
         "Pg1234",
         "2213 - 5251 - 3537 - 6865",
         159,
-        15000, 
+        15000,
         0
       ),
     ];
@@ -148,7 +148,7 @@ class Sistema {
       ),
 
       new Destino(
-       "DEST_ID_8",
+        "DEST_ID_8",
         "Tokio",
         400,
         "Tokio es god",
@@ -190,7 +190,7 @@ class Sistema {
     ];
   }
 
-  registrarCliente(pNombre, pApellido, pUsuario, pContrasenia, pTarjeta, pCvc,) {
+  registrarCliente(pNombre, pApellido, pUsuario, pContrasenia, pTarjeta, pCvc) {
     this.cliente.push(
       new Cliente(
         this.idCliente,
@@ -232,11 +232,17 @@ class Sistema {
   }
 
   //Para funcion de reservas
-  reservar(pIdDestino, pCantPersonas, pMonto, pEstado, pNombreCliente, pMetodoPago) {
-
+  reservar(
+    pIdDestino,
+    pCantPersonas,
+    pMonto,
+    pEstado,
+    pNombreCliente,
+    pMetodoPago
+  ) {
     for (let i = 0; i < this.destinos.length; i++) {
       let d = this.destinos[i];
-  
+
       if (d.id === pIdDestino) {
         pMonto = d.precio * pCantPersonas;
         pEstado = d.estado;
@@ -253,7 +259,6 @@ class Sistema {
         pNombreCliente,
         pMetodoPago
       )
-      
     );
 
     // calculo de monto total, id destino, metodo de pago (m o e);
@@ -332,35 +337,33 @@ class Sistema {
     return objAdmin;
   }
 
-  obtenerDestinoById (pIdDestino){
+  obtenerDestinoById(pIdDestino) {
     let objDest = null;
-    
-    for(let i = 0; i < this.destinos.length; i++){
+
+    for (let i = 0; i < this.destinos.length; i++) {
       let d = this.destinos[i];
 
-      if (pIdDestino === d.id){
+      if (pIdDestino === d.id) {
         objDest = d;
-        break
+        break;
       }
     }
 
     return objDest;
   }
 
-  ObtenerReserva(pNombreCliente){
+  obtenerReserva(pNombreCliente) {
     let objReserva = null;
 
-    for(let i = 0; i < this.reservas.length; i++){
+    for (let i = 0; i < this.reservas.length; i++) {
       let r = this.reservas[i];
 
-      if(pNombreCliente === r.nombreCliente){
+      if (pNombreCliente === r.nombreCliente) {
         objReserva = r;
-        break
+        break;
       }
-
     }
 
     return objReserva;
   }
-
 }

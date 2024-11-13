@@ -236,7 +236,7 @@ function registroUsuario() {
       nombreUsuario,
       contrasenia,
       tarjeta,
-      nbrCvc,
+      nbrCvc
     );
     mensaje = "Registro exitoso!";
   }
@@ -346,32 +346,42 @@ function reservarDestino() {
   let monto = s.destinos.precio;
   let estado = s.destinos.estado;
 
-
-
   if (s.existeReserva(destino, clienteLogueado.nombre) === true) {
     document.querySelector("#pReservar").innerHTML =
       "Ya tiene una reserva para el destino seleccionado. Por favor elija otro destino.";
   } else {
-    s.reservar(destino, cantPersonas, monto, estado, clienteLogueado.nombre, metodoPago);
+    s.reservar(
+      destino,
+      cantPersonas,
+      monto,
+      estado,
+      clienteLogueado.nombre,
+      metodoPago
+    );
 
-    document.querySelector("#pReservar").innerHTML = `Reserva realizada con éxito!`;
+    document.querySelector(
+      "#pReservar"
+    ).innerHTML = `Reserva realizada con éxito!`;
   }
-
 }
 
 //Funcion historial de reservas
-document.querySelector("#aHistorialReservas").addEventListener("click", historialReservas);
+document
+  .querySelector("#aHistorialReservas")
+  .addEventListener("click", historialReservas);
 
 function historialReservas() {
   let historial = s.reservas;
   let cuerpoTabla = "";
-  
 
   for (let i = 0; i < historial.length; i++) {
     let h = historial[i];
     let objDestino = s.obtenerDestinoById(h.idDestino);
 
-    if (objDestino.id === h.idDestino && h.nombreCliente === clienteLogueado.nombre) {
+    if (
+      objDestino.id === h.idDestino &&
+      h.nombreCliente === clienteLogueado.nombre
+    ) {
       cuerpoTabla += `
       <tr>
         <td>${objDestino.nombre}</td>
@@ -444,20 +454,21 @@ function crearDestino() {
 document.querySelector(".btnAprobar").addEventListener("click", aprobarReserva);
 
 function aprobarReserva() {
-  
   let saldoCliente = clienteLogueado.saldo;
   let totMillas = clienteLogueado.millas;
-  let reserva = s.ObtenerReserva(clienteLogueado.nombre);
+  let reserva = s.obtenerReserva(clienteLogueado.nombre);
   let dest = s.obtenerDestinoById(reserva.idDestino);
   let cupos = dest.cupos;
   let cantidadPersonas = reserva.cantPersonas;
   let precioTotal = reserva.monto;
   let pago = reserva.metodoPago;
 
-  
-  if(saldoCliente >= precioTotal || totMillas >= precioTotal || cupos >= cantidadPersonas && reserva.estado === "Pendiente"){
-
-    if(pago === "Tarjeta"){
+  if (
+    saldoCliente >= precioTotal ||
+    totMillas >= precioTotal ||
+    (cupos >= cantidadPersonas && reserva.estado === "Pendiente")
+  ) {
+    if (pago === "Tarjeta") {
       totMillas += precioTotal / 100;
       clienteLogueado.millas = totMillas;
       saldoCliente -= precioTotal;
@@ -465,9 +476,7 @@ function aprobarReserva() {
       cupos -= cantidadPersonas;
       dest.cupos = cupos;
     } else {
-
-      
-      if (totMillas < precioTotal){
+      if (totMillas < precioTotal) {
         clienteLogueado.millas = 0;
         saldoCliente -= precioTotal - totMillas;
         clienteLogueado.saldo = saldoCliente;
@@ -477,23 +486,18 @@ function aprobarReserva() {
         totMillas -= precioTotal;
         clienteLogueado.millas = totMillas;
       }
-
     }
-    
+
     reserva.estado = "Aprobada";
-
   } else {
-
     reserva.estado = "Cancelada";
-
   }
 
-  if (cupos === 0){
+  if (cupos === 0) {
     dest.estado = "Pausado";
   }
 
   console.log(reserva, cantidadPersonas, precioTotal, pago, cupos);
-
 }
 
 // Funciones relacionadas al destino
