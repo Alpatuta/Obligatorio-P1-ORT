@@ -348,8 +348,8 @@ function reservarDestino() {
   let metodoPago = document.querySelector("#slcPago").value;
   let monto = s.destinos.precio;
   let estado = s.destinos.estado;
-  
-  
+
+
 
   if (destino !== "#" && cantPersonas !== "" && metodoPago !== "#") {
     if (s.existeReserva(destino, s.clienteLogueado.id) === true) {
@@ -363,12 +363,12 @@ function reservarDestino() {
         estado,
         metodoPago
       );
-  
+
       document.querySelector(
         "#pReservar"
       ).innerHTML = `Reserva realizada con éxito!`;
     }
-  }else {
+  } else {
     document.querySelector(
       "#pReservar"
     ).innerHTML = `Complete todo los campos`;
@@ -419,7 +419,7 @@ function mostrarPrecargadas() {
     let cliente = s.obtenerClienteById(pre.idCliente);
     let objDestino = s.obtenerDestinoById(pre.idDestino);
 
-    if (pre.estado === "Aprobada"){
+    if (pre.estado === "Aprobada") {
       cuerpoTabla += `<tr>
       <td>${cliente.nombre}</td>
       <td>${objDestino.nombre}</td>
@@ -441,7 +441,7 @@ function mostrarPendientes() {
     let cliente = s.obtenerClienteById(pre.idCliente);
     let objDestino = s.obtenerDestinoById(pre.idDestino);
 
-    if(pre.estado === "Pendiente"){
+    if (pre.estado === "Pendiente") {
       cuerpoTabla += `<tr>
       <td>${cliente.nombre}</td>
       <td>${objDestino.nombre}</td>
@@ -526,13 +526,13 @@ function procesarReserva() {
   aprobarReservas(idReserva);
 }
 
-function aprobarReservas (idReserva){
+function aprobarReservas(idReserva) {
   let cuerpoTabla = "";
   let r = s.obtenerReservaById(idReserva);
   let c = s.obtenerClienteById(r.idCliente);
   let d = s.obtenerDestinoById(r.idDestino);
 
-  if(s.procesarReserva(idReserva) === "Aprobada"){
+  if (s.procesarReserva(idReserva) === "Aprobada") {
 
     cuerpoTabla += ` 
     <tr>
@@ -544,7 +544,7 @@ function aprobarReservas (idReserva){
     `
     document.querySelector("#tManipularReservasAprobadas").innerHTML += cuerpoTabla;
 
-  } else if (s.procesarReserva(idReserva) === "Rechazada"){
+  } else if (s.procesarReserva(idReserva) === "Rechazada") {
 
     cuerpoTabla += ` 
     <tr>
@@ -560,7 +560,50 @@ function aprobarReservas (idReserva){
 }
 
 // Funciones relacionadas al destino
-function insertarAdminDestino(){
+
+function bindearAdminDestinos() {
+  let botones = document.querySelectorAll(".btnCambiarCupos");
+
+  for (let i = 0; i < botones.length; i++) {
+    let boton = botones[i];
+
+    boton.addEventListener("click", modificarDestinos)
+  }
+}
+
+function bindearBotonesCupos(){
+  let botones = document.querySelectorAll(".btnCupos");
+
+  for (let i = 0; i < botones.length; i++){
+    let boton = botones[i];
+    boton.addEventListener("click", modificarCupos);
+  }
+}
+
+function modificarCupos(){
+  let idDestino = Number(this.getAttribute("data-id-destino"));
+  let botonesCupos = document.querySelector(".btnCupos").value;
+  let stock = document.querySelector(".pStock").value;
+  let d = s.obtenerDestinoById(idDestino);
+
+  if(botonesCupos === "+"){
+    stock++;
+  } else {
+    stock--;
+  }
+
+  d.cupos = stock;
+
+}
+
+function modificarDestinos() {
+  insertarAdminDestino();
+  let idDestino = Number(this.getAttribute("data-id-destino"));
+  let d = s.obtenerDestinoById(idDestino);
+
+}
+
+function insertarAdminDestino() {
   let destinos = s.destinos;
   let cuerpoTabla = "";
 
@@ -571,8 +614,9 @@ function insertarAdminDestino(){
     <tr>
      <td>${d.nombre}</td>
           <td>
-            <label for="stock">Cupos:</label>
-            <input type="text" class="stock">
+          <input type="button" value="+" class="btnCupos" data-id-destino="${d.id}">
+          <p class="pStock">${d.cupos}</p>
+          <input type="button" value="-" class="btnCupos" data-id-destino="${d.id}">
           </td>
           <td>
             <select class="slcAP">
@@ -597,24 +641,6 @@ function insertarAdminDestino(){
 
   document.querySelector("#tAdminDestinos").innerHTML = cuerpoTabla;
   bindearAdminDestinos();
-}
-
-function bindearAdminDestinos(){
-  let botones = document.querySelectorAll(".btnCambiarCupos");
-
-  for(let i = 0; i < botones.length; i++){
-    let boton = botones[i];
-
-    boton.addEventListener("click", modificarDestinos)
-  }
-}
-
-function modificarDestinos(){
-  insertarAdminDestino();
-  let idDestino = Number(this.getAttribute("data-id-destino"));
-  let nuevosCupos = document.querySelector(".stock").value;
-  let d = s.obtenerDestinoById(idDestino);
-
-  console.log(nuevosCupos, d);
+  bindearBotonesCupos();
 }
 

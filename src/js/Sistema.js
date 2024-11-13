@@ -69,7 +69,7 @@ class Sistema {
       new Administrador("Santiago", "Santi1234)"),
       new Administrador("Natalia", "Nata123"),
     ];
-    this.idDestino = 10;
+    this.idDestino = 11;
     this.destinos = [
       new Destino(
         "DEST_ID_1",
@@ -421,5 +421,5 @@ class Sistema {
     
   }
 
-  
+
 }
