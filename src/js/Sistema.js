@@ -2,10 +2,11 @@
 
 class Sistema {
   constructor() {
+    this.clienteLogueado;
     this.idCliente = 6;
     this.cliente = [
       new Cliente(
-        1,
+        "CLI_ID_1",
         "Juan",
         "Moneta",
         "JMonetaSsj23",
@@ -16,7 +17,7 @@ class Sistema {
         0
       ),
       new Cliente(
-        2,
+        "CLI_ID_2",
         "Lucas",
         "Gomez",
         "LucasGomez",
@@ -27,7 +28,7 @@ class Sistema {
         0
       ),
       new Cliente(
-        3,
+        "CLI_ID_3",
         "Maria",
         "Lopez",
         "MariaLopez",
@@ -38,7 +39,7 @@ class Sistema {
         0
       ),
       new Cliente(
-        4,
+        "CLI_ID_4",
         "Ana",
         "Perez",
         "AnaPerez",
@@ -49,7 +50,7 @@ class Sistema {
         0
       ),
       new Cliente(
-        5,
+        "CLI_ID_5",
         "Pedro",
         "Gonzalez",
         "PedroGonzalez",
@@ -180,20 +181,20 @@ class Sistema {
         "no"
       ),
     ];
-
+    this.idReserva = 6;
     this.reservas = [
-      new Reservas("DEST_ID_1", 5, 2250, "Aprobada", "Juan", "Tarjeta"),
-      new Reservas("DEST_ID_2", 3, 1800, "Aprobada", "Lucas", "Millas"),
-      new Reservas("DEST_ID_3", 2, 800, "Aprobada", "Maria", "Tarjeta"),
-      new Reservas("DEST_ID_4", 4, 1600, "Aprobada", "Ana", "Millas"),
-      new Reservas("DEST_ID_5", 1, 200, "Aprobada", "Pedro", "Tarjeta"),
+      new Reservas("DEST_ID_1", 1, 5, 2250, "Aprobada", "CLI_ID_1", "Tarjeta"),
+      new Reservas("DEST_ID_2", 2, 3, 1800, "Aprobada", "CLI_ID_2", "Millas"),
+      new Reservas("DEST_ID_3", 3, 2, 800, "Aprobada", "CLI_ID_3", "Tarjeta"),
+      new Reservas("DEST_ID_4", 4, 4, 1600, "Aprobada", "CLI_ID_4", "Millas"),
+      new Reservas("DEST_ID_5", 5, 1, 200, "Aprobada", "CLI_ID_5", "Tarjeta"),
     ];
   }
 
   registrarCliente(pNombre, pApellido, pUsuario, pContrasenia, pTarjeta, pCvc) {
     this.cliente.push(
       new Cliente(
-        this.idCliente,
+        "CLI_ID_" + this.idCliente,
         pNombre,
         pApellido,
         pUsuario,
@@ -237,7 +238,6 @@ class Sistema {
     pCantPersonas,
     pMonto,
     pEstado,
-    pNombreCliente,
     pMetodoPago
   ) {
     for (let i = 0; i < this.destinos.length; i++) {
@@ -253,24 +253,27 @@ class Sistema {
     this.reservas.push(
       new Reservas(
         pIdDestino,
+        this.idReserva,
         pCantPersonas,
         pMonto,
         pEstado,
-        pNombreCliente,
+        this.clienteLogueado.id,
         pMetodoPago
       )
+
     );
+    this.idReserva++;
 
     // calculo de monto total, id destino, metodo de pago (m o e);
   }
 
-  existeReserva(pNombreDestino, pNombreCliente) {
+  existeReserva(pIdDestino, pIdCliente) {
     let existe = false;
 
     for (let i = 0; i < this.reservas.length; i++) {
       if (
-        this.reservas[i].nombreDestino === pNombreDestino &&
-        this.reservas[i].nombreCliente === pNombreCliente
+        this.reservas[i].idDestino === pIdDestino &&
+        this.reservas[i].idCliente === pIdCliente
       ) {
         existe = true;
       }
@@ -366,4 +369,23 @@ class Sistema {
 
     return objReserva;
   }
+
+  obtenerClienteById(idCliente){
+    let objCliente = null;
+
+    for (let i = 0; i < this.cliente.length; i++) {
+      let c = this.cliente[i];
+       
+      if(idCliente === c.id){
+        objCliente = c;
+        break;
+      }
+    }
+
+    return objCliente;
+  }
+  // procesarReserva(pIdReserva) {
+  //   let r = this.obtenerReserva(nombreCliente);
+    
+  // }
 }

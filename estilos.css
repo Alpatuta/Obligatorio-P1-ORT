@@ -84,7 +84,7 @@ header {
 /* Estilos tabla */
 table,
 th,
-td {
+td, caption {
   border-collapse: collapse;
   border: none;
   padding-left: 15px;
@@ -98,7 +98,7 @@ table {
   min-width: 700px;
 }
 
-thead {
+thead, caption {
   border-bottom: 1px solid black;
   background-color: #fafafa;
   color: #002e4a;
