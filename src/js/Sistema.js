@@ -355,13 +355,13 @@ class Sistema {
     return objDest;
   }
 
-  obtenerReserva(pNombreCliente) {
+  obtenerReservaById (pIdReserva) {
     let objReserva = null;
 
     for (let i = 0; i < this.reservas.length; i++) {
       let r = this.reservas[i];
 
-      if (pNombreCliente === r.nombreCliente) {
+      if (pIdReserva === r.idReserva) {
         objReserva = r;
         break;
       }
@@ -384,8 +384,40 @@ class Sistema {
 
     return objCliente;
   }
-  // procesarReserva(pIdReserva) {
-  //   let r = this.obtenerReserva(nombreCliente);
+
+  procesarReserva(pIdReserva) {
+    let r = this.obtenerReservaById(pIdReserva);
+    let c = this.obtenerClienteById(r.idCliente);
+    let d = this.obtenerDestinoById(r.idDestino);
+    let e = r.estado;
+
+    if (r.metodoPago === "Tarjeta"){
+
+      if(c.saldo >= r.monto && d.cupos >= r.cantPersonas ){
+        c.saldo -= r.monto;
+        c.millas += r.monto / 100;
+        d.cupos -= r.cantPersonas;
+        e = "Aprobada";
+      } else {
+        e = "Rechazada"
+      }
+    } else if (r.metodoPago === "Millas"){
+
+      if (c.millas >= r.monto && d.cupos >= r.cantPersonas){
+        c.millas -= r.monto;
+        d.cupos -= r.cantPersonas;
+        e = "Aprobada";
+      } else if (c.millas + c.saldo >= r.monto && d.cupos >= r.cantPersonas){
+        let restaMillas = r.monto - c.millas;
+        c.saldo -= restaMillas;
+        e = "Aprobado";
+      } else {
+        e = "Rechazada";
+      }
+
+    } 
+
+    return e;
     
-  // }
+  }
 }

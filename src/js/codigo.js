@@ -418,12 +418,14 @@ function mostrarPrecargadas() {
     let cliente = s.obtenerClienteById(pre.idCliente);
     let objDestino = s.obtenerDestinoById(pre.idDestino);
 
-    cuerpoTabla += `<tr>
-    <td>${cliente.nombre}</td>
-    <td>${objDestino.nombre}</td>
-    <td>${pre.cantPersonas}</td>
-    <td>${pre.monto}</td>
-    </tr>`
+    if (pre.estado === "Aprobada"){
+      cuerpoTabla += `<tr>
+      <td>${cliente.nombre}</td>
+      <td>${objDestino.nombre}</td>
+      <td>${pre.cantPersonas}</td>
+      <td>${pre.monto}</td>
+      </tr>`
+    }
   }
 
   document.querySelector("#tManipularReservasAprobadas").innerHTML = cuerpoTabla;
@@ -435,20 +437,22 @@ function mostrarPendientes() {
 
   for (let i = 0; i < precargadas.length; i++) {
     let pre = precargadas[i];
+    let cliente = s.obtenerClienteById(pre.idCliente);
     let objDestino = s.obtenerDestinoById(pre.idDestino);
 
     if(pre.estado === "Pendiente"){
       cuerpoTabla += `<tr>
-      <td>${pre.nombreCliente}</td>
+      <td>${cliente.nombre}</td>
       <td>${objDestino.nombre}</td>
       <td>${pre.cantPersonas}</td>
       <td>${pre.monto}</td>
-      <td><input type="button" value="Procesar reserva" class="btnAprobar" data-id-reserva= "${pre.idReserva}"</td>
+      <td><input type="button" value="Procesar reserva" class="btnAprobar" data-id-reserva="${pre.idReserva}"</td>
       </tr>`
     }
   }
 
   document.querySelector("#tManipularReservasPendientes").innerHTML = cuerpoTabla;
+  bindearReservas();
 }
 
 //Funcion explorar destinos
@@ -506,7 +510,7 @@ function crearDestino() {
 
 //Funcion bindear botones procesarReservas
 function bindearReservas() {
-  let botones = document.querySelector(".btnAprobar");
+  let botones = document.querySelectorAll(".btnAprobar");
 
   for (let i = 0; i < botones.length; i++) {
     let boton = botones[i];
@@ -517,10 +521,41 @@ function bindearReservas() {
 // Procesar reservas
 function procesarReserva() {
   let idReserva = Number(this.getAttribute("data-id-reserva"));
-  s.procesarReserva(idReserva);
+  mostrarPendientes();
+  aprobarReservas(idReserva);
 }
 
+function aprobarReservas (idReserva){
+  let cuerpoTabla = "";
+  let r = s.obtenerReservaById(idReserva);
+  let c = s.obtenerClienteById(r.idCliente);
+  let d = s.obtenerDestinoById(r.idDestino);
 
+  if(s.procesarReserva(idReserva) === "Aprobada"){
 
+    cuerpoTabla += ` 
+    <tr>
+    <td>${c.nombre}</td>
+    <td>${d.nombre}</td>  
+    <td>${r.cantPersonas}</td>  
+    <td>${r.monto}</td>
+    </tr>
+    `
+    document.querySelector("#tManipularReservasAprobadas").innerHTML += cuerpoTabla;
+
+  } else if (s.procesarReserva(idReserva) === "Rechazada"){
+
+    cuerpoTabla += ` 
+    <tr>
+    <td>${c.nombre}</td>
+    <td>${d.nombre}</td>  
+    <td>${r.cantPersonas}</td>  
+    <td>${r.monto}</td>
+    </tr>
+    `
+    document.querySelector("#tManipularReservasRechazadas").innerHTML += cuerpoTabla;
+  }
+
+}
 
 // Funciones relacionadas al destino
