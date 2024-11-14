@@ -75,7 +75,7 @@ class Sistema {
         "DEST_ID_1",
         "Miami",
         450,
-        "Miami es god",
+        "Nuevo en la F1, con ambiente de lujo y curvas desafiantes.",
         "https://s40320.pcdn.co/wp-content/uploads/2021/01/T18-Aerial-scaled.jpg",
         100,
         "Activo",
@@ -86,7 +86,7 @@ class Sistema {
         "DEST_ID_2",
         "Monza",
         600,
-        "Monza es god",
+        "Velocidades máximas en el templo de la velocidad italiana.",
         "https://images.daznservices.com/di/library/DAZN_News/24/ca/monza-gp-italia-gran-premio-de-italia-formula-1-f1_9bag38iciu1f118g6l71uo0qg.jpg?t=314989067",
         100,
         "Activo",
@@ -97,7 +97,7 @@ class Sistema {
         "DEST_ID_3",
         "Sao Paulo",
         400,
-        "Sao Paulo es god",
+        "Histórico y emocionante, escenario de finales épicos",
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQhyQcL-7BNtDd4RR1WppdgvQSfahsJBup1g&s",
         100,
         "Activo",
@@ -107,8 +107,8 @@ class Sistema {
       new Destino(
         "DEST_ID_4",
         "Abu Dhabi",
-        100,
-        "Abu Dhabi es god",
+        300,
+        "Emocionante cierre de temporada al atardecer en Yas Marina",
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZYY-Pfsz1phVMaxdXv75MuV9LNYh8M6cGBA&s",
         100,
         "Activo",
@@ -119,7 +119,7 @@ class Sistema {
         "DEST_ID_5",
         "Bahrein",
         200,
-        "Bahrein es god",
+        "Carrera nocturna en el desierto, famoso por duelos intensos",
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhUhh4T_AD2kXnybEiS9UvwRxZyHh_1fNG8A&s",
         100,
         "Activo",
@@ -130,7 +130,7 @@ class Sistema {
         "DEST_ID_6",
         "Las Vegas",
         200,
-        "Las vegas god",
+        "Carrera nocturna en el Strip, debutando en 2023",
         "https://cdn-7.motorsport.com/images/amp/254NWpx0/s1000/las-vegas-gp-rendering-1.jpg",
         100,
         "Activo",
@@ -141,7 +141,7 @@ class Sistema {
         "DEST_ID_7",
         "Barcelona",
         500,
-        "Barcelona es god",
+        "Circuito técnico, importante para pruebas y estrategia",
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfo8hxm-Lx2D3NxBruJseRB4Uz7genKl1ZlA&s",
         100,
         "Activo",
@@ -152,7 +152,7 @@ class Sistema {
         "DEST_ID_8",
         "Tokio",
         400,
-        "Tokio es god",
+        "Pista técnica en forma de ocho, amada por pilotos",
         "https://f1destinations.com/wp-content/uploads/2023/08/2023_Japanese_GP_F1D_Saturday_06380-1024x683.jpg",
         100,
         "Activo",
@@ -163,7 +163,7 @@ class Sistema {
         "DEST_ID_9",
         "Mexico",
         300,
-        "Mexico es god",
+        "Ambiente festivo y altitud desafiante en el Autódromo Hermanos Rodríguez",
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJF5iSGI1qKi3yuKi-OlvBdYFrQmZgLW8ADA&s",
         100,
         "Activo",
@@ -174,7 +174,7 @@ class Sistema {
         "DEST_ID_10",
         "Monaco",
         600,
-        "Monaco es god",
+        "Carrera en calles angostas, con curvas desafiantes y glamour",
         "https://cdn-imgix.headout.com/media/images/7d0797d8d3e5a6961697266f94016da9-Monaco%201.jpg",
         100,
         "Activo",
@@ -183,11 +183,56 @@ class Sistema {
     ];
     this.idReserva = 6;
     this.reservas = [
-      new Reservas("DEST_ID_1", 1, 5, 2250, "Aprobada", "CLI_ID_1", "Tarjeta", 0),
-      new Reservas("DEST_ID_2", 2, 3, 1800, "Aprobada", "CLI_ID_2", "Millas", 0),
-      new Reservas("DEST_ID_3", 3, 2, 800, "Aprobada", "CLI_ID_3", "Tarjeta", 5),
-      new Reservas("DEST_ID_4", 4, 4, 1600, "Aprobada", "CLI_ID_4", "Millas", 0),
-      new Reservas("DEST_ID_5", 5, 1, 200, "Aprobada", "CLI_ID_5", "Tarjeta", 0),
+      new Reservas(
+        "DEST_ID_1",
+        1,
+        5,
+        2250,
+        "Aprobada",
+        "CLI_ID_1",
+        "Tarjeta",
+        0
+      ),
+      new Reservas(
+        "DEST_ID_2",
+        2,
+        3,
+        1800,
+        "Aprobada",
+        "CLI_ID_2",
+        "Millas",
+        0
+      ),
+      new Reservas(
+        "DEST_ID_3",
+        3,
+        2,
+        800,
+        "Aprobada",
+        "CLI_ID_3",
+        "Tarjeta",
+        5
+      ),
+      new Reservas(
+        "DEST_ID_4",
+        4,
+        4,
+        1600,
+        "Aprobada",
+        "CLI_ID_4",
+        "Millas",
+        0
+      ),
+      new Reservas(
+        "DEST_ID_5",
+        5,
+        1,
+        200,
+        "Aprobada",
+        "CLI_ID_5",
+        "Tarjeta",
+        0
+      ),
     ];
   }
 
@@ -402,7 +447,7 @@ class Sistema {
       } else if (c.millas + c.saldo >= r.monto && d.cupos >= r.cantPersonas) {
         let restaMillas = r.monto - c.millas;
         c.saldo -= restaMillas;
-        e = "Aprobado";
+        e = "Aprobada";
       } else {
         e = "Rechazada";
       }

@@ -98,6 +98,7 @@ function mostrarExplorarDestinos() {
   ocultarTodo();
   document.querySelector("#sHeader").style.display = "flex";
   mostrar("sExplorar-destinos");
+  explorar();
 }
 
 //Mostrar interfaz Cliente
@@ -105,8 +106,7 @@ function mostrarExplorarDestinos() {
 function mostrarCliente() {
   ocultarTodo();
   document.querySelector("#sHeader").style.display = "flex";
-  mostrar("sExplorar-destinos");
-  mostrar("sDestinos-en-oferta");
+  mostrarExplorarDestinos();
 }
 
 //Mostrar agregar destinos (admin)
@@ -206,10 +206,13 @@ function registroUsuario() {
   validarContrasenia(contrasenia);
   let esValida = false;
 
-  if (tarjeta.length === 19 && tarjeta[4] === "-" && tarjeta[9] === "-" && tarjeta[14] === "-") {
-    
+  if (
+    tarjeta.length === 19 &&
+    tarjeta[4] === "-" &&
+    tarjeta[9] === "-" &&
+    tarjeta[14] === "-"
+  ) {
     for (let i = 0; i < tarjeta.length; i++) {
-      
       if (tarjeta[i] === "-") {
         tarjeta = tarjeta.replace("-", "");
       }
@@ -232,7 +235,7 @@ function registroUsuario() {
   } else if (validarContrasenia(contrasenia) === false) {
     mensaje =
       "La contraseña debe tener un mínimo de 5 caracteres e incluir una mayúscula, una minúscula y un número.";
-  } else if (esValida === false ) {
+  } else if (esValida === false) {
     mensaje = "Tarjeta inválida.";
   } else {
     s.registrarCliente(
@@ -243,6 +246,12 @@ function registroUsuario() {
       tarjeta,
       nbrCvc
     );
+    document.querySelector("#txtNombre").value = "";
+    document.querySelector("#txtApellido").value = "";
+    document.querySelector("#txtUsuario").value = "";
+    document.querySelector("#psContrasenia").value = "";
+    document.querySelector("#txtTarjeta").value = "";
+    document.querySelector("#txtCvc").value = "";
     mensaje = "Registro exitoso!";
   }
 
@@ -326,13 +335,22 @@ function inicioSesion() {
   let admin = s.obtenerAdmin(nombreUsuario, contrasenia);
   let mensaje = "";
 
-  if (cliente === null && admin === null) {
+  if (nombreUsuario === "" || contrasenia === "") {
+    mensaje = "Debe completar todos los campos.";
+  } else if (cliente === null && admin === null) {
     mensaje = "El nombre de usuario y/o contraseña no es válido.";
   } else if (admin !== null) {
     mostrarAdmin();
+    mostrarAdministrarDestinos();
+    document.querySelector("#txtUsuarioI").value = "";
+    document.querySelector("#psContra").value = "";
     adminLogueado = admin;
   } else if (cliente !== null) {
     mostrarCliente();
+    mostrarExplorarDestinos();
+    mostrarDestinosEnOferta();
+    document.querySelector("#txtUsuarioI").value = "";
+    document.querySelector("#psContra").value = "";
     s.clienteLogueado = cliente;
   }
 
@@ -350,30 +368,28 @@ function reservarDestino() {
   let monto = s.destinos.precio;
   let estado = s.destinos.estado;
 
-  if (destino !== "#" && !isNaN(cantPersonas) && cantPersonas > 0 && cantPersonas !== "" && metodoPago !== "#") {
+  if (
+    destino !== "#" &&
+    !isNaN(cantPersonas) &&
+    cantPersonas > 0 &&
+    cantPersonas !== "" &&
+    metodoPago !== "#"
+  ) {
     if (s.existeReserva(destino, s.clienteLogueado.id) === true) {
       document.querySelector("#pReservar").innerHTML =
         "Ya tiene una reserva para el destino seleccionado. Por favor elija otro destino.";
     } else {
-      s.reservar(
-        destino,  
-        cantPersonas,
-        monto,
-        estado,
-        metodoPago
-      );
+      s.reservar(destino, cantPersonas, monto, estado, metodoPago);
 
       document.querySelector(
         "#pReservar"
       ).innerHTML = `Reserva realizada con éxito!`;
+      document.querySelector("#txtCantPersonas").value = "";
+      document.querySelector("#slcPago").value = "#";
     }
   } else {
-    document.querySelector(
-      "#pReservar"
-    ).innerHTML = `Complete todo los campos`;
+    document.querySelector("#pReservar").innerHTML = `Complete todo los campos`;
   }
-
-  //s.procesarReserva();
 }
 
 //Funcion para mostrar destinos en select de reservar destinos
@@ -407,7 +423,8 @@ function historialReservas() {
 
     if (
       objDestino.id === h.idDestino &&
-      h.idCliente === s.clienteLogueado.id
+      h.idCliente === s.clienteLogueado.id &&
+      h.estado === "Aprobada"
     ) {
       cuerpoTabla += `
       <tr>
@@ -415,6 +432,20 @@ function historialReservas() {
         <td>${h.cantPersonas}</td>
         <td>${h.monto}</td>
         <td>${h.estado}</td>
+      </tr>
+      `;
+    } else if (
+      objDestino.id === h.idDestino &&
+      h.idCliente === s.clienteLogueado.id &&
+      h.estado === "Pendiente"
+    ) {
+      cuerpoTabla += `
+      <tr>
+        <td>${objDestino.nombre}</td>
+        <td>${h.cantPersonas}</td>
+        <td>${h.monto}</td>
+        <td>${h.estado}</td>
+        <td><input type="button" value="Cancelar" class="btnCancelar" data-id-pendiente="${h.idReserva}"></td>
       </tr>
       `;
     }
@@ -440,38 +471,16 @@ function mostrarPrecargadas() {
       <td>${objDestino.nombre}</td>
       <td>${pre.cantPersonas}</td>
       <td>${pre.monto}</td>
-      </tr>`
+      </tr>`;
     }
   }
 
-  document.querySelector("#tManipularReservasAprobadas").innerHTML = cuerpoTabla;
-}
-
-function mostrarPendientes() {
-  let precargadas = s.reservas;
-  let cuerpoTabla = "";
-
-  for (let i = 0; i < precargadas.length; i++) {
-    let pre = precargadas[i];
-    let cliente = s.obtenerClienteById(pre.idCliente);
-    let objDestino = s.obtenerDestinoById(pre.idDestino);
-
-    if (pre.estado === "Pendiente") {
-      cuerpoTabla += `<tr>
-      <td>${cliente.nombre}</td>
-      <td>${objDestino.nombre}</td>
-      <td>${pre.cantPersonas}</td>
-      <td>${pre.monto}</td>
-      <td><input type="button" value="Procesar reserva" class="btnAprobar" data-id-reserva="${pre.idReserva}"</td>
-      </tr>`
-    }
-  }
-
-  document.querySelector("#tManipularReservasPendientes").innerHTML = cuerpoTabla;
-  bindearReservas();
+  document.querySelector("#tManipularReservasAprobadas").innerHTML =
+    cuerpoTabla;
 }
 
 //Funcion explorar destinos // Cambiar de lugar??
+
 document
   .querySelector("#aExplorarDestinos")
   .addEventListener("click", explorar);
@@ -483,7 +492,7 @@ function explorar() {
   for (let i = 0; i < destinos.length; i++) {
     let d = destinos[i];
 
-    if(d.estado === "Activo" && d.cupos > 0){
+    if (d.estado === "Activo" && d.cupos > 0) {
       cuerpoTabla += `
       <tr>
         <td>${d.nombre}</td>
@@ -495,7 +504,6 @@ function explorar() {
         </tr>
       `;
     }
-
   }
 
   document.querySelector("#tExplorarDestinos").innerHTML = cuerpoTabla;
@@ -503,14 +511,14 @@ function explorar() {
 
 document.querySelector("#aDestinosOferta").addEventListener("click", ofertas);
 
-function ofertas(){
+function ofertas() {
   let destinos = s.destinos;
   let cuerpoTabla = "";
 
-  for(let i = 0; i < destinos.length; i++){
+  for (let i = 0; i < destinos.length; i++) {
     d = destinos[i];
 
-    if(d.oferta === "si"){
+    if (d.oferta === "si") {
       cuerpoTabla += `
       <tr>
         <td>${d.nombre}</td>
@@ -519,7 +527,7 @@ function ofertas(){
         <td>${d.desc}</td>
         <td>${d.cupos}</td>
       </tr>
-      `
+      `;
     }
   }
   document.querySelector("#tDestinosEnOferta").innerHTML = cuerpoTabla;
@@ -549,7 +557,38 @@ function crearDestino() {
   } else {
     s.agregarDestino(nombre, precio, desc, imagen, cupos);
     document.querySelector("#pCrear").innerHTML = "Destino creado con éxito!";
+    document.querySelector("#txtNombreDestino").value = "";
+    document.querySelector("#txtPrecio").value = "";
+    document.querySelector("#txtDesc").value = "";
+    document.querySelector("#txtImagen").value = "";
+    document.querySelector("#txtCupos").value = "";
   }
+}
+
+//Funcion para mostrar destinos en tabla de manipular reservas
+function mostrarPendientes() {
+  let precargadas = s.reservas;
+  let cuerpoTabla = "";
+
+  for (let i = 0; i < precargadas.length; i++) {
+    let pre = precargadas[i];
+    let cliente = s.obtenerClienteById(pre.idCliente);
+    let objDestino = s.obtenerDestinoById(pre.idDestino);
+
+    if (pre.estado === "Pendiente") {
+      cuerpoTabla += `<tr>
+      <td>${cliente.nombre}</td>
+      <td>${objDestino.nombre}</td>
+      <td>${pre.cantPersonas}</td>
+      <td>${pre.monto}</td>
+      <td><input type="button" value="Procesar reserva" class="btnAprobar" data-id-reserva="${pre.idReserva}"</td>
+      </tr>`;
+    }
+  }
+
+  document.querySelector("#tManipularReservasPendientes").innerHTML =
+    cuerpoTabla;
+  bindearReservas();
 }
 
 //Funcion bindear botones procesarReservas
@@ -570,36 +609,41 @@ function procesarReserva() {
 }
 
 function aprobarReservas(idReserva) {
-  let cuerpoTabla = "";
   let r = s.obtenerReservaById(idReserva);
   let c = s.obtenerClienteById(r.idCliente);
   let d = s.obtenerDestinoById(r.idDestino);
+  let filas = document.querySelectorAll("#tManipularReservasPendientes tr");
 
-  if (s.procesarReserva(idReserva) === "Aprobada") {
-
-    cuerpoTabla += ` 
-    <tr>
-    <td>${c.nombre}</td>
-    <td>${d.nombre}</td>  
-    <td>${r.cantPersonas}</td>  
-    <td>${r.monto}</td>
-    </tr>
-    `
-    document.querySelector("#tManipularReservasAprobadas").innerHTML += cuerpoTabla;
-
-  } else if (s.procesarReserva(idReserva) === "Rechazada") {
-
-    cuerpoTabla += ` 
-    <tr>
-    <td>${c.nombre}</td>
-    <td>${d.nombre}</td>  
-    <td>${r.cantPersonas}</td>  
-    <td>${r.monto}</td>
-    </tr>
-    `
-    document.querySelector("#tManipularReservasRechazadas").innerHTML += cuerpoTabla;
+  let cuerpoTabla = ` 
+  <tr>
+  <td>${c.nombre}</td>
+  <td>${d.nombre}</td>  
+  <td>${r.cantPersonas}</td>  
+  <td>${r.monto}</td>
+  </tr>
+  `;
+  if (r.estado === "Pendiente") {
+    for (let i = 0; i < filas.length; i++) {
+      let fila = filas[i];
+      if (
+        fila.querySelector(".btnAprobar").getAttribute("data-id-reserva") ==
+        idReserva
+      ) {
+        fila.style.display = "none";
+        break;
+      }
+    }
   }
 
+  if (s.procesarReserva(idReserva) === "Aprobada") {
+    document.querySelector("#tManipularReservasAprobadas").innerHTML +=
+      cuerpoTabla;
+    r.estado = "Aprobada";
+  } else if (s.procesarReserva(idReserva) === "Rechazada") {
+    document.querySelector("#tManipularReservasRechazadas").innerHTML +=
+      cuerpoTabla;
+    r.estado = "Rechazada";
+  }
 }
 
 /* Funciones relacionadas al destino */
@@ -649,9 +693,9 @@ function restarCupos() {
   let stock = d.cupos;
   stock--;
   d.cupos = stock;
-  
+
   insertarAdminDestino();
-  
+
   if (d.cupos === 0) {
     document.querySelector(".btnRestar").disabled = true;
     d.estado = "Pausado";
