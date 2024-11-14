@@ -62,6 +62,7 @@ function mostrarReservarDestinos() {
   ocultarTodo();
   document.querySelector("#sHeader").style.display = "flex";
   mostrar("sReservarDestinos");
+  mostrarDestinosReserva();
 }
 
 //Mostrar historial de reservas (cliente)
@@ -350,32 +351,38 @@ function reservarDestino() {
   let monto = s.destinos.precio;
   let estado = s.destinos.estado;
 
-
-
   if (destino !== "#" && cantPersonas !== "" && metodoPago !== "#") {
     if (s.existeReserva(destino, s.clienteLogueado.id) === true) {
       document.querySelector("#pReservar").innerHTML =
         "Ya tiene una reserva para el destino seleccionado. Por favor elija otro destino.";
     } else {
-      s.reservar(
-        destino,
-        cantPersonas,
-        monto,
-        estado,
-        metodoPago
-      );
+      s.reservar(destino, cantPersonas, monto, estado, metodoPago);
 
       document.querySelector(
         "#pReservar"
       ).innerHTML = `Reserva realizada con éxito!`;
     }
   } else {
-    document.querySelector(
-      "#pReservar"
-    ).innerHTML = `Complete todo los campos`;
+    document.querySelector("#pReservar").innerHTML = `Complete todo los campos`;
   }
 
   //s.procesarReserva();
+}
+
+//Funcion para mostrar destinos en select de reservar destinos
+function mostrarDestinosReserva() {
+  let destinos = s.destinos;
+  let option = document.querySelector("#slcDestino").value;
+
+  for (let i = 0; i < destinos.length; i++) {
+    let d = destinos[i];
+
+    if (d.estado === "Activo") {
+      option += `<option value="${d.id}">${d.nombre}</option>`;
+    }
+  }
+
+  document.querySelector("#slcDestino").innerHTML = option;
 }
 
 //Funcion historial de reservas
@@ -391,10 +398,7 @@ function historialReservas() {
     let h = historial[i];
     let objDestino = s.obtenerDestinoById(h.idDestino);
 
-    if (
-      objDestino.id === h.idDestino &&
-      h.idCliente === s.clienteLogueado.id
-    ) {
+    if (objDestino.id === h.idDestino && h.idCliente === s.clienteLogueado.id) {
       cuerpoTabla += `
       <tr>
         <td>${objDestino.nombre}</td>
@@ -426,11 +430,12 @@ function mostrarPrecargadas() {
       <td>${objDestino.nombre}</td>
       <td>${pre.cantPersonas}</td>
       <td>${pre.monto}</td>
-      </tr>`
+      </tr>`;
     }
   }
 
-  document.querySelector("#tManipularReservasAprobadas").innerHTML = cuerpoTabla;
+  document.querySelector("#tManipularReservasAprobadas").innerHTML =
+    cuerpoTabla;
 }
 
 function mostrarPendientes() {
@@ -449,11 +454,12 @@ function mostrarPendientes() {
       <td>${pre.cantPersonas}</td>
       <td>${pre.monto}</td>
       <td><input type="button" value="Procesar reserva" class="btnAprobar" data-id-reserva="${pre.idReserva}"</td>
-      </tr>`
+      </tr>`;
     }
   }
 
-  document.querySelector("#tManipularReservasPendientes").innerHTML = cuerpoTabla;
+  document.querySelector("#tManipularReservasPendientes").innerHTML =
+    cuerpoTabla;
   bindearReservas();
 }
 
@@ -469,7 +475,7 @@ function explorar() {
   for (let i = 0; i < destinos.length; i++) {
     let d = destinos[i];
 
-    if(d.estado === "Activo" && d.cupos > 0){
+    if (d.estado === "Activo" && d.cupos > 0) {
       cuerpoTabla += `
       <tr>
         <td>${d.nombre}</td>
@@ -480,7 +486,6 @@ function explorar() {
       </tr>
       `;
     }
-
   }
 
   document.querySelector("#tExplorarDestinos").innerHTML = cuerpoTabla;
@@ -488,14 +493,14 @@ function explorar() {
 
 document.querySelector("#aDestinosOferta").addEventListener("click", ofertas);
 
-function ofertas(){
+function ofertas() {
   let destinos = s.destinos;
   let cuerpoTabla = "";
 
-  for(let i = 0; i < destinos.length; i++){
+  for (let i = 0; i < destinos.length; i++) {
     d = destinos[i];
 
-    if(d.oferta === "si"){
+    if (d.oferta === "si") {
       cuerpoTabla += `
       <tr>
         <td>${d.nombre}</td>
@@ -504,7 +509,7 @@ function ofertas(){
         <td>${d.desc}</td>
         <td>${d.cupos}</td>
       </tr>
-      `
+      `;
     }
   }
   document.querySelector("#tDestinosEnOferta").innerHTML = cuerpoTabla;
@@ -561,7 +566,6 @@ function aprobarReservas(idReserva) {
   let d = s.obtenerDestinoById(r.idDestino);
 
   if (s.procesarReserva(idReserva) === "Aprobada") {
-
     cuerpoTabla += ` 
     <tr>
     <td>${c.nombre}</td>
@@ -569,11 +573,10 @@ function aprobarReservas(idReserva) {
     <td>${r.cantPersonas}</td>  
     <td>${r.monto}</td>
     </tr>
-    `
-    document.querySelector("#tManipularReservasAprobadas").innerHTML += cuerpoTabla;
-
+    `;
+    document.querySelector("#tManipularReservasAprobadas").innerHTML +=
+      cuerpoTabla;
   } else if (s.procesarReserva(idReserva) === "Rechazada") {
-
     cuerpoTabla += ` 
     <tr>
     <td>${c.nombre}</td>
@@ -581,10 +584,10 @@ function aprobarReservas(idReserva) {
     <td>${r.cantPersonas}</td>  
     <td>${r.monto}</td>
     </tr>
-    `
-    document.querySelector("#tManipularReservasRechazadas").innerHTML += cuerpoTabla;
+    `;
+    document.querySelector("#tManipularReservasRechazadas").innerHTML +=
+      cuerpoTabla;
   }
-
 }
 
 /* Funciones relacionadas al destino */
@@ -634,9 +637,9 @@ function restarCupos() {
   let stock = d.cupos;
   stock--;
   d.cupos = stock;
-  
+
   insertarAdminDestino();
-  
+
   if (d.cupos === 0) {
     document.querySelector(".btnRestar").disabled = true;
     d.estado = "Pausado";
