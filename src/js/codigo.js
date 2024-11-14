@@ -62,7 +62,6 @@ function mostrarReservarDestinos() {
   ocultarTodo();
   document.querySelector("#sHeader").style.display = "flex";
   mostrar("sReservarDestinos");
-  mostrarDestinos();
 }
 
 //Mostrar historial de reservas (cliente)
@@ -86,6 +85,7 @@ function mostrarDestinosEnOferta() {
   ocultarTodo();
   document.querySelector("#sHeader").style.display = "flex";
   mostrar("sDestinos-en-oferta");
+  ofertas();
 }
 
 //Mostrar explorar destinos (cliente)
@@ -350,19 +350,29 @@ function reservarDestino() {
   let monto = s.destinos.precio;
   let estado = s.destinos.estado;
 
+
+
   if (destino !== "#" && cantPersonas !== "" && metodoPago !== "#") {
     if (s.existeReserva(destino, s.clienteLogueado.id) === true) {
       document.querySelector("#pReservar").innerHTML =
         "Ya tiene una reserva para el destino seleccionado. Por favor elija otro destino.";
     } else {
-      s.reservar(destino, cantPersonas, monto, estado, metodoPago);
+      s.reservar(
+        destino,
+        cantPersonas,
+        monto,
+        estado,
+        metodoPago
+      );
 
       document.querySelector(
         "#pReservar"
       ).innerHTML = `Reserva realizada con éxito!`;
     }
   } else {
-    document.querySelector("#pReservar").innerHTML = `Complete todo los campos`;
+    document.querySelector(
+      "#pReservar"
+    ).innerHTML = `Complete todo los campos`;
   }
 
   //s.procesarReserva();
@@ -381,7 +391,10 @@ function historialReservas() {
     let h = historial[i];
     let objDestino = s.obtenerDestinoById(h.idDestino);
 
-    if (objDestino.id === h.idDestino && h.idCliente === s.clienteLogueado.id) {
+    if (
+      objDestino.id === h.idDestino &&
+      h.idCliente === s.clienteLogueado.id
+    ) {
       cuerpoTabla += `
       <tr>
         <td>${objDestino.nombre}</td>
@@ -413,12 +426,11 @@ function mostrarPrecargadas() {
       <td>${objDestino.nombre}</td>
       <td>${pre.cantPersonas}</td>
       <td>${pre.monto}</td>
-      </tr>`;
+      </tr>`
     }
   }
 
-  document.querySelector("#tManipularReservasAprobadas").innerHTML =
-    cuerpoTabla;
+  document.querySelector("#tManipularReservasAprobadas").innerHTML = cuerpoTabla;
 }
 
 function mostrarPendientes() {
@@ -437,16 +449,15 @@ function mostrarPendientes() {
       <td>${pre.cantPersonas}</td>
       <td>${pre.monto}</td>
       <td><input type="button" value="Procesar reserva" class="btnAprobar" data-id-reserva="${pre.idReserva}"</td>
-      </tr>`;
+      </tr>`
     }
   }
 
-  document.querySelector("#tManipularReservasPendientes").innerHTML =
-    cuerpoTabla;
+  document.querySelector("#tManipularReservasPendientes").innerHTML = cuerpoTabla;
   bindearReservas();
 }
 
-//Funcion explorar destinos
+//Funcion explorar destinos // Cambiar de lugar??
 document
   .querySelector("#aExplorarDestinos")
   .addEventListener("click", explorar);
@@ -458,18 +469,45 @@ function explorar() {
   for (let i = 0; i < destinos.length; i++) {
     let d = destinos[i];
 
-    cuerpoTabla += `
-    <tr>
-      <td>${d.nombre}</td>
-      <td><img src="${d.img}"></td>
-      <td>${d.precio}</td>
-      <td>${d.desc}</td>
-      <td>${d.cupos}</td>
-    </tr>
-    `;
+    if(d.estado === "Activo" && d.cupos > 0){
+      cuerpoTabla += `
+      <tr>
+        <td>${d.nombre}</td>
+        <td><img src="${d.img}"></td>
+        <td>${d.precio}</td>
+        <td>${d.desc}</td>
+        <td>${d.cupos}</td>
+      </tr>
+      `;
+    }
+
   }
 
   document.querySelector("#tExplorarDestinos").innerHTML = cuerpoTabla;
+}
+
+document.querySelector("#aDestinosOferta").addEventListener("click", ofertas);
+
+function ofertas(){
+  let destinos = s.destinos;
+  let cuerpoTabla = "";
+
+  for(let i = 0; i < destinos.length; i++){
+    d = destinos[i];
+
+    if(d.oferta === "si"){
+      cuerpoTabla += `
+      <tr>
+        <td>${d.nombre}</td>
+        <td><img src="${d.img}"></td>
+        <td>${d.precio}</td>
+        <td>${d.desc}</td>
+        <td>${d.cupos}</td>
+      </tr>
+      `
+    }
+  }
+  document.querySelector("#tDestinosEnOferta").innerHTML = cuerpoTabla;
 }
 
 // Funciones relacionadas al admin
@@ -499,18 +537,6 @@ function crearDestino() {
   }
 }
 
-function mostrarDestinos() {
-  let destinos = s.destinos;
-  let options = "";
-
-  for (let i = 0; i < destinos.length; i++) {
-    let d = destinos[i];
-    options += `<option value="${d.id}">${d.nombre}</option>`;
-  }
-
-  document.querySelector("#slcDestino").innerHTML = options;
-}
-
 //Funcion bindear botones procesarReservas
 function bindearReservas() {
   let botones = document.querySelectorAll(".btnAprobar");
@@ -525,16 +551,17 @@ function bindearReservas() {
 function procesarReserva() {
   let idReserva = Number(this.getAttribute("data-id-reserva"));
   mostrarPendientes();
-  aprobarReservas(idReserva, this);
+  aprobarReservas(idReserva);
 }
 
-function aprobarReservas(idReserva, boton) {
+function aprobarReservas(idReserva) {
   let cuerpoTabla = "";
   let r = s.obtenerReservaById(idReserva);
   let c = s.obtenerClienteById(r.idCliente);
   let d = s.obtenerDestinoById(r.idDestino);
 
   if (s.procesarReserva(idReserva) === "Aprobada") {
+
     cuerpoTabla += ` 
     <tr>
     <td>${c.nombre}</td>
@@ -542,10 +569,11 @@ function aprobarReservas(idReserva, boton) {
     <td>${r.cantPersonas}</td>  
     <td>${r.monto}</td>
     </tr>
-    `;
-    document.querySelector("#tManipularReservasAprobadas").innerHTML +=
-      cuerpoTabla;
+    `
+    document.querySelector("#tManipularReservasAprobadas").innerHTML += cuerpoTabla;
+
   } else if (s.procesarReserva(idReserva) === "Rechazada") {
+
     cuerpoTabla += ` 
     <tr>
     <td>${c.nombre}</td>
@@ -553,10 +581,10 @@ function aprobarReservas(idReserva, boton) {
     <td>${r.cantPersonas}</td>  
     <td>${r.monto}</td>
     </tr>
-    `;
-    document.querySelector("#tManipularReservasRechazadas").innerHTML +=
-      cuerpoTabla;
+    `
+    document.querySelector("#tManipularReservasRechazadas").innerHTML += cuerpoTabla;
   }
+
 }
 
 /* Funciones relacionadas al destino */
@@ -606,16 +634,17 @@ function restarCupos() {
   let stock = d.cupos;
   stock--;
   d.cupos = stock;
-
+  
   insertarAdminDestino();
-
+  
   if (d.cupos === 0) {
     document.querySelector(".btnRestar").disabled = true;
+    d.estado = "Pausado";
   }
 }
 
 function modificarDestinos() {
-  let idDestino = Number(this.getAttribute("data-id-destino"));
+  let idDestino = this.getAttribute("data-id-destino");
   let d = s.obtenerDestinoById(idDestino);
   let slcEstado = document.querySelector(".slcAP").value;
   let slcOferta = document.querySelector(".slcOferta").value;

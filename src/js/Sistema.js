@@ -79,7 +79,7 @@ class Sistema {
         "https://s40320.pcdn.co/wp-content/uploads/2021/01/T18-Aerial-scaled.jpg",
         100,
         "Activo",
-        "no"
+        "si"
       ),
 
       new Destino(
@@ -107,7 +107,7 @@ class Sistema {
       new Destino(
         "DEST_ID_4",
         "Abu Dhabi",
-        400,
+        100,
         "Abu Dhabi es god",
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZYY-Pfsz1phVMaxdXv75MuV9LNYh8M6cGBA&s",
         100,
@@ -123,7 +123,7 @@ class Sistema {
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhUhh4T_AD2kXnybEiS9UvwRxZyHh_1fNG8A&s",
         100,
         "Activo",
-        "no"
+        "si"
       ),
 
       new Destino(
@@ -156,7 +156,7 @@ class Sistema {
         "https://f1destinations.com/wp-content/uploads/2023/08/2023_Japanese_GP_F1D_Saturday_06380-1024x683.jpg",
         100,
         "Activo",
-        "no"
+        "si"
       ),
 
       new Destino(
