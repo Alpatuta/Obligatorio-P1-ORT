@@ -62,6 +62,7 @@ function mostrarReservarDestinos() {
   ocultarTodo();
   document.querySelector("#sHeader").style.display = "flex";
   mostrar("sReservarDestinos");
+  mostrarDestinos();
 }
 
 //Mostrar historial de reservas (cliente)
@@ -349,29 +350,19 @@ function reservarDestino() {
   let monto = s.destinos.precio;
   let estado = s.destinos.estado;
 
-
-
   if (destino !== "#" && cantPersonas !== "" && metodoPago !== "#") {
     if (s.existeReserva(destino, s.clienteLogueado.id) === true) {
       document.querySelector("#pReservar").innerHTML =
         "Ya tiene una reserva para el destino seleccionado. Por favor elija otro destino.";
     } else {
-      s.reservar(
-        destino,
-        cantPersonas,
-        monto,
-        estado,
-        metodoPago
-      );
+      s.reservar(destino, cantPersonas, monto, estado, metodoPago);
 
       document.querySelector(
         "#pReservar"
       ).innerHTML = `Reserva realizada con éxito!`;
     }
   } else {
-    document.querySelector(
-      "#pReservar"
-    ).innerHTML = `Complete todo los campos`;
+    document.querySelector("#pReservar").innerHTML = `Complete todo los campos`;
   }
 
   //s.procesarReserva();
@@ -390,10 +381,7 @@ function historialReservas() {
     let h = historial[i];
     let objDestino = s.obtenerDestinoById(h.idDestino);
 
-    if (
-      objDestino.id === h.idDestino &&
-      h.idCliente === s.clienteLogueado.id
-    ) {
+    if (objDestino.id === h.idDestino && h.idCliente === s.clienteLogueado.id) {
       cuerpoTabla += `
       <tr>
         <td>${objDestino.nombre}</td>
@@ -425,11 +413,12 @@ function mostrarPrecargadas() {
       <td>${objDestino.nombre}</td>
       <td>${pre.cantPersonas}</td>
       <td>${pre.monto}</td>
-      </tr>`
+      </tr>`;
     }
   }
 
-  document.querySelector("#tManipularReservasAprobadas").innerHTML = cuerpoTabla;
+  document.querySelector("#tManipularReservasAprobadas").innerHTML =
+    cuerpoTabla;
 }
 
 function mostrarPendientes() {
@@ -448,11 +437,12 @@ function mostrarPendientes() {
       <td>${pre.cantPersonas}</td>
       <td>${pre.monto}</td>
       <td><input type="button" value="Procesar reserva" class="btnAprobar" data-id-reserva="${pre.idReserva}"</td>
-      </tr>`
+      </tr>`;
     }
   }
 
-  document.querySelector("#tManipularReservasPendientes").innerHTML = cuerpoTabla;
+  document.querySelector("#tManipularReservasPendientes").innerHTML =
+    cuerpoTabla;
   bindearReservas();
 }
 
@@ -509,6 +499,18 @@ function crearDestino() {
   }
 }
 
+function mostrarDestinos() {
+  let destinos = s.destinos;
+  let options = "";
+
+  for (let i = 0; i < destinos.length; i++) {
+    let d = destinos[i];
+    options += `<option value="${d.id}">${d.nombre}</option>`;
+  }
+
+  document.querySelector("#slcDestino").innerHTML = options;
+}
+
 //Funcion bindear botones procesarReservas
 function bindearReservas() {
   let botones = document.querySelectorAll(".btnAprobar");
@@ -523,17 +525,16 @@ function bindearReservas() {
 function procesarReserva() {
   let idReserva = Number(this.getAttribute("data-id-reserva"));
   mostrarPendientes();
-  aprobarReservas(idReserva);
+  aprobarReservas(idReserva, this);
 }
 
-function aprobarReservas(idReserva) {
+function aprobarReservas(idReserva, boton) {
   let cuerpoTabla = "";
   let r = s.obtenerReservaById(idReserva);
   let c = s.obtenerClienteById(r.idCliente);
   let d = s.obtenerDestinoById(r.idDestino);
 
   if (s.procesarReserva(idReserva) === "Aprobada") {
-
     cuerpoTabla += ` 
     <tr>
     <td>${c.nombre}</td>
@@ -541,11 +542,10 @@ function aprobarReservas(idReserva) {
     <td>${r.cantPersonas}</td>  
     <td>${r.monto}</td>
     </tr>
-    `
-    document.querySelector("#tManipularReservasAprobadas").innerHTML += cuerpoTabla;
-
+    `;
+    document.querySelector("#tManipularReservasAprobadas").innerHTML +=
+      cuerpoTabla;
   } else if (s.procesarReserva(idReserva) === "Rechazada") {
-
     cuerpoTabla += ` 
     <tr>
     <td>${c.nombre}</td>
@@ -553,10 +553,10 @@ function aprobarReservas(idReserva) {
     <td>${r.cantPersonas}</td>  
     <td>${r.monto}</td>
     </tr>
-    `
-    document.querySelector("#tManipularReservasRechazadas").innerHTML += cuerpoTabla;
+    `;
+    document.querySelector("#tManipularReservasRechazadas").innerHTML +=
+      cuerpoTabla;
   }
-
 }
 
 /* Funciones relacionadas al destino */
@@ -569,31 +569,29 @@ function bindearAdminDestinos() {
   for (let i = 0; i < botones.length; i++) {
     let boton = botones[i];
 
-    boton.addEventListener("click", modificarDestinos)
+    boton.addEventListener("click", modificarDestinos);
   }
 }
 
-function bindearBotonesSumar(){
+function bindearBotonesSumar() {
   let botones = document.querySelectorAll(".btnSumar");
 
-  for (let i = 0; i < botones.length; i++){
+  for (let i = 0; i < botones.length; i++) {
     let boton = botones[i];
     boton.addEventListener("click", sumarCupos);
   }
 }
 
-function bindearBotonesRestar(){
+function bindearBotonesRestar() {
   let botones = document.querySelectorAll(".btnRestar");
 
-  for (let i = 0; i < botones.length; i++){
+  for (let i = 0; i < botones.length; i++) {
     let boton = botones[i];
     boton.addEventListener("click", restarCupos);
   }
 }
 
-
-
-function sumarCupos(){
+function sumarCupos() {
   let idDestino = this.getAttribute("data-id-destino");
   let d = s.obtenerDestinoById(idDestino);
   let stock = d.cupos;
@@ -602,8 +600,7 @@ function sumarCupos(){
   insertarAdminDestino();
 }
 
-
-function restarCupos(){
+function restarCupos() {
   let idDestino = this.getAttribute("data-id-destino");
   let d = s.obtenerDestinoById(idDestino);
   let stock = d.cupos;
@@ -611,14 +608,29 @@ function restarCupos(){
   d.cupos = stock;
 
   insertarAdminDestino();
+
+  if (d.cupos === 0) {
+    document.querySelector(".btnRestar").disabled = true;
+  }
 }
 
-
 function modificarDestinos() {
-  insertarAdminDestino();
   let idDestino = Number(this.getAttribute("data-id-destino"));
   let d = s.obtenerDestinoById(idDestino);
+  let slcEstado = document.querySelector(".slcAP").value;
+  let slcOferta = document.querySelector(".slcOferta").value;
 
+  if (slcOferta === "si") {
+    d.oferta = "si";
+  } else {
+    d.oferta = "no";
+  }
+
+  if (slcEstado === "Pausado") {
+    d.estado = "Pausado";
+  } else {
+    d.estado = "Activo";
+  }
 }
 
 function insertarAdminDestino() {
@@ -646,8 +658,8 @@ function insertarAdminDestino() {
           <td>
             <select class="slcOferta">
               <option value="#">Seleccione...</option>
-              <option value="S">Si</option>
-              <option value="N">No</option>
+              <option value="si">Si</option>
+              <option value="no">No</option>
             </select>
           </td>
           <td>
@@ -662,4 +674,3 @@ function insertarAdminDestino() {
   bindearBotonesSumar();
   bindearBotonesRestar();
 }
-

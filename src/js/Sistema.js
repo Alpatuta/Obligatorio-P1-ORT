@@ -78,7 +78,7 @@ class Sistema {
         "Miami es god",
         "https://s40320.pcdn.co/wp-content/uploads/2021/01/T18-Aerial-scaled.jpg",
         100,
-        "Pendiente",
+        "Activo",
         "no"
       ),
 
@@ -89,7 +89,7 @@ class Sistema {
         "Monza es god",
         "https://images.daznservices.com/di/library/DAZN_News/24/ca/monza-gp-italia-gran-premio-de-italia-formula-1-f1_9bag38iciu1f118g6l71uo0qg.jpg?t=314989067",
         100,
-        "Pendiente",
+        "Activo",
         "no"
       ),
 
@@ -100,7 +100,7 @@ class Sistema {
         "Sao Paulo es god",
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQhyQcL-7BNtDd4RR1WppdgvQSfahsJBup1g&s",
         100,
-        "Pendiente",
+        "Activo",
         "no"
       ),
 
@@ -111,7 +111,7 @@ class Sistema {
         "Abu Dhabi es god",
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZYY-Pfsz1phVMaxdXv75MuV9LNYh8M6cGBA&s",
         100,
-        "Pendiente",
+        "Activo",
         "no"
       ),
 
@@ -122,7 +122,7 @@ class Sistema {
         "Bahrein es god",
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhUhh4T_AD2kXnybEiS9UvwRxZyHh_1fNG8A&s",
         100,
-        "Pendiente",
+        "Activo",
         "no"
       ),
 
@@ -133,7 +133,7 @@ class Sistema {
         "Las vegas god",
         "https://cdn-7.motorsport.com/images/amp/254NWpx0/s1000/las-vegas-gp-rendering-1.jpg",
         100,
-        "Pendiente",
+        "Activo",
         "no"
       ),
 
@@ -144,7 +144,7 @@ class Sistema {
         "Barcelona es god",
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfo8hxm-Lx2D3NxBruJseRB4Uz7genKl1ZlA&s",
         100,
-        "Pendiente",
+        "Activo",
         "no"
       ),
 
@@ -155,7 +155,7 @@ class Sistema {
         "Tokio es god",
         "https://f1destinations.com/wp-content/uploads/2023/08/2023_Japanese_GP_F1D_Saturday_06380-1024x683.jpg",
         100,
-        "Pendiente",
+        "Activo",
         "no"
       ),
 
@@ -166,7 +166,7 @@ class Sistema {
         "Mexico es god",
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJF5iSGI1qKi3yuKi-OlvBdYFrQmZgLW8ADA&s",
         100,
-        "Pendiente",
+        "Activo",
         "no"
       ),
 
@@ -177,7 +177,7 @@ class Sistema {
         "Monaco es god",
         "https://cdn-imgix.headout.com/media/images/7d0797d8d3e5a6961697266f94016da9-Monaco%201.jpg",
         100,
-        "Pendiente",
+        "Activo",
         "no"
       ),
     ];
@@ -215,7 +215,7 @@ class Sistema {
     pImagen,
     pCupo,
     pEstado,
-    pDisponible
+    pOferta
   ) {
     this.destinos.push(
       new Destino(
@@ -225,21 +225,15 @@ class Sistema {
         pDescripcion,
         pImagen,
         pCupo,
-        pEstado,
-        pDisponible
+        "Activo",
+        "no"
       )
     );
     this.idDestino++;
   }
 
   //Para funcion de reservas
-  reservar(
-    pIdDestino,
-    pCantPersonas,
-    pMonto,
-    pEstado,
-    pMetodoPago
-  ) {
+  reservar(pIdDestino, pCantPersonas, pMonto, pEstado, pMetodoPago) {
     for (let i = 0; i < this.destinos.length; i++) {
       let d = this.destinos[i];
 
@@ -256,11 +250,10 @@ class Sistema {
         this.idReserva,
         pCantPersonas,
         pMonto,
-        pEstado,
+        "Pendiente",
         this.clienteLogueado.id,
         pMetodoPago
       )
-
     );
     this.idReserva++;
 
@@ -355,7 +348,7 @@ class Sistema {
     return objDest;
   }
 
-  obtenerReservaById (pIdReserva) {
+  obtenerReservaById(pIdReserva) {
     let objReserva = null;
 
     for (let i = 0; i < this.reservas.length; i++) {
@@ -370,13 +363,13 @@ class Sistema {
     return objReserva;
   }
 
-  obtenerClienteById(idCliente){
+  obtenerClienteById(idCliente) {
     let objCliente = null;
 
     for (let i = 0; i < this.cliente.length; i++) {
       let c = this.cliente[i];
-       
-      if(idCliente === c.id){
+
+      if (idCliente === c.id) {
         objCliente = c;
         break;
       }
@@ -391,35 +384,29 @@ class Sistema {
     let d = this.obtenerDestinoById(r.idDestino);
     let e = r.estado;
 
-    if (r.metodoPago === "Tarjeta"){
-
-      if(c.saldo >= r.monto && d.cupos >= r.cantPersonas ){
+    if (r.metodoPago === "Tarjeta") {
+      if (c.saldo >= r.monto && d.cupos >= r.cantPersonas) {
         c.saldo -= r.monto;
         c.millas += r.monto / 100;
         d.cupos -= r.cantPersonas;
         e = "Aprobada";
       } else {
-        e = "Rechazada"
+        e = "Rechazada";
       }
-    } else if (r.metodoPago === "Millas"){
-
-      if (c.millas >= r.monto && d.cupos >= r.cantPersonas){
+    } else if (r.metodoPago === "Millas") {
+      if (c.millas >= r.monto && d.cupos >= r.cantPersonas) {
         c.millas -= r.monto;
         d.cupos -= r.cantPersonas;
         e = "Aprobada";
-      } else if (c.millas + c.saldo >= r.monto && d.cupos >= r.cantPersonas){
+      } else if (c.millas + c.saldo >= r.monto && d.cupos >= r.cantPersonas) {
         let restaMillas = r.monto - c.millas;
         c.saldo -= restaMillas;
         e = "Aprobado";
       } else {
         e = "Rechazada";
       }
-
-    } 
+    }
 
     return e;
-    
   }
-
-
 }
