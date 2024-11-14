@@ -183,11 +183,11 @@ class Sistema {
     ];
     this.idReserva = 6;
     this.reservas = [
-      new Reservas("DEST_ID_1", 1, 5, 2250, "Aprobada", "CLI_ID_1", "Tarjeta"),
-      new Reservas("DEST_ID_2", 2, 3, 1800, "Aprobada", "CLI_ID_2", "Millas"),
-      new Reservas("DEST_ID_3", 3, 2, 800, "Aprobada", "CLI_ID_3", "Tarjeta"),
-      new Reservas("DEST_ID_4", 4, 4, 1600, "Aprobada", "CLI_ID_4", "Millas"),
-      new Reservas("DEST_ID_5", 5, 1, 200, "Aprobada", "CLI_ID_5", "Tarjeta"),
+      new Reservas("DEST_ID_1", 1, 5, 2250, "Aprobada", "CLI_ID_1", "Tarjeta", 0),
+      new Reservas("DEST_ID_2", 2, 3, 1800, "Aprobada", "CLI_ID_2", "Millas", 0),
+      new Reservas("DEST_ID_3", 3, 2, 800, "Aprobada", "CLI_ID_3", "Tarjeta", 5),
+      new Reservas("DEST_ID_4", 4, 4, 1600, "Aprobada", "CLI_ID_4", "Millas", 0),
+      new Reservas("DEST_ID_5", 5, 1, 200, "Aprobada", "CLI_ID_5", "Tarjeta", 0),
     ];
   }
 
@@ -252,7 +252,8 @@ class Sistema {
         pMonto,
         "Pendiente",
         this.clienteLogueado.id,
-        pMetodoPago
+        pMetodoPago,
+        0
       )
     );
     this.idReserva++;

@@ -62,6 +62,7 @@ function mostrarReservarDestinos() {
   ocultarTodo();
   document.querySelector("#sHeader").style.display = "flex";
   mostrar("sReservarDestinos");
+  mostrarDestinosReserva();
 }
 
 //Mostrar historial de reservas (cliente)
@@ -349,15 +350,13 @@ function reservarDestino() {
   let monto = s.destinos.precio;
   let estado = s.destinos.estado;
 
-
-
-  if (destino !== "#" && cantPersonas !== "" && metodoPago !== "#") {
+  if (destino !== "#" && !isNaN(cantPersonas) && cantPersonas > 0 && cantPersonas !== "" && metodoPago !== "#") {
     if (s.existeReserva(destino, s.clienteLogueado.id) === true) {
       document.querySelector("#pReservar").innerHTML =
         "Ya tiene una reserva para el destino seleccionado. Por favor elija otro destino.";
     } else {
       s.reservar(
-        destino,
+        destino,  
         cantPersonas,
         monto,
         estado,

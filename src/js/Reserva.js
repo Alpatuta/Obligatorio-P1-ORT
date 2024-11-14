@@ -1,5 +1,5 @@
 class Reservas {
-  constructor(_idDestino, _idReserva, _cantPersonas, _monto, _estado, _idCliente, _metodoPago) {
+  constructor(_idDestino, _idReserva, _cantPersonas, _monto, _estado, _idCliente, _metodoPago, _millas) {
     this.idDestino = _idDestino;
     this.idReserva = _idReserva;
     this.cantPersonas = _cantPersonas;
@@ -7,5 +7,6 @@ class Reservas {
     this.estado = _estado;
     this.idCliente = _idCliente;
     this.metodoPago = _metodoPago;
+    this.millas = _millas;
   }
 }
