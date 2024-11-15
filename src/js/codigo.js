@@ -581,10 +581,10 @@ document.querySelector("#btnCrear").addEventListener("click", crearDestino);
 
 function crearDestino() {
   let nombre = document.querySelector("#txtNombreDestino").value;
-  let precio = document.querySelector("#txtPrecio").value;
+  let precio = Number(document.querySelector("#txtPrecio").value);
   let desc = document.querySelector("#txtDesc").value;
   let imagen = document.querySelector("#txtImagen").value;
-  let cupos = document.querySelector("#txtCupos").value;
+  let cupos = Number(document.querySelector("#txtCupos").value);
 
   if (
     nombre === "" ||
