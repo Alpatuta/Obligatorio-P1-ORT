@@ -699,18 +699,6 @@ function aprobarReservas(idReserva) {
 
 /* Funciones relacionadas al destino */
 
-// bindeos
-
-function bindearAdminDestinos() {
-  let botones = document.querySelectorAll(".btnEditarDestinos");
-
-  for (let i = 0; i < botones.length; i++) {
-    let boton = botones[i];
-
-    boton.addEventListener("click", modificarDestinos);
-  }
-}
-
 //Esto deberia ir donde esta todo lo otro de mostrar y ocultar.
 
 document.querySelector("#btnAdministrar").addEventListener("click", formAdministrar);
