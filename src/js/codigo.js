@@ -518,14 +518,31 @@ function explorar() {
         <td>${d.desc}</td>
         <td>${d.precio}</td>
         <td>${d.oferta}</td>
-        <td><input type="button" value= "Reservar" class="goToReserva"></td>
+        <td><input type="button" value= "Reservar" class="goToReserva" data-id-destino="${d.id}"></td>
         </tr>
       `;
     }
   }
 
   document.querySelector("#tExplorarDestinos").innerHTML = cuerpoTabla;
+  bindearBtnReservar();
 }
+
+function bindearBtnReservar(){
+  let botones = document.querySelectorAll(".goToReserva");
+
+  for(let i = 0; i < botones.length; i++){
+    let boton = botones[i];
+
+    boton.addEventListener("click", irAReservas);
+  }
+}
+
+function irAReservas(){
+let idDestino = this.getAttribute("data-id-destino");
+mostrarReservarDestinos();
+}
+
 
 document.querySelector("#aDestinosOferta").addEventListener("click", ofertas);
 
@@ -544,11 +561,13 @@ function ofertas() {
         <td>${d.precio}</td>
         <td>${d.desc}</td>
         <td>${d.cupos}</td>
+        <td><input type="button" value= "Reservar" class="goToReserva" data-id-destino="${d.id}"></td>
       </tr>
       `;
     }
   }
   document.querySelector("#tDestinosEnOferta").innerHTML = cuerpoTabla;
+  bindearBtnReservar();
 }
 
 // Funciones relacionadas al admin
@@ -657,6 +676,11 @@ function aprobarReservas(idReserva) {
     document.querySelector("#tManipularReservasAprobadas").innerHTML +=
       cuerpoTabla;
     r.estado = "Aprobada";
+
+    if(d.cupos === 0){
+      d.estado = "Pausado";
+    }
+
   } else if (s.procesarReserva(idReserva) === "Rechazada") {
     document.querySelector("#tManipularReservasRechazadas").innerHTML +=
       cuerpoTabla;
