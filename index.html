@@ -159,15 +159,34 @@
     <!-- Administrar destinos -->
     <section id="sAdministrarDestino">
       <h2>Administrar destinos</h2>
-      <table border="1" style="border-collapse: collapse">
-        <thead>
-          <th>Destino</th>
-          <th>Stock</th>
-          <th>Estado</th>
-          <th>En oferta</th>
-        </thead>
-        <tbody id="tAdminDestinos"></tbody>
-      </table>
+      <label for="slcAdminDest">Seleccione el destino:</label>
+      <select id="slcAdminDest"></select><br><br>
+      <input type="button" value="Administrar" id="btnAdministrar">
+    </section>
+    
+    <section id="sEditarDestinos">
+      <p id="pEditarDest"></p>
+      <label for="txtEditarCupos">Cupos:</label>
+      <input type="text" id="txtEditarCupos" value=""><br><br>
+
+      <label for="slcEstado">Estado</label>
+      <select id="slcEstado">
+        <option value="#">Seleccione...</option>
+        <option value="Activo">Activo</option>
+        <option value="Pausado">Pausado</option>
+      </select><br><br>
+
+      <label for="slcOferta">Oferta:</label>
+      <select id="slcOferta">
+        <option value="#">Seleccione...</option>
+        <option value="si">Si</option>
+        <option value="no">No</option>
+      </select><br><br>
+      
+      <input type="button" value="Guardar" id="btnGuardarCambios">
+
+      <p id="pErroresEditar"></p>
+
     </section>
 
     <section id="sExplorar-destinos">

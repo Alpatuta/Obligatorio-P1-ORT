@@ -19,6 +19,7 @@ function ocultarTodo() {
   document.querySelector("#iniciarSesion").style.display = "none";
   document.querySelector("#sHeader").style.display = "none";
   document.querySelector("#sHeaderAdmin").style.display = "none";
+  document.querySelector("#sEditarDestinos").style.display = "none";
 }
 
 ocultarTodo();
@@ -63,6 +64,7 @@ function mostrarReservarDestinos() {
   document.querySelector("#sHeader").style.display = "flex";
   mostrar("sReservarDestinos");
   mostrarDestinosReserva();
+  document.querySelector("#pMillas").innerHTML = `Total de millas: ${s.clienteLogueado.millas}`;
 }
 
 //Mostrar historial de reservas (cliente)
@@ -129,7 +131,7 @@ function mostrarAdministrarDestinos() {
   ocultarTodo();
   document.querySelector("#sHeaderAdmin").style.display = "flex";
   mostrar("sAdministrarDestino");
-  insertarAdminDestino();
+  mostrarDestinosReserva();
 }
 
 //Mostrar manipular reservas (admin)
@@ -410,9 +412,7 @@ function mostrarDestinosReserva() {
   }
 
   document.querySelector("#slcDestino").innerHTML = option;
-  document.querySelector(
-    "#pMillas"
-  ).innerHTML = `Total de millas: ${s.clienteLogueado.millas}`;
+  document.querySelector("#slcAdminDest").innerHTML = option;
 }
 
 //Funcion historial de reservas
@@ -711,107 +711,68 @@ function bindearAdminDestinos() {
   }
 }
 
-function bindearBotonesSumar() {
-  let botones = document.querySelectorAll(".btnSumar");
+//Esto deberia ir donde esta todo lo otro de mostrar y ocultar.
 
-  for (let i = 0; i < botones.length; i++) {
-    let boton = botones[i];
-    boton.addEventListener("click", sumarCupos);
-  }
-}
+document.querySelector("#btnAdministrar").addEventListener("click", formAdministrar);
 
-function bindearBotonesRestar() {
-  let botones = document.querySelectorAll(".btnRestar");
-
-  for (let i = 0; i < botones.length; i++) {
-    let boton = botones[i];
-    boton.addEventListener("click", restarCupos);
-  }
-}
-
-function sumarCupos() {
-  let idDestino = this.getAttribute("data-id-destino");
+function formAdministrar(){
+  let idDestino = document.querySelector("#slcAdminDest").value;
   let d = s.obtenerDestinoById(idDestino);
-  let stock = d.cupos;
-  stock++;
-  d.cupos = stock;
-  insertarAdminDestino();
+  ocultarTodo();
+  document.querySelector("#sHeaderAdmin").style.display = "flex";
+  editarDestinos(d.nombre, d.cupos, d.estado, d.oferta);
+  mostrar("sEditarDestinos");
 }
 
-function restarCupos() {
-  let idDestino = this.getAttribute("data-id-destino");
+function editarDestinos (pNombre, pCupos, pEstado, pOferta){
+  document.querySelector("#pEditarDest").innerHTML = `Nombre: ${pNombre}`;
+  document.querySelector("#txtEditarCupos").setAttribute("value", `${pCupos}`);
+  let estado = document.querySelector("#slcEstado").value;
+  let oferta = document.querySelector("#slcOferta").value;
+
+  if (pEstado === "Activo"){
+    estado = pEstado;
+  } else if (pEstado === "Pausado"){
+    estado = "Pausado";
+  }
+
+  if(pOferta === "si"){
+    oferta = pOferta;
+  } else if(pOferta === "no"){
+    oferta = "no";
+  }
+
+
+}
+
+document.querySelector("#btnGuardarCambios").addEventListener("click", nuevaInfoDestino);
+
+function nuevaInfoDestino (idDestino){
+  document.querySelector("#pEditarDest").innerHTML = `Nombre: ${d.nombre}`;
   let d = s.obtenerDestinoById(idDestino);
-  let stock = d.cupos;
-  stock--;
-  d.cupos = stock;
+  let cupos = Number(document.querySelector("#txtEditarCupos").value);
+  let estado = document.querySelector("#slcEstado").value;
+  let oferta = document.querySelector("#slcOferta").value;
 
-  insertarAdminDestino();
 
-  if (d.cupos === 0) {
-    document.querySelector(".btnRestar").disabled = true;
-    d.estado = "Pausado";
-  }
-}
-
-function modificarDestinos() {
-  let idDestino = this.getAttribute("data-id-destino");
-  let d = s.obtenerDestinoById(idDestino);
-  let slcEstado = document.querySelector(".slcAP").value;
-  let oferta = document.querySelector(".slcOferta").value;
-
-  if (oferta === "si") {
-    d.oferta = "si";
-  } else {
-    d.oferta = "no";
-  }
-
-  if (slcEstado === "Pausado") {
-    d.estado = "Pausado";
-  } else {
-    d.estado = "Activo";
-  }
-}
-
-function insertarAdminDestino() {
-  let destinos = s.destinos;
-  let cuerpoTabla = "";
-
-  for (let i = 0; i < destinos.length; i++) {
-    let d = destinos[i];
-
-    cuerpoTabla += `
-    <tr>
-     <td>${d.nombre}</td>
-          <td>
-          <input type="button" value="+" class="btnSumar" data-id-destino="${d.id}">
-          <p class="pStock">${d.cupos}</p>
-          <input type="button" value="-" class="btnRestar" data-id-destino="${d.id}">
-          </td>
-          <td>
-            <select class="slcAP" name="Estado">
-              <option value="#">Seleccione...</option>
-              <option value="Activo">Activo</option>
-              <option value="Pausado">Pausado</option>
-            </select>
-          </td>
-          <td>
-            <select class="slcOferta" name="Oferta">
-              <option value="#">Seleccione...</option>
-              <option value="si">Si</option>
-              <option value="no">No</option>
-            </select>
-          </td>
-          <td>
-            <input type="button" value="Aceptar" class="btnEditarDestinos" data-id-destino="${d.id}">
-          </td>
-    </tr>
-    `;
+  
+  if(!isNaN(cupos) && cupos >= 0 && estado !== "#" && oferta !== "#"){
+    
+    d.cupos = cupos;
+    
+    if (oferta === "si") {
+      d.oferta = "si";
+    } else {
+      d.oferta = "no";
+    }
+    
+    if (slcEstado === "Pausado") {
+      d.estado = "Pausado";
+    } else {
+      d.estado = "Activo";
+    }
   }
 
-  document.querySelector("#tAdminDestinos").innerHTML = cuerpoTabla;
-  bindearAdminDestinos();
-  bindearBotonesSumar();
-  bindearBotonesRestar();
 }
 
 // Funcion informe de ganancias
