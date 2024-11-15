@@ -406,6 +406,7 @@ function mostrarDestinosReserva() {
   }
 
   document.querySelector("#slcDestino").innerHTML = option;
+  document.querySelector("#pMillas").innerHTML = `Total de millas: ${s.clienteLogueado.millas}`;
 }
 
 //Funcion historial de reservas
@@ -588,7 +589,7 @@ function crearDestino() {
 
     document.querySelector("#pCrear").innerHTML = "Precio por persona y Cantidad de cupos deben ser números mayores a 0";
   } else {
-    
+
     s.agregarDestino(nombre, precio, desc, imagen, cupos);
     document.querySelector("#pCrear").innerHTML = "Destino creado con éxito!";
     document.querySelector("#txtNombreDestino").value = "";
