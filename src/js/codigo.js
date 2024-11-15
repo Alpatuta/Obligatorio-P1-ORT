@@ -368,6 +368,7 @@ function reservarDestino() {
   let metodoPago = document.querySelector("#slcPago").value;
   let monto = s.destinos.precio;
   let estado = s.destinos.estado;
+  let millasCliente = s.clienteLogueado.millas;
 
   if (
     destino !== "#" &&
@@ -379,6 +380,8 @@ function reservarDestino() {
     if (s.existeReserva(destino, s.clienteLogueado.id) === true) {
       document.querySelector("#pReservar").innerHTML =
         "Ya tiene una reserva para el destino seleccionado. Por favor elija otro destino.";
+    } else if (metodoPago === "Millas" && millasCliente === 0){
+      document.querySelector("#pReservar").innerHTML = "No tiene millas suficientes. Por favor elija otro método de pago.";
     } else {
       s.reservar(destino, cantPersonas, monto, estado, metodoPago);
 
