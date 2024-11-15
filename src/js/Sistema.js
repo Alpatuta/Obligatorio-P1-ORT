@@ -211,7 +211,7 @@ class Sistema {
         "Aprobada",
         "CLI_ID_3",
         "Tarjeta",
-        5
+        0
       ),
       new Reservas(
         "DEST_ID_4",
@@ -221,7 +221,7 @@ class Sistema {
         "Aprobada",
         "CLI_ID_4",
         "Millas",
-        0
+        5
       ),
       new Reservas(
         "DEST_ID_5",
@@ -454,5 +454,41 @@ class Sistema {
     }
 
     return e;
+  }
+
+  informeGanancias() {
+    let totalGenerado = 0;
+    let informe = [];
+
+    for (let i = 0; i < this.destinos.length; i++) {
+      let destino = this.destinos[i];
+      let clientesPorDestino = 0;
+      let generadoPorDestino = 0;
+      let gananciasAsociadas = 0;
+
+      for (let j = 0; j < this.reservas.length; j++) {
+        let reserva = this.reservas[j];
+
+        if (reserva.idDestino === destino.id && reserva.estado === "Aprobada") {
+          clientesPorDestino++;
+          generadoPorDestino += reserva.monto;
+          gananciasAsociadas = generadoPorDestino;
+          gananciasAsociadas -= reserva.millas;
+        }
+      }
+
+      //gananciasAsociadas += generadoPorDestino;
+      totalGenerado += generadoPorDestino;
+
+      informe.push({
+        destino: destino.nombre,
+        clientes: clientesPorDestino,
+        monto: generadoPorDestino,
+        gananciasAsociadas: gananciasAsociadas,
+        total: totalGenerado,
+      });
+    }
+
+    return informe;
   }
 }
