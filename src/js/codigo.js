@@ -424,8 +424,7 @@ function historialReservas() {
     if (
       objDestino.id === h.idDestino &&
       h.idCliente === s.clienteLogueado.id &&
-      h.estado === "Aprobada"
-    ) {
+      h.estado === "Aprobada" || h.estado === "Cancelada") {
       cuerpoTabla += `
       <tr>
         <td>${objDestino.nombre}</td>
@@ -450,8 +449,27 @@ function historialReservas() {
       `;
     }
   }
-
   document.querySelector("#tHistorial").innerHTML = cuerpoTabla;
+  bindearBtnCancelar();
+}
+
+function bindearBtnCancelar(){
+  let botones = document.querySelectorAll(".btnCancelar");
+
+  for(let i=0; i < botones.length; i++){
+    let boton = botones[i];
+
+    boton.addEventListener("click", cancelarReserva);
+  }
+}
+
+function cancelarReserva(){
+  let idReserva = Number(this.getAttribute("data-id-pendiente"));
+  let r = s.obtenerReservaById(idReserva);
+  r.estado = "Cancelada";
+
+  historialReservas();
+
 }
 
 //Funcion para manipular reservas
@@ -706,9 +724,9 @@ function modificarDestinos() {
   let idDestino = this.getAttribute("data-id-destino");
   let d = s.obtenerDestinoById(idDestino);
   let slcEstado = document.querySelector(".slcAP").value;
-  let slcOferta = document.querySelector(".slcOferta").value;
+  let oferta = document.querySelector(".slcOferta").value;
 
-  if (slcOferta === "si") {
+  if (oferta === "si") {
     d.oferta = "si";
   } else {
     d.oferta = "no";
@@ -737,14 +755,14 @@ function insertarAdminDestino() {
           <input type="button" value="-" class="btnRestar" data-id-destino="${d.id}">
           </td>
           <td>
-            <select class="slcAP">
+            <select class="slcAP" name="Estado">
               <option value="#">Seleccione...</option>
               <option value="Activo">Activo</option>
               <option value="Pausado">Pausado</option>
             </select>
           </td>
           <td>
-            <select class="slcOferta">
+            <select class="slcOferta" name="Oferta">
               <option value="#">Seleccione...</option>
               <option value="si">Si</option>
               <option value="no">No</option>
