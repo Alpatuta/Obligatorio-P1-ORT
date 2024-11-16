@@ -134,6 +134,21 @@ function mostrarAdministrarDestinos() {
   mostrarDestinosReserva();
 }
 
+// Mostrar formulario para editar destinos (admin)
+
+document.querySelector("#btnAdministrar").addEventListener("click", formAdministrar);
+
+let destinoAEditar;
+
+function formAdministrar() {
+  let idDestino = document.querySelector("#slcAdminDest").value;
+  destinoAEditar = s.obtenerDestinoById(idDestino);
+  ocultarTodo();
+  document.querySelector("#sHeaderAdmin").style.display = "flex";
+  document.querySelector("#pEditarDest").innerHTML = `Nombre: ${destinoAEditar.nombre}`;
+  mostrar("sEditarDestinos");
+}
+
 //Mostrar manipular reservas (admin)
 document
   .querySelector("#aManipularReservas")
@@ -547,7 +562,7 @@ function bindearBtnReservar() {
 }
 
 function irAReservas() {
-  let idDestino = this.getAttribute("data-id-destino");
+let idDestino = this.getAttribute("data-id-destino");
   mostrarReservarDestinos();
 }
 
@@ -560,7 +575,7 @@ function ofertas() {
   for (let i = 0; i < destinos.length; i++) {
     d = destinos[i];
 
-    if (d.oferta === "si") {
+    if (d.oferta === "si" && d.cupos > 0) {
       cuerpoTabla += `
       <tr>
         <td>${d.nombre}</td>
@@ -699,20 +714,7 @@ function aprobarReservas(idReserva) {
 
 /* Funciones relacionadas al destino */
 
-//Esto deberia ir donde esta todo lo otro de mostrar y ocultar.
-
-document.querySelector("#btnAdministrar").addEventListener("click", formAdministrar);
-
-let destinoAEditar;
-
-function formAdministrar() {
-  let idDestino = document.querySelector("#slcAdminDest").value;
-  destinoAEditar = s.obtenerDestinoById(idDestino);
-  ocultarTodo();
-  document.querySelector("#sHeaderAdmin").style.display = "flex";
-  document.querySelector("#pEditarDest").innerHTML = `Nombre: ${destinoAEditar.nombre}`;
-  mostrar("sEditarDestinos");
-}
+// Editar cupos, estado y oferta de un destino
 
 document.querySelector("#btnGuardarCambios").addEventListener("click", nuevaInfoDestino);
 
@@ -721,7 +723,7 @@ function nuevaInfoDestino (){
   let estado = document.querySelector("#slcEstado").value;
   let oferta = document.querySelector("#slcOferta").value;
 
-  if(!isNaN(cupos) && cupos >= 0 && estado !== "#" && oferta !== "#"){
+  if(!isNaN(cupos) && cupos > 0 && estado !== "#" && oferta !== "#"){
 
     destinoAEditar.cupos = cupos;
 
@@ -736,6 +738,9 @@ function nuevaInfoDestino (){
     } else {
       destinoAEditar.estado = "Activo";
     }
+    document.querySelector("#pEditarDestino").innerHTML = "Cambios guardados con éxito!";
+  } else {
+    document.querySelector("#pEditarDestino").innerHTML = "Debe completar todos los campos.";
   }
 
 }

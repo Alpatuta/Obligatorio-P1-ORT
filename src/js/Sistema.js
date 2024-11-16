@@ -477,7 +477,6 @@ class Sistema {
         }
       }
 
-      //gananciasAsociadas += generadoPorDestino;
       totalGenerado += generadoPorDestino;
 
       informe.push({
