@@ -47,7 +47,7 @@ class Sistema {
         "4213 - 1212 - 4355 - 6533",
         344,
         15000,
-        0
+        5
       ),
       new Cliente(
         "CLI_ID_5",
@@ -191,7 +191,7 @@ class Sistema {
         "Aprobada",
         "CLI_ID_1",
         "Tarjeta",
-        0
+        this.cliente[0].millas
       ),
       new Reservas(
         "DEST_ID_2",
@@ -201,7 +201,7 @@ class Sistema {
         "Aprobada",
         "CLI_ID_2",
         "Millas",
-        0
+        this.cliente[1].millas
       ),
       new Reservas(
         "DEST_ID_3",
@@ -211,7 +211,7 @@ class Sistema {
         "Aprobada",
         "CLI_ID_3",
         "Tarjeta",
-        0
+        this.cliente[2].millas
       ),
       new Reservas(
         "DEST_ID_4",
@@ -221,7 +221,7 @@ class Sistema {
         "Aprobada",
         "CLI_ID_4",
         "Millas",
-        5
+        this.cliente[3].millas
       ),
       new Reservas(
         "DEST_ID_5",
@@ -231,7 +231,7 @@ class Sistema {
         "Aprobada",
         "CLI_ID_5",
         "Tarjeta",
-        0
+        this.cliente[4].millas
       ),
     ];
   }
@@ -298,7 +298,7 @@ class Sistema {
         "Pendiente",
         this.clienteLogueado.id,
         pMetodoPago,
-        0
+        this.clienteLogueado.millas
       )
     );
     this.idReserva++;
