@@ -128,7 +128,7 @@ function formAdministrar() {
   destinoAEditar = s.obtenerDestinoById(idDestino);
   ocultarTodo();
   document.querySelector("#sHeaderAdmin").style.display = "flex";
-  document.querySelector("#pEditarDest").innerHTML = `Nombre: ${destinoAEditar.nombre}`;
+  AdministrarDestPrecarga()
   mostrar("sEditarDestinos");
 }
 
@@ -360,6 +360,7 @@ function reservarDestino() {
       document.querySelector("#pReservar").innerHTML = `Reserva realizada con éxito!`;
       document.querySelector("#txtCantPersonas").value = "";
       document.querySelector("#slcPago").value = "#";
+      document.querySelector("#slcDestino").value = "#";
     }
   } else {
     document.querySelector("#pReservar").innerHTML = `Complete todo los campos`;
@@ -649,6 +650,16 @@ function aprobarReservas(idReserva) {
     document.querySelector("#tManipularReservasRechazadas").innerHTML += cuerpoTabla;
     r.estado = "Rechazada";
   }
+}
+
+// precarga editar destino
+
+
+function AdministrarDestPrecarga(){
+  document.querySelector("#pEditarDest").innerHTML = `Nombre: ${destinoAEditar.nombre}`;
+  document.querySelector("#txtEditarCupos").value = `${destinoAEditar.cupos}`;
+  document.querySelector("#slcEstado").value = `${destinoAEditar.estado}`;
+  document.querySelector("#slcOferta").value = `${destinoAEditar.oferta}`;
 }
 
 
