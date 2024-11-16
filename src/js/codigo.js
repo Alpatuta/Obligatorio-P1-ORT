@@ -382,7 +382,7 @@ function reservarDestino() {
     if (s.existeReserva(destino, s.clienteLogueado.id) === true) {
       document.querySelector("#pReservar").innerHTML =
         "Ya tiene una reserva para el destino seleccionado. Por favor elija otro destino.";
-    } else if (metodoPago === "Millas" && millasCliente === 0){
+    } else if (metodoPago === "Millas" && millasCliente === 0) {
       document.querySelector("#pReservar").innerHTML = "No tiene millas suficientes. Por favor elija otro método de pago.";
     } else {
       s.reservar(destino, cantPersonas, monto, estado, metodoPago);
@@ -703,61 +703,38 @@ function aprobarReservas(idReserva) {
 
 document.querySelector("#btnAdministrar").addEventListener("click", formAdministrar);
 
-function formAdministrar(){
+let destinoAEditar;
+
+function formAdministrar() {
   let idDestino = document.querySelector("#slcAdminDest").value;
-  let d = s.obtenerDestinoById(idDestino);
+  destinoAEditar = s.obtenerDestinoById(idDestino);
   ocultarTodo();
   document.querySelector("#sHeaderAdmin").style.display = "flex";
-  editarDestinos(d.nombre, d.cupos, d.estado, d.oferta);
+  document.querySelector("#pEditarDest").innerHTML = `Nombre: ${destinoAEditar.nombre}`;
   mostrar("sEditarDestinos");
-}
-
-function editarDestinos (pNombre, pCupos, pEstado, pOferta){
-  document.querySelector("#pEditarDest").innerHTML = `Nombre: ${pNombre}`;
-  document.querySelector("#txtEditarCupos").setAttribute("value", `${pCupos}`);
-  let estado = document.querySelector("#slcEstado").value;
-  let oferta = document.querySelector("#slcOferta").value;
-
-  if (pEstado === "Activo"){
-    estado = pEstado;
-  } else if (pEstado === "Pausado"){
-    estado = "Pausado";
-  }
-
-  if(pOferta === "si"){
-    oferta = pOferta;
-  } else if(pOferta === "no"){
-    oferta = "no";
-  }
-
-
 }
 
 document.querySelector("#btnGuardarCambios").addEventListener("click", nuevaInfoDestino);
 
-function nuevaInfoDestino (idDestino){
-  document.querySelector("#pEditarDest").innerHTML = `Nombre: ${d.nombre}`;
-  let d = s.obtenerDestinoById(idDestino);
+function nuevaInfoDestino (){
   let cupos = Number(document.querySelector("#txtEditarCupos").value);
   let estado = document.querySelector("#slcEstado").value;
   let oferta = document.querySelector("#slcOferta").value;
 
-
-  
   if(!isNaN(cupos) && cupos >= 0 && estado !== "#" && oferta !== "#"){
-    
-    d.cupos = cupos;
-    
+
+    destinoAEditar.cupos = cupos;
+
     if (oferta === "si") {
-      d.oferta = "si";
+      destinoAEditar.oferta = "si";
     } else {
-      d.oferta = "no";
+      destinoAEditar.oferta = "no";
     }
-    
-    if (slcEstado === "Pausado") {
-      d.estado = "Pausado";
+
+    if (estado === "Pausado") {
+      destinoAEditar.estado = "Pausado";
     } else {
-      d.estado = "Activo";
+      destinoAEditar.estado = "Activo";
     }
   }
 
