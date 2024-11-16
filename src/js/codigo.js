@@ -505,7 +505,9 @@ function bindearBtnReservar() {
 
 function irAReservas() {
 let idDestino = this.getAttribute("data-id-destino");
-  mostrarReservarDestinos();
+mostrarDestinosReserva();
+mostrarReservarDestinos();
+document.querySelector("#slcDestino").value = `${idDestino}`;
 }
 
 // Función para mostrar ofertas
@@ -659,8 +661,11 @@ function nuevaInfoDestino (){
   let estado = document.querySelector("#slcEstado").value;
   let oferta = document.querySelector("#slcOferta").value;
 
-  if(!isNaN(cupos) && cupos > 0 && estado !== "#" && oferta !== "#"){
-
+  if(cupos === 0 || estado === "#" || oferta === "#"){
+    document.querySelector("#pEditarDestino").innerHTML = "Debe completar todos los campos.";
+  } else if (isNaN(cupos) || cupos < 0){
+    document.querySelector("#pEditarDestino").innerHTML = "Cupos debe ser un número mayor a 0"
+  } else {
     destinoAEditar.cupos = cupos;
 
     if (oferta === "si") {
@@ -674,9 +679,10 @@ function nuevaInfoDestino (){
     } else {
       destinoAEditar.estado = "Activo";
     }
+    document.querySelector("#txtEditarCupos").value = "";
+    document.querySelector("#slcEstado").value = "#";
+    document.querySelector("#slcOferta").value = "#";
     document.querySelector("#pEditarDestino").innerHTML = "Cambios guardados con éxito!";
-  } else {
-    document.querySelector("#pEditarDestino").innerHTML = "Debe completar todos los campos.";
   }
 
 }
