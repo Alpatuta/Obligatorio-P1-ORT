@@ -447,6 +447,7 @@ class Sistema {
       } else if (c.millas + c.saldo >= r.monto && d.cupos >= r.cantPersonas) {
         let restaMillas = r.monto - c.millas;
         c.saldo -= restaMillas;
+        c.millas = 0;
         e = "Aprobada";
       } else {
         e = "Rechazada";

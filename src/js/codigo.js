@@ -1,13 +1,8 @@
-// Va todo lo que va a interactuar con el HTML
-
-// Sistema
-
 let s = new Sistema();
 
-// Ocultar todos
+/*Inicio funciones de mostrar/ocultar */
 
 function ocultarTodo() {
-  // document.querySelector("#sRegistro").style.display = "none";
   document.querySelector("#sReservarDestinos").style.display = "none";
   document.querySelector("#sAgregarDestinos").style.display = "none";
   document.querySelector("#sAdministrarDestino").style.display = "none";
@@ -55,9 +50,7 @@ function mostrarRegistro() {
 }
 
 //Mostrar reservar destinos (cliente)
-document
-  .querySelector("#aReservarDestinos")
-  .addEventListener("click", mostrarReservarDestinos);
+document.querySelector("#aReservarDestinos").addEventListener("click", mostrarReservarDestinos);
 
 function mostrarReservarDestinos() {
   ocultarTodo();
@@ -68,9 +61,7 @@ function mostrarReservarDestinos() {
 }
 
 //Mostrar historial de reservas (cliente)
-document
-  .querySelector("#aHistorialReservas")
-  .addEventListener("click", mostrarHistorialReservas);
+document.querySelector("#aHistorialReservas").addEventListener("click", mostrarHistorialReservas);
 
 function mostrarHistorialReservas() {
   ocultarTodo();
@@ -80,9 +71,7 @@ function mostrarHistorialReservas() {
 }
 
 //Mostrar destinos en oferta (cliente)
-document
-  .querySelector("#aDestinosOferta")
-  .addEventListener("click", mostrarDestinosEnOferta);
+document.querySelector("#aDestinosOferta").addEventListener("click", mostrarDestinosEnOferta);
 
 function mostrarDestinosEnOferta() {
   ocultarTodo();
@@ -92,9 +81,7 @@ function mostrarDestinosEnOferta() {
 }
 
 //Mostrar explorar destinos (cliente)
-document
-  .querySelector("#aExplorarDestinos")
-  .addEventListener("click", mostrarExplorarDestinos);
+document.querySelector("#aExplorarDestinos").addEventListener("click", mostrarExplorarDestinos);
 
 function mostrarExplorarDestinos() {
   ocultarTodo();
@@ -112,9 +99,7 @@ function mostrarCliente() {
 }
 
 //Mostrar agregar destinos (admin)
-document
-  .querySelector("#aAgregarDestinos")
-  .addEventListener("click", mostrarAgregarDestinos);
+document.querySelector("#aAgregarDestinos").addEventListener("click", mostrarAgregarDestinos);
 
 function mostrarAgregarDestinos() {
   ocultarTodo();
@@ -123,9 +108,7 @@ function mostrarAgregarDestinos() {
 }
 
 //Mostrar administrar destinos (admin)
-document
-  .querySelector("#aAdministrarDestino")
-  .addEventListener("click", mostrarAdministrarDestinos);
+document.querySelector("#aAdministrarDestino").addEventListener("click", mostrarAdministrarDestinos);
 
 function mostrarAdministrarDestinos() {
   ocultarTodo();
@@ -150,9 +133,7 @@ function formAdministrar() {
 }
 
 //Mostrar manipular reservas (admin)
-document
-  .querySelector("#aManipularReservas")
-  .addEventListener("click", mostrarManipularReservas);
+document.querySelector("#aManipularReservas").addEventListener("click", mostrarManipularReservas);
 
 function mostrarManipularReservas() {
   ocultarTodo();
@@ -163,9 +144,7 @@ function mostrarManipularReservas() {
 }
 
 //Mostrar informe de ganancias (admin)
-document
-  .querySelector("#aInformeGanancias")
-  .addEventListener("click", mostrarInformeGanancias);
+document.querySelector("#aInformeGanancias").addEventListener("click", mostrarInformeGanancias);
 
 function mostrarInformeGanancias() {
   ocultarTodo();
@@ -182,9 +161,7 @@ function mostrarAdmin() {
 }
 
 //Cerrar sesión (admin)
-document
-  .querySelector("#aCerrarSesionAdmin")
-  .addEventListener("click", cerrarSesion);
+document.querySelector("#aCerrarSesionAdmin").addEventListener("click", cerrarSesion);
 
 function cerrarSesion() {
   ocultarTodo();
@@ -194,9 +171,7 @@ function cerrarSesion() {
 }
 
 //Cerrar sesión (cliente)
-document
-  .querySelector("#aCerrarSesionCliente")
-  .addEventListener("click", cerrarSesionC);
+document.querySelector("#aCerrarSesionCliente").addEventListener("click", cerrarSesionC);
 
 function cerrarSesionC() {
   ocultarTodo();
@@ -205,11 +180,16 @@ function cerrarSesionC() {
   mostrar("iniciarSesion");
 }
 
-// Funciones relacionadas al cliente
 
-document
-  .querySelector("#btnRegistro")
-  .addEventListener("click", registroUsuario);
+/*Fin funciones de Mostrar/ocultar */
+
+
+/*Funciones de Registro y login (Admin y cliente) */
+
+
+// Registro
+
+document.querySelector("#btnRegistro").addEventListener("click", registroUsuario);
 
 function registroUsuario() {
   let nombre = document.querySelector("#txtNombre").value;
@@ -224,12 +204,8 @@ function registroUsuario() {
   validarContrasenia(contrasenia);
   let esValida = false;
 
-  if (
-    tarjeta.length === 19 &&
-    tarjeta[4] === "-" &&
-    tarjeta[9] === "-" &&
-    tarjeta[14] === "-"
-  ) {
+  if (tarjeta.length === 19 &&tarjeta[4] === "-" &&tarjeta[9] === "-" &&tarjeta[14] === "-") {
+
     for (let i = 0; i < tarjeta.length; i++) {
       if (tarjeta[i] === "-") {
         tarjeta = tarjeta.replace("-", "");
@@ -238,32 +214,18 @@ function registroUsuario() {
     esValida = validarTarjeta(tarjeta);
   }
 
-  if (
-    nombre === "" ||
-    apellido === "" ||
-    nombreUsuario === "" ||
-    tarjeta === "" ||
-    nbrCvc === ""
-  ) {
+  if (nombre === "" || apellido === "" || nombreUsuario === "" || tarjeta === "" || nbrCvc === "") {
     mensaje = "Debe completar todos los campos.";
   } else if (cliente !== null || admin !== null) {
     mensaje = "El nombre de usuario ya está en uso. ";
   } else if (nbrCvc.length !== 3 || isNaN(nbrCvc)) {
     mensaje = "Formato de CVC incorrecto.";
   } else if (validarContrasenia(contrasenia) === false) {
-    mensaje =
-      "La contraseña debe tener un mínimo de 5 caracteres e incluir una mayúscula, una minúscula y un número.";
+    mensaje = "La contraseña debe tener un mínimo de 5 caracteres e incluir una mayúscula, una minúscula y un número.";
   } else if (esValida === false) {
     mensaje = "Tarjeta inválida.";
   } else {
-    s.registrarCliente(
-      nombre,
-      apellido,
-      nombreUsuario,
-      contrasenia,
-      tarjeta,
-      nbrCvc
-    );
+    s.registrarCliente(nombre, apellido, nombreUsuario, contrasenia, tarjeta, nbrCvc);
     document.querySelector("#txtNombre").value = "";
     document.querySelector("#txtApellido").value = "";
     document.querySelector("#txtUsuario").value = "";
@@ -298,12 +260,7 @@ function validarContrasenia(pContrasenia) {
     }
   }
 
-  if (
-    pContrasenia.length < 5 ||
-    contadorMayus < 1 ||
-    contadorMin < 1 ||
-    contadorNum < 1
-  ) {
+  if (pContrasenia.length < 5 || contadorMayus < 1 || contadorMin < 1 || contadorNum < 1) {
     contraValida = false;
   }
 
@@ -340,7 +297,7 @@ function validarTarjeta(nro) {
   return suma % 10 == 0;
 }
 
-// Función válida tanto para cliente como para admin.
+// Inicio de sesión
 
 document.querySelector("#btnSesion").addEventListener("click", inicioSesion);
 
@@ -375,9 +332,13 @@ function inicioSesion() {
   document.querySelector("#pIniciarSesion").innerHTML = mensaje;
 }
 
-document
-  .querySelector("#btnReservar")
-  .addEventListener("click", reservarDestino);
+
+
+/*Funciones relacionadas con el cliente */
+
+
+
+document.querySelector("#btnReservar").addEventListener("click", reservarDestino);
 
 function reservarDestino() {
   let destino = document.querySelector("#slcDestino").value;
@@ -387,13 +348,7 @@ function reservarDestino() {
   let estado = s.destinos.estado;
   let millasCliente = s.clienteLogueado.millas;
 
-  if (
-    destino !== "#" &&
-    !isNaN(cantPersonas) &&
-    cantPersonas > 0 &&
-    cantPersonas !== "" &&
-    metodoPago !== "#"
-  ) {
+  if (destino !== "#" && !isNaN(cantPersonas) && cantPersonas > 0 && cantPersonas !== "" && metodoPago !== "#") {
     if (s.existeReserva(destino, s.clienteLogueado.id) === true) {
       document.querySelector("#pReservar").innerHTML =
         "Ya tiene una reserva para el destino seleccionado. Por favor elija otro destino.";
@@ -402,9 +357,7 @@ function reservarDestino() {
     } else {
       s.reservar(destino, cantPersonas, monto, estado, metodoPago);
 
-      document.querySelector(
-        "#pReservar"
-      ).innerHTML = `Reserva realizada con éxito!`;
+      document.querySelector("#pReservar").innerHTML = `Reserva realizada con éxito!`;
       document.querySelector("#txtCantPersonas").value = "";
       document.querySelector("#slcPago").value = "#";
     }
@@ -413,7 +366,7 @@ function reservarDestino() {
   }
 }
 
-//Funcion para mostrar destinos en select de reservar destinos
+//Funcion para mostrar destinos en select de reservar destinos y administrar destinos.
 function mostrarDestinosReserva() {
   let destinos = s.destinos;
   let option = `<option value="#">Seleccione un destino...</option>`;
@@ -431,9 +384,7 @@ function mostrarDestinosReserva() {
 }
 
 //Funcion historial de reservas
-document
-  .querySelector("#aHistorialReservas")
-  .addEventListener("click", historialReservas);
+document.querySelector("#aHistorialReservas").addEventListener("click", historialReservas);
 
 function historialReservas() {
   let historial = s.reservas;
@@ -443,12 +394,7 @@ function historialReservas() {
     let h = historial[i];
     let objDestino = s.obtenerDestinoById(h.idDestino);
 
-    if (
-      (objDestino.id === h.idDestino &&
-        h.idCliente === s.clienteLogueado.id &&
-        h.estado === "Aprobada") ||
-      h.estado === "Cancelada"
-    ) {
+    if ((objDestino.id === h.idDestino && h.idCliente === s.clienteLogueado.id && h.estado === "Aprobada") || h.estado === "Cancelada") {
       cuerpoTabla += `
       <tr>
         <td>${objDestino.nombre}</td>
@@ -457,11 +403,7 @@ function historialReservas() {
         <td>${h.estado}</td>
       </tr>
       `;
-    } else if (
-      objDestino.id === h.idDestino &&
-      h.idCliente === s.clienteLogueado.id &&
-      h.estado === "Pendiente"
-    ) {
+    } else if (objDestino.id === h.idDestino && h.idCliente === s.clienteLogueado.id && h.estado === "Pendiente") {
       cuerpoTabla += `
       <tr>
         <td>${objDestino.nombre}</td>
@@ -476,6 +418,8 @@ function historialReservas() {
   document.querySelector("#tHistorial").innerHTML = cuerpoTabla;
   bindearBtnCancelar();
 }
+
+// cancelar reserva pendiente desde historial de reservas
 
 function bindearBtnCancelar() {
   let botones = document.querySelectorAll(".btnCancelar");
@@ -495,7 +439,7 @@ function cancelarReserva() {
   historialReservas();
 }
 
-//Funcion para manipular reservas
+//Funcion para mostrar precargadas en historial reservas
 function mostrarPrecargadas() {
   let precargadas = s.reservas;
 
@@ -520,11 +464,9 @@ function mostrarPrecargadas() {
     cuerpoTabla;
 }
 
-//Funcion explorar destinos // Cambiar de lugar??
+//Funcion explorar destinos
 
-document
-  .querySelector("#aExplorarDestinos")
-  .addEventListener("click", explorar);
+document.querySelector("#aExplorarDestinos").addEventListener("click", explorar);
 
 function explorar() {
   let destinos = s.destinos;
@@ -566,6 +508,8 @@ let idDestino = this.getAttribute("data-id-destino");
   mostrarReservarDestinos();
 }
 
+// Función para mostrar ofertas
+
 document.querySelector("#aDestinosOferta").addEventListener("click", ofertas);
 
 function ofertas() {
@@ -575,7 +519,7 @@ function ofertas() {
   for (let i = 0; i < destinos.length; i++) {
     d = destinos[i];
 
-    if (d.oferta === "si" && d.cupos > 0) {
+    if (d.oferta === "si" && d.cupos > 0 && d.estado === "Activo") {
       cuerpoTabla += `
       <tr>
         <td>${d.nombre}</td>
@@ -592,7 +536,11 @@ function ofertas() {
   bindearBtnReservar();
 }
 
-// Funciones relacionadas al admin
+
+
+/*Funciones relacionadas al admin */
+
+
 
 //Funcion para crear un destino
 document.querySelector("#btnCrear").addEventListener("click", crearDestino);
@@ -604,18 +552,10 @@ function crearDestino() {
   let imagen = document.querySelector("#txtImagen").value;
   let cupos = Number(document.querySelector("#txtCupos").value);
 
-  if (
-    nombre === "" ||
-    precio === "" ||
-    desc === "" ||
-    imagen === "" ||
-    cupos === ""
-  ) {
-    document.querySelector("#pCrear").innerHTML =
-      "Debe completar todos los campos.";
+  if (nombre === "" || precio === "" || desc === "" || imagen === "" || cupos === "") {
+    document.querySelector("#pCrear").innerHTML = "Debe completar todos los campos.";
   } else if (isNaN(precio) || isNaN(cupos) || precio < 0 || cupos < 0) {
-    document.querySelector("#pCrear").innerHTML =
-      "Precio por persona y Cantidad de cupos deben ser números mayores a 0";
+    document.querySelector("#pCrear").innerHTML = "Precio por persona y Cantidad de cupos deben ser números mayores a 0";
   } else {
     s.agregarDestino(nombre, precio, desc, imagen, cupos);
     document.querySelector("#pCrear").innerHTML = "Destino creado con éxito!";
@@ -648,8 +588,7 @@ function mostrarPendientes() {
     }
   }
 
-  document.querySelector("#tManipularReservasPendientes").innerHTML =
-    cuerpoTabla;
+  document.querySelector("#tManipularReservasPendientes").innerHTML = cuerpoTabla;
   bindearReservas();
 }
 
@@ -698,21 +637,18 @@ function aprobarReservas(idReserva) {
   }
 
   if (s.procesarReserva(idReserva) === "Aprobada") {
-    document.querySelector("#tManipularReservasAprobadas").innerHTML +=
-      cuerpoTabla;
+    document.querySelector("#tManipularReservasAprobadas").innerHTML +=  cuerpoTabla;
     r.estado = "Aprobada";
 
     if (d.cupos === 0) {
       d.estado = "Pausado";
     }
   } else if (s.procesarReserva(idReserva) === "Rechazada") {
-    document.querySelector("#tManipularReservasRechazadas").innerHTML +=
-      cuerpoTabla;
+    document.querySelector("#tManipularReservasRechazadas").innerHTML += cuerpoTabla;
     r.estado = "Rechazada";
   }
 }
 
-/* Funciones relacionadas al destino */
 
 // Editar cupos, estado y oferta de un destino
 
