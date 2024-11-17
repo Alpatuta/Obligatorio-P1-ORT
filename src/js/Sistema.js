@@ -479,7 +479,7 @@ class Sistema {
         let reserva = this.reservas[j];
 
         if (reserva.idDestino === destino.id && reserva.estado === "Aprobada") {
-          clientesPorDestino++;
+          clientesPorDestino+= reserva.cantPersonas;
           generadoPorDestino += reserva.monto;
           gananciasAsociadas = generadoPorDestino;
           gananciasAsociadas -= reserva.millas;

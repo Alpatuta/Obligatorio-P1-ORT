@@ -120,9 +120,7 @@ function mostrarAgregarDestinos() {
 }
 
 //Mostrar administrar destinos (admin)
-document
-  .querySelector("#aAdministrarDestino")
-  .addEventListener("click", mostrarAdministrarDestinos);
+document.querySelector("#aAdministrarDestino").addEventListener("click", mostrarAdministrarDestinos);
 
 function mostrarAdministrarDestinos() {
   ocultarTodo();
@@ -133,19 +131,22 @@ function mostrarAdministrarDestinos() {
 
 // Mostrar formulario para editar destinos (admin)
 
-document
-  .querySelector("#btnAdministrar")
-  .addEventListener("click", formAdministrar);
+document.querySelector("#btnAdministrar").addEventListener("click", formAdministrar);
 
 let destinoAEditar;
 
 function formAdministrar() {
   let idDestino = document.querySelector("#slcAdminDest").value;
   destinoAEditar = s.obtenerDestinoById(idDestino);
-  ocultarTodo();
-  document.querySelector("#sHeaderAdmin").style.display = "flex";
-  AdministrarDestPrecarga();
-  mostrar("sEditarDestinos");
+
+  if(idDestino === "#"){
+    document.querySelector("#pDestino").innerHTML = "Debe seleccionar un destino para continuar.";
+  } else {
+    ocultarTodo();
+    document.querySelector("#sHeaderAdmin").style.display = "flex";
+    AdministrarDestPrecarga();
+    mostrar("sEditarDestinos");
+  }
 }
 
 //Mostrar manipular reservas (admin)
@@ -736,9 +737,7 @@ function aprobarReservas(idReserva) {
 // precarga editar destino
 
 function AdministrarDestPrecarga() {
-  document.querySelector(
-    "#pEditarDest"
-  ).innerHTML = `Nombre: ${destinoAEditar.nombre}`;
+  document.querySelector("#pEditarDest").innerHTML = `Nombre: ${destinoAEditar.nombre}`;
   document.querySelector("#txtEditarCupos").value = `${destinoAEditar.cupos}`;
   document.querySelector("#slcEstado").value = `${destinoAEditar.estado}`;
   document.querySelector("#slcOferta").value = `${destinoAEditar.oferta}`;
@@ -747,8 +746,7 @@ function AdministrarDestPrecarga() {
 // Editar cupos, estado y oferta de un destino
 
 document
-  .querySelector("#btnGuardarCambios")
-  .addEventListener("click", nuevaInfoDestino);
+  .querySelector("#btnGuardarCambios").addEventListener("click", nuevaInfoDestino);
 
 function nuevaInfoDestino() {
   let cupos = Number(document.querySelector("#txtEditarCupos").value);
