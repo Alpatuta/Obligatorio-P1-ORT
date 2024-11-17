@@ -327,7 +327,9 @@ class Sistema {
     let objCliente = null;
 
     for (let i = 0; i < this.cliente.length; i++) {
-      if (this.cliente[i].nUsuario === pUsuario) {
+      let c = this.cliente[i].nUsuario;
+
+      if (c.toLowerCase() === pUsuario.toLowerCase()) {
         objCliente = this.cliente[i];
       }
     }
@@ -339,7 +341,9 @@ class Sistema {
     let objAdmin = null;
 
     for (let i = 0; i < this.admin.length; i++) {
-      if (this.admin[i].nUsuario === pUsuario) {
+      let a = this.admin[i].nUsuario;
+
+      if (a.toLowerCase() === pUsuario.toLowerCase()) {
         objAdmin = this.admin[i];
       }
     }
@@ -353,8 +357,10 @@ class Sistema {
     let objCliente = null;
 
     for (let i = 0; i < this.cliente.length; i++) {
+      let c = this.cliente[i].nUsuario;
+
       if (
-        this.cliente[i].nUsuario === pUsuario &&
+        c.toLowerCase() === pUsuario.toLowerCase() &&
         this.cliente[i].contrasenia === pContrasenia
       ) {
         objCliente = this.cliente[i];
@@ -368,8 +374,10 @@ class Sistema {
     let objAdmin = null;
 
     for (let i = 0; i < this.admin.length; i++) {
+      let a = this.admin[i].nUsuario;
+
       if (
-        this.admin[i].nUsuario === pUsuario &&
+        a.toLowerCase() === pUsuario.toLowerCase() &&
         this.admin[i].contrasenia === pContrasenia
       ) {
         objAdmin = this.admin[i];

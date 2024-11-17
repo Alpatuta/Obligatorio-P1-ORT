@@ -380,6 +380,7 @@ function inicioSesion() {
 
 /*Funciones relacionadas con el cliente */
 
+//Funcion reservar destinos
 document
   .querySelector("#btnReservar")
   .addEventListener("click", reservarDestino);
@@ -564,6 +565,7 @@ function explorar() {
   bindearBtnReservar();
 }
 
+//Funcion bindear botones reservar
 function bindearBtnReservar() {
   let botones = document.querySelectorAll(".goToReserva");
 
@@ -574,6 +576,7 @@ function bindearBtnReservar() {
   }
 }
 
+//Ir a reservas desde explorar destinos
 function irAReservas() {
   let idDestino = this.getAttribute("data-id-destino");
   mostrarDestinosReserva();
@@ -687,6 +690,7 @@ function procesarReserva() {
   aprobarReservas(idReserva);
 }
 
+//Funcion para aprobar o rechazar reservas
 function aprobarReservas(idReserva) {
   let r = s.obtenerReservaById(idReserva);
   let c = s.obtenerClienteById(r.idCliente);
