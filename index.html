@@ -2,9 +2,12 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Catamaran&family=Khula:wght@300;400;600;700;800&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Oswald:wght@200..700&family=Roboto+Slab&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Catamaran&family=Khula:wght@300;400;600;700;800&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Oswald:wght@200..700&family=Roboto+Slab&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="estilos.css" />
     <title>Obligatorio-P1</title>
   </head>
@@ -14,7 +17,8 @@
       <img
         id="logo"
         src="https://i.pinimg.com/originals/52/d5/59/52d5598a7c1b5ee04954924c6be828b2.png"
-        alt="logo"/>
+        alt="logo"
+      />
       <nav>
         <ul id="navPrincipal">
           <li><a id="aExplorarDestinos">Explorar destinos</a></li>
@@ -71,7 +75,7 @@
         <label for="txtCvc">CVC (3 dígitos): </label>
         <input type="text" id="txtCvc" /><br /><br />
 
-        <input type="button" value="Registrarse" id="btnRegistro" /><br/>
+        <input type="button" value="Registrarse" id="btnRegistro" /><br />
         <p id="pRegistro"></p>
 
         <p>
@@ -80,7 +84,6 @@
             >Inicia sesion aqui</a
           >
         </p>
-
       </section>
     </main>
 
@@ -109,198 +112,218 @@
     </main>
 
     <!-- Reservar destinos -->
-    <section id="sReservarDestinos">
-      <h2>Reservar destinos</h2>
+    <div class="seccionesFormularios">
+      <section id="sReservarDestinos">
+        <h2>Reservar destinos</h2>
 
-      <label for="txtCantPersonas">Ingrese la cantidad de personas:</label>
-      <input type="text" id="txtCantPersonas" /><br /><br />
+        <label for="txtCantPersonas">Ingrese la cantidad de personas:</label>
+        <input type="text" id="txtCantPersonas" /><br /><br />
 
-      <label for="slcDestino">Seleccione un destino: </label>
-      <select id="slcDestino"></select>
-      <br /><br />
+        <label for="slcDestino">Seleccione un destino: </label>
+        <select id="slcDestino"></select>
+        <br /><br />
 
-      <label for="slcPago">Seleccione método de pago: </label>
-      <select id="slcPago">
-        <option value="#">Seleccione una opción...</option>
-        <option value="Tarjeta">Tarjeta</option>
-        <option value="Millas">Millas</option></select>
+        <label for="slcPago">Seleccione método de pago: </label>
+        <select id="slcPago">
+          <option value="#">Seleccione una opción...</option>
+          <option value="Tarjeta">Tarjeta</option>
+          <option value="Millas">Millas</option>
+        </select>
 
-      <p id="pMillas"></p><br>
-      <p id="pReservar"></p>
+        <p id="pMillas"></p>
+        <br />
+        <p id="pReservar"></p>
 
-      <input type="button" value="Reservar" id="btnReservar" />
-
-    </section>
+        <input type="button" value="Reservar" id="btnReservar" />
+      </section>
+    </div>
 
     <!-- Agregar destinos -->
-    <section id="sAgregarDestinos">
-      <h2>Agregar destinos</h2>
+    <div class="seccionesFormularios">
+      <section id="sAgregarDestinos">
+        <h2>Agregar destinos</h2>
 
-      <label for="txtNombreDestino">Nombre del destino: </label>
-      <input type="text" id="txtNombreDestino" /><br /><br/>
+        <label for="txtNombreDestino">Nombre del destino: </label>
+        <input type="text" id="txtNombreDestino" /><br /><br />
 
-      <label for="txtPrecio">Precio por persona: </label>
-      <input type="text" id="txtPrecio" /><br /><br/>
+        <label for="txtPrecio">Precio por persona: </label>
+        <input type="text" id="txtPrecio" /><br /><br />
 
-      <label for="txtDesc">Descripción: </label>
-      <input type="text" id="txtDesc" /><br /><br />
+        <label for="txtDesc">Descripción: </label>
+        <input type="text" id="txtDesc" /><br /><br />
 
-      <label for="txtImagen">Imagen (URL): </label>
-      <input type="text" id="txtImagen" /><br /><br />
+        <label for="txtImagen">Imagen (URL): </label>
+        <input type="text" id="txtImagen" /><br /><br />
 
-      <label for="txtCupos">Cupos disponibles: </label>
-      <input type="text" id="txtCupos" /><br/>
-      <p id="pCrear"></p>
-      
-      <input type="button" value="Crear destino" id="btnCrear" />
+        <label for="txtCupos">Cupos disponibles: </label>
+        <input type="text" id="txtCupos" /><br />
+        <p id="pCrear"></p>
 
-    </section>
+        <input type="button" value="Crear destino" id="btnCrear" />
+      </section>
+    </div>
 
     <!-- Administrar destinos -->
-    <section id="sAdministrarDestino">
-      <h2>Administrar destinos</h2>
-      <label for="slcAdminDest">Seleccione el destino:</label>
-      <select id="slcAdminDest"></select><br>
-      <p id="pDestino"></p>
-      <input type="button" value="Administrar" id="btnAdministrar">
-    </section>
-    
-    <section id="sEditarDestinos">
-      <p id="pEditarDest"></p>
-      <label for="txtEditarCupos">Cupos:</label>
-      <input type="text" id="txtEditarCupos" value=""><br><br>
+    <div class="seccionesFormularios">
+      <section id="sAdministrarDestino">
+        <h2>Administrar destinos</h2>
+        <label for="slcAdminDest">Seleccione el destino:</label>
+        <select id="slcAdminDest"></select
+        ><br />
+        <p id="pDestino"></p>
+        <input type="button" value="Administrar" id="btnAdministrar" />
+      </section>
 
-      <label for="slcEstado">Estado</label>
-      <select id="slcEstado">
-        <option value="#">Seleccione...</option>
-        <option value="Activo">Activo</option>
-        <option value="Pausado">Pausado</option>
-      </select><br><br>
+      <section id="sEditarDestinos">
+        <p id="pEditarDest"></p>
+        <label for="txtEditarCupos">Cupos:</label>
+        <input type="text" id="txtEditarCupos" value="" /><br /><br />
 
-      <label for="slcOferta">Oferta:</label>
-      <select id="slcOferta">
-        <option value="#">Seleccione...</option>
-        <option value="si">Si</option>
-        <option value="no">No</option>
-      </select><br>
-      <p id="pEditarDestino"></p>
-      
-      <input type="button" value="Guardar" id="btnGuardarCambios">
+        <label for="slcEstado">Estado</label>
+        <select id="slcEstado">
+          <option value="#">Seleccione...</option>
+          <option value="Activo">Activo</option>
+          <option value="Pausado">Pausado</option></select
+        ><br /><br />
 
+        <label for="slcOferta">Oferta:</label>
+        <select id="slcOferta">
+          <option value="#">Seleccione...</option>
+          <option value="si">Si</option>
+          <option value="no">No</option></select
+        ><br />
+        <p id="pEditarDestino"></p>
 
-    </section>
+        <input type="button" value="Guardar" id="btnGuardarCambios" />
+      </section>
+    </div>
 
-    <section id="sExplorar-destinos">
-      <h2>Explorar destinos</h2>
-      <table border="1" style="border-collapse: collapse">
-        <thead>
-          <tr>
-            <th>Nombre</th>
-            <th>Imagen</th>
-            <th>Descripción</th>
-            <th>Precio por persona</th>
-            <th>Oferta</th>
-          </tr>
-        </thead>
-        <tbody id="tExplorarDestinos"></tbody>
-      </table>
-    </section>
+    <!-- Explorar destinos -->
+    <div class="seccionesTablas">
+      <section id="sExplorar-destinos">
+        <h2>Explorar destinos</h2>
+        <table border="1" style="border-collapse: collapse">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Imagen</th>
+              <th>Descripción</th>
+              <th>Precio por persona</th>
+              <th>Oferta</th>
+            </tr>
+          </thead>
+          <tbody id="tExplorarDestinos"></tbody>
+        </table>
+      </section>
+    </div>
 
-    <section id="sHistorial-reservas">
-      <h2>Historial de reservas</h2>
-      <table border="1">
-        <thead>
-          <tr>
-            <th>Nombre de destino</th>
-            <th>Cantidad de personas</th>
-            <th>Precio total</th>
-            <th>Estado de la reserva</th>
-          </tr>
-        </thead>
-        <tbody id="tHistorial"></tbody>
-      </table>
+    <!-- Historial de reservas -->
+    <div class="seccionesTablas">
+      <section id="sHistorial-reservas">
+        <h2>Historial de reservas</h2>
+        <table border="1">
+          <thead>
+            <tr>
+              <th>Nombre de destino</th>
+              <th>Cantidad de personas</th>
+              <th>Precio total</th>
+              <th>Estado de la reserva</th>
+            </tr>
+          </thead>
+          <tbody id="tHistorial"></tbody>
+        </table>
 
-      <p id="pHistorial"></p>
-    </section>
+        <p id="pHistorial"></p>
+      </section>
+    </div>
 
-    <section id="sDestinos-en-oferta">
-      <h2>Destinos en oferta</h2>
-      <!--Filtrado de explorar destinos. Destinos que cumplan condición de estar en oferta-->
-      <table border="1" style="border-collapse: collapse">
-        <thead>
-          <tr>
-            <th>Nombre</th>
-            <th>Imagen</th>
-            <th>Precio por persona</th>
-            <th>Descripción</th>
-            <th>Cupos</th>
-          </tr>
-        </thead>
-        <tbody id="tDestinosEnOferta"></tbody>
-      </table>
-    </section>
+    <!-- Destinos en oferta -->
+    <div class="seccionesTablas">
+      <section id="sDestinos-en-oferta">
+        <h2>Destinos en oferta</h2>
+        <!--Filtrado de explorar destinos. Destinos que cumplan condición de estar en oferta-->
+        <table border="1" style="border-collapse: collapse">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Imagen</th>
+              <th>Precio por persona</th>
+              <th>Descripción</th>
+              <th>Cupos</th>
+            </tr>
+          </thead>
+          <tbody id="tDestinosEnOferta"></tbody>
+        </table>
+      </section>
+    </div>
 
-    <section id="sManipular-reservas">
-      <h2>Manipulación de reservas</h2>
-      <table border="1" style="border-collapse: collapse">
-        <caption>
-          Aprobadas
-        </caption>
-        <thead>
-          <tr>
-            <th>Nombre</th>
-            <th>Destino</th>
-            <th>Cant personas</th>
-            <th>Precio</th>
-          </tr>
-        </thead>
-        <tbody id="tManipularReservasAprobadas"></tbody>
-      </table>
-      <table border="1" style="border-collapse: collapse">
-        <caption>
-          Pendientes
-        </caption>
-        <thead>
-          <tr>
-            <th>Nombre</th>
-            <th>Destino</th>
-            <th>Cant personas</th>
-            <th>Precio</th>
-          </tr>
-        </thead>
-        <tbody id="tManipularReservasPendientes"></tbody>
-      </table>
-      <table border="1" style="border-collapse: collapse">
-        <caption>
-          Rechazadas
-        </caption>
-        <thead>
-          <tr>
-            <th>Nombre</th>
-            <th>Destino</th>
-            <th>Cant personas</th>
-            <th>Precio</th>
-          </tr>
-        </thead>
-        <tbody id="tManipularReservasRechazadas"></tbody>
-      </table>
-    </section>
+    <!-- Manipular reservas -->
+    <div class="seccionesTablas">
+      <section id="sManipular-reservas">
+        <h2>Manipulación de reservas</h2>
+        <table border="1" style="border-collapse: collapse">
+          <caption>
+            Aprobadas
+          </caption>
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Destino</th>
+              <th>Cant personas</th>
+              <th>Precio</th>
+            </tr>
+          </thead>
+          <tbody id="tManipularReservasAprobadas"></tbody>
+        </table>
+        <table border="1" style="border-collapse: collapse">
+          <caption>
+            Pendientes
+          </caption>
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Destino</th>
+              <th>Cant personas</th>
+              <th>Precio</th>
+            </tr>
+          </thead>
+          <tbody id="tManipularReservasPendientes"></tbody>
+        </table>
+        <table border="1" style="border-collapse: collapse">
+          <caption>
+            Rechazadas
+          </caption>
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Destino</th>
+              <th>Cant personas</th>
+              <th>Precio</th>
+            </tr>
+          </thead>
+          <tbody id="tManipularReservasRechazadas"></tbody>
+        </table>
+      </section>
+    </div>
 
-    <section id="sInforme-ganancias">
-      <h2>Informe de ganancias</h2>
-      <table border="1" style="border-collapse: collapse">
-        <thead>
-          <tr>
-            <th>Destino</th>
-            <th>Cantidad de personas</th>
-            <th>Ganancias asociadas</th>
-            <th>Ganancias por destino</th>
-          </tr>
-        </thead>
-        <tbody id="tInformeGanancias"></tbody>
-      </table>
-      <p id="pGananciasTotal"></p>
-    </section>
+    <!-- Informe de ganancias -->
+    <div class="seccionesTablas">
+      <section id="sInforme-ganancias">
+        <h2>Informe de ganancias</h2>
+        <table border="1" style="border-collapse: collapse">
+          <thead>
+            <tr>
+              <th>Destino</th>
+              <th>Cantidad de personas</th>
+              <th>Ganancias asociadas</th>
+              <th>Ganancias por destino</th>
+            </tr>
+          </thead>
+          <tbody id="tInformeGanancias"></tbody>
+        </table>
+        <p id="pGananciasTotal"></p>
+      </section>
+    </div>
 
     <script src="src/js/Admin.js"></script>
     <script src="src/js/Cliente.js"></script>
