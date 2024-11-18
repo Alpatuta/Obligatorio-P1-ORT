@@ -67,6 +67,7 @@ header img {
 header {
   background-color: #000;
   clear: both;
+  height: 90px;
   text-transform: uppercase;
   display: flex;
   justify-content: space-between;
@@ -81,7 +82,7 @@ header {
 .seccionesTablas section h2 {
   justify-content: center;
   display: flex;
-  margin: 40px;
+  margin: 0 40px 15px 40px;
   padding-bottom: 20px;
 }
 
@@ -89,7 +90,7 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 40px;
+  margin-top: 10px;
 }
 
 #sAgregarDestinos,

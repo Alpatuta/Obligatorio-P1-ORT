@@ -445,7 +445,7 @@ class Sistema {
         d.cupos -= r.cantPersonas;
         e = "Aprobada";
       } else {
-        e = "Rechazada";
+        e = "Cancelada";
       }
     } else if (r.metodoPago === "Millas") {
       if (c.millas >= r.monto && d.cupos >= r.cantPersonas) {
@@ -458,7 +458,7 @@ class Sistema {
         c.millas = 0;
         e = "Aprobada";
       } else {
-        e = "Rechazada";
+        e = "Cancelada";
       }
     }
 

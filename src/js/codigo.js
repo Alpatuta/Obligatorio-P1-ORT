@@ -456,12 +456,7 @@ function historialReservas() {
     let h = historial[i];
     let objDestino = s.obtenerDestinoById(h.idDestino);
 
-    if (
-      (objDestino.id === h.idDestino &&
-        h.idCliente === s.clienteLogueado.id &&
-        h.estado === "Aprobada") ||
-      h.estado === "Cancelada"
-    ) {
+    if ((objDestino.id === h.idDestino && h.idCliente === s.clienteLogueado.id && h.estado === "Aprobada") || h.estado === "Cancelada") {
       cuerpoTabla += `
       <tr>
         <td>${objDestino.nombre}</td>
@@ -470,11 +465,7 @@ function historialReservas() {
         <td>${h.estado}</td>
       </tr>
       `;
-    } else if (
-      objDestino.id === h.idDestino &&
-      h.idCliente === s.clienteLogueado.id &&
-      h.estado === "Pendiente"
-    ) {
+    } else if (objDestino.id === h.idDestino && h.idCliente === s.clienteLogueado.id && h.estado === "Pendiente") {
       cuerpoTabla += `
       <tr>
         <td>${objDestino.nombre}</td>
@@ -709,10 +700,7 @@ function aprobarReservas(idReserva) {
   if (r.estado === "Pendiente") {
     for (let i = 0; i < filas.length; i++) {
       let fila = filas[i];
-      if (
-        fila.querySelector(".btnAprobar").getAttribute("data-id-reserva") ==
-        idReserva
-      ) {
+      if (fila.querySelector(".btnAprobar").getAttribute("data-id-reserva") == idReserva) {
         fila.style.display = "none";
         break;
       }
@@ -727,10 +715,10 @@ function aprobarReservas(idReserva) {
     if (d.cupos === 0) {
       d.estado = "Pausado";
     }
-  } else if (s.procesarReserva(idReserva) === "Rechazada") {
+  } else if (s.procesarReserva(idReserva) === "Cancelada") {
     document.querySelector("#tManipularReservasRechazadas").innerHTML +=
       cuerpoTabla;
-    r.estado = "Rechazada";
+    r.estado = "Cancelada";
   }
 }
 
