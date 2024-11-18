@@ -27,7 +27,7 @@ h6 {
 
 h2 {
   font-weight: 790;
-  color: #ff2929;
+  color: #E10600;
   text-transform: uppercase;
 }
 
@@ -70,7 +70,7 @@ header img {
 
 #navPrincipal,
 #navPrincipalAdmin a:hover {
-  color: #ff2929;
+  color: #E10600;
 }
 
 header {
@@ -186,7 +186,7 @@ select {
 /* boton */
 input[type="button"],
 button {
-  background-color: #ff2929;
+  background-color: #E10600;
   color: #fafafa;
   border: 1px solid #000;
   border-radius: 6px;
@@ -198,8 +198,8 @@ button {
 
 input[type="button"]:hover {
   background-color: #fff;
-  border: 1px solid #ff2929;
-  color: #ff2929;
+  border: 1px solid #E10600;
+  color: #E10600;
 }
 
 input[type="button"]:disabled {
