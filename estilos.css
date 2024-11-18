@@ -47,7 +47,8 @@ nav {
   padding: 10px;
 }
 
-#navPrincipal li {
+#navPrincipal,
+#navPrincipalAdmin li {
   list-style-type: none;
   padding: 10px;
   margin: 5px;
@@ -59,14 +60,16 @@ header img {
   margin-left: 20px;
 }
 
-#navPrincipal a {
+#navPrincipal,
+#navPrincipalAdmin a {
   cursor: pointer;
   color: #fafafa;
   font-size: 14px;
   font-weight: 600;
 }
 
-#navPrincipal a:hover {
+#navPrincipal,
+#navPrincipalAdmin a:hover {
   color: #ff2929;
 }
 
