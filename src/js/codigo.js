@@ -418,7 +418,7 @@ function reservarDestino() {
       document.querySelector("#slcDestino").value = "#";
     }
   } else {
-    document.querySelector("#pReservar").innerHTML = `Complete todo los campos`;
+    document.querySelector("#pReservar").innerHTML = `Complete todos los campos`;
   }
 }
 
