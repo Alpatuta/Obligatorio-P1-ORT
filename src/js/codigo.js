@@ -388,7 +388,7 @@ document
 
 function reservarDestino() {
   let destino = document.querySelector("#slcDestino").value;
-  let cantPersonas = document.querySelector("#txtCantPersonas").value;
+  let cantPersonas = Number(document.querySelector("#txtCantPersonas").value);
   let metodoPago = document.querySelector("#slcPago").value;
   let monto = s.destinos.precio;
   let estado = s.destinos.estado;
