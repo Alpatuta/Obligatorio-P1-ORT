@@ -650,8 +650,7 @@ function mostrarPendientes() {
     }
   }
 
-  document.querySelector("#tManipularReservasPendientes").innerHTML =
-    cuerpoTabla;
+  document.querySelector("#tManipularReservasPendientes").innerHTML = cuerpoTabla;
   bindearReservas();
 }
 
