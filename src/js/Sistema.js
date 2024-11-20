@@ -21,16 +21,16 @@ class Sistema {
     ];
     this.idDestino = 11;
     this.destinos = [
-      new Destino("DEST_ID_1", "Miami", 1600, "Nuevo en la F1, con ambiente de lujo y curvas desafiantes.", "https://s40320.pcdn.co/wp-content/uploads/2021/01/T18-Aerial-scaled.jpg", 20, "Activo", "si"),
-      new Destino("DEST_ID_2", "Monza", 1650, "Velocidades máximas en el templo de la velocidad italiana.", "https://images.daznservices.com/di/library/DAZN_News/24/ca/monza-gp-italia-gran-premio-de-italia-formula-1-f1_9bag38iciu1f118g6l71uo0qg.jpg?t=314989067", 20, "Activo", "no"),
-      new Destino("DEST_ID_3", "Sao Paulo", 1400, "Histórico y emocionante, escenario de finales épicos", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQhyQcL-7BNtDd4RR1WppdgvQSfahsJBup1g&s", 20, "Activo", "no"),
-      new Destino("DEST_ID_4", "Abu Dhabi", 1500, "Emocionante cierre de temporada al atardecer en Yas Marina", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZYY-Pfsz1phVMaxdXv75MuV9LNYh8M6cGBA&s", 20, "Activo", "no"),
-      new Destino("DEST_ID_5", "Bahrein", 1200, "Carrera nocturna en el desierto, famoso por duelos intensos", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhUhh4T_AD2kXnybEiS9UvwRxZyHh_1fNG8A&s", 20, "Activo", "si"),
-      new Destino("DEST_ID_6", "Las Vegas", 1450, "Carrera nocturna en el Strip, debutando en 2023", "https://cdn-7.motorsport.com/images/amp/254NWpx0/s1000/las-vegas-gp-rendering-1.jpg", 20, "Activo", "no"),
-      new Destino("DEST_ID_7", "Barcelona", 1500, "Circuito técnico, importante para pruebas y estrategia", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfo8hxm-Lx2D3NxBruJseRB4Uz7genKl1ZlA&s", 20, "Activo", "no"),
-      new Destino("DEST_ID_8", "Tokio", 1300, "Pista técnica en forma de ocho, amada por pilotos", "https://f1destinations.com/wp-content/uploads/2023/08/2023_Japanese_GP_F1D_Saturday_06380-1024x683.jpg", 20, "Activo", "si"),
-      new Destino("DEST_ID_9", "Mexico", 1300, "Ambiente festivo y altitud desafiante en el Autódromo Hermanos Rodríguez", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJF5iSGI1qKi3yuKi-OlvBdYFrQmZgLW8ADA&s", 20, "Activo", "no"),
-      new Destino("DEST_ID_10", "Monaco", 1800, "Carrera en calles angostas, con curvas desafiantes y glamour", "https://cdn-imgix.headout.com/media/images/7d0797d8d3e5a6961697266f94016da9-Monaco%201.jpg", 20, "Activo", "no"),
+      new Destino("DEST_ID_1", "Miami", 1600, "Nuevo en la F1, con ambiente de lujo y curvas desafiantes.", "https://s40320.pcdn.co/wp-content/uploads/2021/01/T18-Aerial-scaled.jpg", 20, "Activo", true),
+      new Destino("DEST_ID_2", "Monza", 1650, "Velocidades máximas en el templo de la velocidad italiana.", "https://images.daznservices.com/di/library/DAZN_News/24/ca/monza-gp-italia-gran-premio-de-italia-formula-1-f1_9bag38iciu1f118g6l71uo0qg.jpg?t=314989067", 20, "Activo", false),
+      new Destino("DEST_ID_3", "Sao Paulo", 1400, "Histórico y emocionante, escenario de finales épicos", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQhyQcL-7BNtDd4RR1WppdgvQSfahsJBup1g&s", 20, "Activo", false),
+      new Destino("DEST_ID_4", "Abu Dhabi", 1500, "Emocionante cierre de temporada al atardecer en Yas Marina", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZYY-Pfsz1phVMaxdXv75MuV9LNYh8M6cGBA&s", 20, "Activo", false),
+      new Destino("DEST_ID_5", "Bahrein", 1200, "Carrera nocturna en el desierto, famoso por duelos intensos", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhUhh4T_AD2kXnybEiS9UvwRxZyHh_1fNG8A&s", 20, "Activo", true),
+      new Destino("DEST_ID_6", "Las Vegas", 1450, "Carrera nocturna en el Strip, debutando en 2023", "https://cdn-7.motorsport.com/images/amp/254NWpx0/s1000/las-vegas-gp-rendering-1.jpg", 20, "Activo", false),
+      new Destino("DEST_ID_7", "Barcelona", 1500, "Circuito técnico, importante para pruebas y estrategia", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfo8hxm-Lx2D3NxBruJseRB4Uz7genKl1ZlA&s", 20, "Activo", false),
+      new Destino("DEST_ID_8", "Tokio", 1300, "Pista técnica en forma de ocho, amada por pilotos", "https://f1destinations.com/wp-content/uploads/2023/08/2023_Japanese_GP_F1D_Saturday_06380-1024x683.jpg", 20, "Activo", true),
+      new Destino("DEST_ID_9", "Mexico", 1300, "Ambiente festivo y altitud desafiante en el Autódromo Hermanos Rodríguez", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJF5iSGI1qKi3yuKi-OlvBdYFrQmZgLW8ADA&s", 20, "Activo", false),
+      new Destino("DEST_ID_10", "Monaco", 1800, "Carrera en calles angostas, con curvas desafiantes y glamour", "https://cdn-imgix.headout.com/media/images/7d0797d8d3e5a6961697266f94016da9-Monaco%201.jpg", 20, "Activo", false),
     ];
     this.idReserva = 6;
     this.reservas = [
@@ -44,7 +44,7 @@ class Sistema {
 
   registrarCliente(pNombre, pApellido, pUsuario, pContrasenia, pTarjeta, pCvc) {
     this.cliente.push(
-      new Cliente("CLI_ID_" + this.idCliente, pNombre, pApellido, pUsuario, pContrasenia, pTarjeta, pCvc, 15000, 0 ));
+      new Cliente("CLI_ID_" + this.idCliente, pNombre, pApellido, pUsuario, pContrasenia, pTarjeta, pCvc, 15000, 0));
     this.idCliente++;
   }
 
@@ -238,7 +238,7 @@ class Sistema {
           clientesPorDestino += reserva.cantPersonas;
           generadoPorDestino += reserva.monto;
           gananciasAsociadas = generadoPorDestino;
-        }else if (reserva.idDestino === destino.id && reserva.estado === "Aprobada" && reserva.metodoPago === "Millas") {
+        } else if (reserva.idDestino === destino.id && reserva.estado === "Aprobada" && reserva.metodoPago === "Millas") {
           clientesPorDestino += reserva.cantPersonas;
           generadoPorDestino += reserva.monto;
           gananciasAsociadas = generadoPorDestino;
@@ -248,7 +248,7 @@ class Sistema {
 
       totalGenerado += generadoPorDestino;
 
-      informe.push({destino: destino.nombre, clientes: clientesPorDestino, monto: generadoPorDestino, gananciasAsociadas: gananciasAsociadas, total: totalGenerado,});
+      informe.push({ destino: destino.nombre, clientes: clientesPorDestino, monto: generadoPorDestino, gananciasAsociadas: gananciasAsociadas, total: totalGenerado, });
     }
 
     return informe;

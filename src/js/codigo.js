@@ -344,13 +344,11 @@ function reservarDestino() {
   let estado = s.destinos.estado;
   let millasCliente = s.clienteLogueado.millas;
 
-  if (
-    destino !== "#" &&
-    !isNaN(cantPersonas) &&
-    cantPersonas > 0 &&
-    cantPersonas !== "" &&
-    metodoPago !== "#"
-  ) {
+  if (destino === "#" || cantPersonas === "" || metodoPago === "#") {
+    document.querySelector("#pReservar").innerHTML = "Debe completar todos los campos.";
+  } else if (cantPersonas <= 0 || isNaN(cantPersonas)) {
+    document.querySelector("#pReservar").innerHTML = `La cantidad de personas debe ser un valor numérico mayor a 0.`;
+  } else {
     if (s.existeReserva(destino, s.clienteLogueado.id) === true) {
       document.querySelector("#pReservar").innerHTML = "Ya tiene una reserva para el destino seleccionado. Por favor elija otro destino.";
     } else if (metodoPago === "Millas" && millasCliente === 0) {
@@ -455,8 +453,8 @@ function mostrarPrecargadas() {
     let objDestino = s.obtenerDestinoById(pre.idDestino);
 
     if (pre.estado === "Aprobada") {
-      cuerpoTabla += 
-      `<tr>
+      cuerpoTabla +=
+        `<tr>
       <td>${cliente.nombre}</td>
       <td>${objDestino.nombre}</td>
       <td>${pre.cantPersonas}</td>
@@ -475,18 +473,25 @@ document.querySelector("#aExplorarDestinos").addEventListener("click", explorar)
 function explorar() {
   let destinos = s.destinos;
   let cuerpoTabla = "";
+  let valorOferta = "";
 
   for (let i = 0; i < destinos.length; i++) {
     let d = destinos[i];
 
+    if (d.oferta === true) {
+      valorOferta = "Si";
+    } else {
+      valorOferta = "No";
+    }
+
     if (d.estado === "Activo" && d.cupos > 0) {
-      cuerpoTabla += 
-      `<tr>
+      cuerpoTabla +=
+        `<tr>
         <td>${d.nombre}</td>
         <td><img src="${d.img}"></td>
         <td>${d.desc}</td>
         <td>${d.precio}</td>
-        <td>${d.oferta}</td>
+        <td>${valorOferta}</td>
         <td><input type="button" value= "Reservar" class="goToReserva" data-id-destino="${d.id}"></td>
         </tr>
       `;
@@ -527,7 +532,7 @@ function ofertas() {
   for (let i = 0; i < destinos.length; i++) {
     d = destinos[i];
 
-    if (d.oferta === "si" && d.cupos > 0 && d.estado === "Activo") {
+    if (d.oferta === true && d.cupos > 0 && d.estado === "Activo") {
       cuerpoTabla += `
       <tr>
         <td>${d.nombre}</td>
@@ -590,8 +595,8 @@ function mostrarPendientes() {
     let objDestino = s.obtenerDestinoById(pre.idDestino);
 
     if (pre.estado === "Pendiente") {
-      cuerpoTabla += 
-      `<tr>
+      cuerpoTabla +=
+        `<tr>
       <td>${cliente.nombre}</td>
       <td>${objDestino.nombre}</td>
       <td>${pre.cantPersonas}</td>
@@ -666,7 +671,14 @@ function AdministrarDestPrecarga() {
   document.querySelector("#pEditarDest").innerHTML = `Nombre: ${destinoAEditar.nombre}`;
   document.querySelector("#txtEditarCupos").value = `${destinoAEditar.cupos}`;
   document.querySelector("#slcEstado").value = `${destinoAEditar.estado}`;
-  document.querySelector("#slcOferta").value = `${destinoAEditar.oferta}`;
+
+  if (destinoAEditar.oferta === true) {
+    document.querySelector("#slcOferta").value = `si`;
+  } else if (destinoAEditar.oferta === false) {
+    document.querySelector("#slcOferta").value = `no`;
+  } else {
+    document.querySelector("#slcOferta").value = `#`;
+  }
 }
 
 // Editar cupos, estado y oferta de un destino
@@ -678,22 +690,22 @@ function nuevaInfoDestino() {
   let estado = document.querySelector("#slcEstado").value;
   let oferta = document.querySelector("#slcOferta").value;
 
-  if (cupos === 0 || estado === "#" || oferta === "#") {
+  if (cupos === "" || estado === "#" || oferta === "#") {
     document.querySelector("#pEditarDestino").innerHTML =
       "Debe completar todos los campos.";
-  } else if (isNaN(cupos) || cupos < 0) {
+  } else if (isNaN(cupos) || cupos <= 0) {
     document.querySelector("#pEditarDestino").innerHTML =
-      "Cupos debe ser un número mayor a 0";
+      "Cupos debe ser un valor numérico positivo incluido el 0";
   } else {
     destinoAEditar.cupos = cupos;
 
     if (oferta === "si") {
-      destinoAEditar.oferta = "si";
+      destinoAEditar.oferta = true;
     } else {
-      destinoAEditar.oferta = "no";
+      destinoAEditar.oferta = false;
     }
 
-    if (estado === "Pausado") {
+    if (estado === "Pausado" || cupos === 0) {
       destinoAEditar.estado = "Pausado";
     } else {
       destinoAEditar.estado = "Activo";
