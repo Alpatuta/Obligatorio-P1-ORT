@@ -30,9 +30,7 @@ function ocultar(id) {
 }
 
 //Mostrar el inicio de sesión
-document
-  .querySelector("#aIniciarSesion")
-  .addEventListener("click", mostrarInicioSesion);
+document.querySelector("#aIniciarSesion").addEventListener("click", mostrarInicioSesion);
 
 function mostrarInicioSesion() {
   ocultarTodo();
@@ -50,24 +48,18 @@ function mostrarRegistro() {
 }
 
 //Mostrar reservar destinos (cliente)
-document
-  .querySelector("#aReservarDestinos")
-  .addEventListener("click", mostrarReservarDestinos);
+document.querySelector("#aReservarDestinos").addEventListener("click", mostrarReservarDestinos);
 
 function mostrarReservarDestinos() {
   ocultarTodo();
   document.querySelector("#sHeader").style.display = "flex";
   mostrar("sReservarDestinos");
   mostrarDestinosReserva();
-  document.querySelector(
-    "#pMillas"
-  ).innerHTML = `Total de millas: ${s.clienteLogueado.millas}`;
+  document.querySelector("#pMillas").innerHTML = `Total de millas: ${s.clienteLogueado.millas}`;
 }
 
 //Mostrar historial de reservas (cliente)
-document
-  .querySelector("#aHistorialReservas")
-  .addEventListener("click", mostrarHistorialReservas);
+document.querySelector("#aHistorialReservas").addEventListener("click", mostrarHistorialReservas);
 
 function mostrarHistorialReservas() {
   ocultarTodo();
@@ -77,9 +69,7 @@ function mostrarHistorialReservas() {
 }
 
 //Mostrar destinos en oferta (cliente)
-document
-  .querySelector("#aDestinosOferta")
-  .addEventListener("click", mostrarDestinosEnOferta);
+document.querySelector("#aDestinosOferta").addEventListener("click", mostrarDestinosEnOferta);
 
 function mostrarDestinosEnOferta() {
   ocultarTodo();
@@ -89,9 +79,7 @@ function mostrarDestinosEnOferta() {
 }
 
 //Mostrar explorar destinos (cliente)
-document
-  .querySelector("#aExplorarDestinos")
-  .addEventListener("click", mostrarExplorarDestinos);
+document.querySelector("#aExplorarDestinos").addEventListener("click", mostrarExplorarDestinos);
 
 function mostrarExplorarDestinos() {
   ocultarTodo();
@@ -109,9 +97,7 @@ function mostrarCliente() {
 }
 
 //Mostrar agregar destinos (admin)
-document
-  .querySelector("#aAgregarDestinos")
-  .addEventListener("click", mostrarAgregarDestinos);
+document.querySelector("#aAgregarDestinos").addEventListener("click", mostrarAgregarDestinos);
 
 function mostrarAgregarDestinos() {
   ocultarTodo();
@@ -139,7 +125,7 @@ function formAdministrar() {
   let idDestino = document.querySelector("#slcAdminDest").value;
   destinoAEditar = s.obtenerDestinoById(idDestino);
 
-  if(idDestino === "#"){
+  if (idDestino === "#") {
     document.querySelector("#pDestino").innerHTML = "Debe seleccionar un destino para continuar.";
   } else {
     ocultarTodo();
@@ -150,9 +136,7 @@ function formAdministrar() {
 }
 
 //Mostrar manipular reservas (admin)
-document
-  .querySelector("#aManipularReservas")
-  .addEventListener("click", mostrarManipularReservas);
+document.querySelector("#aManipularReservas").addEventListener("click", mostrarManipularReservas);
 
 function mostrarManipularReservas() {
   ocultarTodo();
@@ -163,9 +147,7 @@ function mostrarManipularReservas() {
 }
 
 //Mostrar informe de ganancias (admin)
-document
-  .querySelector("#aInformeGanancias")
-  .addEventListener("click", mostrarInformeGanancias);
+document.querySelector("#aInformeGanancias").addEventListener("click", mostrarInformeGanancias);
 
 function mostrarInformeGanancias() {
   ocultarTodo();
@@ -182,9 +164,7 @@ function mostrarAdmin() {
 }
 
 //Cerrar sesión (admin)
-document
-  .querySelector("#aCerrarSesionAdmin")
-  .addEventListener("click", cerrarSesion);
+document.querySelector("#aCerrarSesionAdmin").addEventListener("click", cerrarSesion);
 
 function cerrarSesion() {
   ocultarTodo();
@@ -194,9 +174,7 @@ function cerrarSesion() {
 }
 
 //Cerrar sesión (cliente)
-document
-  .querySelector("#aCerrarSesionCliente")
-  .addEventListener("click", cerrarSesionC);
+document.querySelector("#aCerrarSesionCliente").addEventListener("click", cerrarSesionC);
 
 function cerrarSesionC() {
   ocultarTodo();
@@ -211,9 +189,7 @@ function cerrarSesionC() {
 
 // Registro
 
-document
-  .querySelector("#btnRegistro")
-  .addEventListener("click", registroUsuario);
+document.querySelector("#btnRegistro").addEventListener("click", registroUsuario);
 
 function registroUsuario() {
   let nombre = document.querySelector("#txtNombre").value;
@@ -228,12 +204,7 @@ function registroUsuario() {
   validarContrasenia(contrasenia);
   let esValida = false;
 
-  if (
-    tarjeta.length === 19 &&
-    tarjeta[4] === "-" &&
-    tarjeta[9] === "-" &&
-    tarjeta[14] === "-"
-  ) {
+  if (tarjeta.length === 19 && tarjeta[4] === "-" && tarjeta[9] === "-" && tarjeta[14] === "-") {
     for (let i = 0; i < tarjeta.length; i++) {
       if (tarjeta[i] === "-") {
         tarjeta = tarjeta.replace("-", "");
@@ -242,32 +213,18 @@ function registroUsuario() {
     esValida = validarTarjeta(tarjeta);
   }
 
-  if (
-    nombre === "" ||
-    apellido === "" ||
-    nombreUsuario === "" ||
-    tarjeta === "" ||
-    nbrCvc === ""
-  ) {
+  if (nombre === "" || apellido === "" || nombreUsuario === "" || tarjeta === "" || nbrCvc === "") {
     mensaje = "Debe completar todos los campos.";
   } else if (cliente !== null || admin !== null) {
     mensaje = "El nombre de usuario ya está en uso. ";
   } else if (nbrCvc.length !== 3 || isNaN(nbrCvc)) {
     mensaje = "Formato de CVC incorrecto.";
   } else if (validarContrasenia(contrasenia) === false) {
-    mensaje =
-      "La contraseña debe tener un mínimo de 5 caracteres e incluir una mayúscula, una minúscula y un número.";
+    mensaje = "La contraseña debe tener un mínimo de 5 caracteres e incluir una mayúscula, una minúscula y un número.";
   } else if (esValida === false) {
     mensaje = "Tarjeta inválida.";
   } else {
-    s.registrarCliente(
-      nombre,
-      apellido,
-      nombreUsuario,
-      contrasenia,
-      tarjeta,
-      nbrCvc
-    );
+    s.registrarCliente(nombre, apellido, nombreUsuario, contrasenia, tarjeta, nbrCvc);
     document.querySelector("#txtNombre").value = "";
     document.querySelector("#txtApellido").value = "";
     document.querySelector("#txtUsuario").value = "";
@@ -302,12 +259,7 @@ function validarContrasenia(pContrasenia) {
     }
   }
 
-  if (
-    pContrasenia.length < 5 ||
-    contadorMayus < 1 ||
-    contadorMin < 1 ||
-    contadorNum < 1
-  ) {
+  if (pContrasenia.length < 5 || contadorMayus < 1 || contadorMin < 1 || contadorNum < 1) {
     contraValida = false;
   }
 
@@ -382,9 +334,7 @@ function inicioSesion() {
 /*Funciones relacionadas con el cliente */
 
 //Funcion reservar destinos
-document
-  .querySelector("#btnReservar")
-  .addEventListener("click", reservarDestino);
+document.querySelector("#btnReservar").addEventListener("click", reservarDestino);
 
 function reservarDestino() {
   let destino = document.querySelector("#slcDestino").value;
@@ -394,25 +344,15 @@ function reservarDestino() {
   let estado = s.destinos.estado;
   let millasCliente = s.clienteLogueado.millas;
 
-  if (
-    destino !== "#" &&
-    !isNaN(cantPersonas) &&
-    cantPersonas > 0 &&
-    cantPersonas !== "" &&
-    metodoPago !== "#"
-  ) {
+  if (destino !== "#" && !isNaN(cantPersonas) && cantPersonas > 0 && cantPersonas !== "" && metodoPago !== "#") {
     if (s.existeReserva(destino, s.clienteLogueado.id) === true) {
-      document.querySelector("#pReservar").innerHTML =
-        "Ya tiene una reserva para el destino seleccionado. Por favor elija otro destino.";
+      document.querySelector("#pReservar").innerHTML = "Ya tiene una reserva para el destino seleccionado. Por favor elija otro destino.";
     } else if (metodoPago === "Millas" && millasCliente === 0) {
-      document.querySelector("#pReservar").innerHTML =
-        "No tiene millas suficientes. Por favor elija otro método de pago.";
+      document.querySelector("#pReservar").innerHTML = "No tiene millas suficientes. Por favor elija otro método de pago.";
     } else {
       s.reservar(destino, cantPersonas, monto, estado, metodoPago);
 
-      document.querySelector(
-        "#pReservar"
-      ).innerHTML = `Reserva realizada con éxito!`;
+      document.querySelector("#pReservar").innerHTML = `Reserva realizada con éxito!`;
       document.querySelector("#txtCantPersonas").value = "";
       document.querySelector("#slcPago").value = "#";
       document.querySelector("#slcDestino").value = "#";
@@ -444,9 +384,7 @@ function mostrarDestinosReserva() {
 }
 
 //Funcion historial de reservas
-document
-  .querySelector("#aHistorialReservas")
-  .addEventListener("click", historialReservas);
+document.querySelector("#aHistorialReservas").addEventListener("click", historialReservas);
 
 function historialReservas() {
   let historial = s.reservas;
@@ -513,7 +451,8 @@ function mostrarPrecargadas() {
     let objDestino = s.obtenerDestinoById(pre.idDestino);
 
     if (pre.estado === "Aprobada") {
-      cuerpoTabla += `<tr>
+      cuerpoTabla += 
+      `<tr>
       <td>${cliente.nombre}</td>
       <td>${objDestino.nombre}</td>
       <td>${pre.cantPersonas}</td>
@@ -522,15 +461,12 @@ function mostrarPrecargadas() {
     }
   }
 
-  document.querySelector("#tManipularReservasAprobadas").innerHTML =
-    cuerpoTabla;
+  document.querySelector("#tManipularReservasAprobadas").innerHTML = cuerpoTabla;
 }
 
 //Funcion explorar destinos
 
-document
-  .querySelector("#aExplorarDestinos")
-  .addEventListener("click", explorar);
+document.querySelector("#aExplorarDestinos").addEventListener("click", explorar);
 
 function explorar() {
   let destinos = s.destinos;
@@ -540,8 +476,8 @@ function explorar() {
     let d = destinos[i];
 
     if (d.estado === "Activo" && d.cupos > 0) {
-      cuerpoTabla += `
-      <tr>
+      cuerpoTabla += 
+      `<tr>
         <td>${d.nombre}</td>
         <td><img src="${d.img}"></td>
         <td>${d.desc}</td>
@@ -616,18 +552,10 @@ function crearDestino() {
   let imagen = document.querySelector("#txtImagen").value;
   let cupos = Number(document.querySelector("#txtCupos").value);
 
-  if (
-    nombre === "" ||
-    precio === "" ||
-    desc === "" ||
-    imagen === "" ||
-    cupos === ""
-  ) {
-    document.querySelector("#pCrear").innerHTML =
-      "Debe completar todos los campos.";
+  if (nombre === "" || precio === "" || desc === "" || imagen === "" || cupos === "") {
+    document.querySelector("#pCrear").innerHTML = "Debe completar todos los campos.";
   } else if (isNaN(precio) || isNaN(cupos) || precio < 0 || cupos < 0) {
-    document.querySelector("#pCrear").innerHTML =
-      "Precio por persona y Cantidad de cupos deben ser números mayores a 0";
+    document.querySelector("#pCrear").innerHTML = "Precio por persona y Cantidad de cupos deben ser números mayores a 0";
   } else {
     s.agregarDestino(nombre, precio, desc, imagen, cupos);
     document.querySelector("#pCrear").innerHTML = "Destino creado con éxito!";
@@ -650,7 +578,8 @@ function mostrarPendientes() {
     let objDestino = s.obtenerDestinoById(pre.idDestino);
 
     if (pre.estado === "Pendiente") {
-      cuerpoTabla += `<tr>
+      cuerpoTabla += 
+      `<tr>
       <td>${cliente.nombre}</td>
       <td>${objDestino.nombre}</td>
       <td>${pre.cantPersonas}</td>
@@ -660,8 +589,7 @@ function mostrarPendientes() {
     }
   }
 
-  document.querySelector("#tManipularReservasPendientes").innerHTML =
-    cuerpoTabla;
+  document.querySelector("#tManipularReservasPendientes").innerHTML = cuerpoTabla;
   bindearReservas();
 }
 
@@ -708,16 +636,14 @@ function aprobarReservas(idReserva) {
   }
 
   if (s.procesarReserva(idReserva) === "Aprobada") {
-    document.querySelector("#tManipularReservasAprobadas").innerHTML +=
-      cuerpoTabla;
+    document.querySelector("#tManipularReservasAprobadas").innerHTML += cuerpoTabla;
     r.estado = "Aprobada";
 
     if (d.cupos === 0) {
       d.estado = "Pausado";
     }
   } else if (s.procesarReserva(idReserva) === "Cancelada") {
-    document.querySelector("#tManipularReservasRechazadas").innerHTML +=
-      cuerpoTabla;
+    document.querySelector("#tManipularReservasRechazadas").innerHTML += cuerpoTabla;
     r.estado = "Cancelada";
   }
 }
@@ -733,8 +659,7 @@ function AdministrarDestPrecarga() {
 
 // Editar cupos, estado y oferta de un destino
 
-document
-  .querySelector("#btnGuardarCambios").addEventListener("click", nuevaInfoDestino);
+document.querySelector("#btnGuardarCambios").addEventListener("click", nuevaInfoDestino);
 
 function nuevaInfoDestino() {
   let cupos = Number(document.querySelector("#txtEditarCupos").value);
@@ -742,11 +667,9 @@ function nuevaInfoDestino() {
   let oferta = document.querySelector("#slcOferta").value;
 
   if (cupos === 0 || estado === "#" || oferta === "#") {
-    document.querySelector("#pEditarDestino").innerHTML =
-      "Debe completar todos los campos.";
+    document.querySelector("#pEditarDestino").innerHTML = "Debe completar todos los campos.";
   } else if (isNaN(cupos) || cupos < 0) {
-    document.querySelector("#pEditarDestino").innerHTML =
-      "Cupos debe ser un número mayor a 0";
+    document.querySelector("#pEditarDestino").innerHTML = "Cupos debe ser un número mayor a 0";
   } else {
     destinoAEditar.cupos = cupos;
 
@@ -764,8 +687,7 @@ function nuevaInfoDestino() {
     document.querySelector("#txtEditarCupos").value = "";
     document.querySelector("#slcEstado").value = "#";
     document.querySelector("#slcOferta").value = "#";
-    document.querySelector("#pEditarDestino").innerHTML =
-      "Cambios guardados con éxito!";
+    document.querySelector("#pEditarDestino").innerHTML = "Cambios guardados con éxito!";
   }
 }
 
@@ -786,9 +708,7 @@ function informeDeGanancias() {
     </tr>
     `;
 
-    document.querySelector(
-      "#pGananciasTotal"
-    ).innerHTML = `Total generado: $${g.total}`;
+    document.querySelector("#pGananciasTotal").innerHTML = `Total generado: $${g.total}`;
   }
 
   document.querySelector("#tInformeGanancias").innerHTML = cuerpoTabla;
