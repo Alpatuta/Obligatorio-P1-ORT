@@ -338,13 +338,19 @@ document.querySelector("#btnReservar").addEventListener("click", reservarDestino
 
 function reservarDestino() {
   let destino = document.querySelector("#slcDestino").value;
-  let cantPersonas = document.querySelector("#txtCantPersonas").value;
+  let cantPersonas = Number(document.querySelector("#txtCantPersonas").value);
   let metodoPago = document.querySelector("#slcPago").value;
   let monto = s.destinos.precio;
   let estado = s.destinos.estado;
   let millasCliente = s.clienteLogueado.millas;
 
-  if (destino !== "#" && !isNaN(cantPersonas) && cantPersonas > 0 && cantPersonas !== "" && metodoPago !== "#") {
+  if (
+    destino !== "#" &&
+    !isNaN(cantPersonas) &&
+    cantPersonas > 0 &&
+    cantPersonas !== "" &&
+    metodoPago !== "#"
+  ) {
     if (s.existeReserva(destino, s.clienteLogueado.id) === true) {
       document.querySelector("#pReservar").innerHTML = "Ya tiene una reserva para el destino seleccionado. Por favor elija otro destino.";
     } else if (metodoPago === "Millas" && millasCliente === 0) {
@@ -357,8 +363,6 @@ function reservarDestino() {
       document.querySelector("#slcPago").value = "#";
       document.querySelector("#slcDestino").value = "#";
     }
-  } else {
-    document.querySelector("#pReservar").innerHTML = `Complete todo los campos`;
   }
 }
 
@@ -552,10 +556,18 @@ function crearDestino() {
   let imagen = document.querySelector("#txtImagen").value;
   let cupos = Number(document.querySelector("#txtCupos").value);
 
-  if (nombre === "" || precio === "" || desc === "" || imagen === "" || cupos === "") {
-    document.querySelector("#pCrear").innerHTML = "Debe completar todos los campos.";
+  if (
+    nombre === "" ||
+    precio === "" ||
+    desc === "" ||
+    imagen === "" ||
+    cupos === ""
+  ) {
+    document.querySelector("#pCrear").innerHTML =
+      "Debe completar todos los campos.";
   } else if (isNaN(precio) || isNaN(cupos) || precio < 0 || cupos < 0) {
-    document.querySelector("#pCrear").innerHTML = "Precio por persona y Cantidad de cupos deben ser números mayores a 0";
+    document.querySelector("#pCrear").innerHTML =
+      "Precio por persona y Cantidad de cupos deben ser números mayores a 0";
   } else {
     s.agregarDestino(nombre, precio, desc, imagen, cupos);
     document.querySelector("#pCrear").innerHTML = "Destino creado con éxito!";
@@ -667,9 +679,11 @@ function nuevaInfoDestino() {
   let oferta = document.querySelector("#slcOferta").value;
 
   if (cupos === 0 || estado === "#" || oferta === "#") {
-    document.querySelector("#pEditarDestino").innerHTML = "Debe completar todos los campos.";
+    document.querySelector("#pEditarDestino").innerHTML =
+      "Debe completar todos los campos.";
   } else if (isNaN(cupos) || cupos < 0) {
-    document.querySelector("#pEditarDestino").innerHTML = "Cupos debe ser un número mayor a 0";
+    document.querySelector("#pEditarDestino").innerHTML =
+      "Cupos debe ser un número mayor a 0";
   } else {
     destinoAEditar.cupos = cupos;
 

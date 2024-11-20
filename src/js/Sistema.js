@@ -284,8 +284,12 @@ class Sistema {
       for (let j = 0; j < this.reservas.length; j++) {
         let reserva = this.reservas[j];
 
-        if (reserva.idDestino === destino.id && reserva.estado === "Aprobada") {
-          clientesPorDestino+= reserva.cantPersonas;
+        if (reserva.idDestino === destino.id && reserva.estado === "Aprobada" && reserva.metodoPago === "Tarjeta") {
+          clientesPorDestino += reserva.cantPersonas;
+          generadoPorDestino += reserva.monto;
+          gananciasAsociadas = generadoPorDestino;
+        }else if (reserva.idDestino === destino.id && reserva.estado === "Aprobada" && reserva.metodoPago === "Millas") {
+          clientesPorDestino += reserva.cantPersonas;
           generadoPorDestino += reserva.monto;
           gananciasAsociadas = generadoPorDestino;
           gananciasAsociadas -= reserva.millas;
