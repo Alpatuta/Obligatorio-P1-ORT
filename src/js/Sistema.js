@@ -44,42 +44,13 @@ class Sistema {
 
   registrarCliente(pNombre, pApellido, pUsuario, pContrasenia, pTarjeta, pCvc) {
     this.cliente.push(
-      new Cliente(
-        "CLI_ID_" + this.idCliente,
-        pNombre,
-        pApellido,
-        pUsuario,
-        pContrasenia,
-        pTarjeta,
-        pCvc,
-        15000,
-        0
-      )
-    );
+      new Cliente("CLI_ID_" + this.idCliente, pNombre, pApellido, pUsuario, pContrasenia, pTarjeta, pCvc, 15000, 0 ));
     this.idCliente++;
   }
 
-  agregarDestino(
-    pNombre,
-    pPrecio,
-    pDescripcion,
-    pImagen,
-    pCupo,
-    pEstado,
-    pOferta
-  ) {
+  agregarDestino(pNombre, pPrecio, pDescripcion, pImagen, pCupo, pEstado, pOferta) {
     this.destinos.push(
-      new Destino(
-        "DEST_ID_" + this.idDestino,
-        pNombre,
-        pPrecio,
-        pDescripcion,
-        pImagen,
-        pCupo,
-        "Activo",
-        "no"
-      )
-    );
+      new Destino("DEST_ID_" + this.idDestino, pNombre, pPrecio, pDescripcion, pImagen, pCupo, "Activo", "no"));
     this.idDestino++;
   }
 
@@ -96,30 +67,15 @@ class Sistema {
     }
 
     this.reservas.push(
-      new Reservas(
-        pIdDestino,
-        this.idReserva,
-        pCantPersonas,
-        pMonto,
-        "Pendiente",
-        this.clienteLogueado.id,
-        pMetodoPago,
-        this.clienteLogueado.millas
-      )
-    );
+      new Reservas(pIdDestino, this.idReserva, pCantPersonas, pMonto, "Pendiente", this.clienteLogueado.id, pMetodoPago, this.clienteLogueado.millas));
     this.idReserva++;
-
-    // calculo de monto total, id destino, metodo de pago (m o e);
   }
 
   existeReserva(pIdDestino, pIdCliente) {
     let existe = false;
 
     for (let i = 0; i < this.reservas.length; i++) {
-      if (
-        this.reservas[i].idDestino === pIdDestino &&
-        this.reservas[i].idCliente === pIdCliente
-      ) {
+      if (this.reservas[i].idDestino === pIdDestino && this.reservas[i].idCliente === pIdCliente) {
         existe = true;
       }
     }
@@ -165,10 +121,7 @@ class Sistema {
     for (let i = 0; i < this.cliente.length; i++) {
       let c = this.cliente[i].nUsuario;
 
-      if (
-        c.toLowerCase() === pUsuario.toLowerCase() &&
-        this.cliente[i].contrasenia === pContrasenia
-      ) {
+      if (c.toLowerCase() === pUsuario.toLowerCase() && this.cliente[i].contrasenia === pContrasenia) {
         objCliente = this.cliente[i];
       }
     }
@@ -182,10 +135,7 @@ class Sistema {
     for (let i = 0; i < this.admin.length; i++) {
       let a = this.admin[i].nUsuario;
 
-      if (
-        a.toLowerCase() === pUsuario.toLowerCase() &&
-        this.admin[i].contrasenia === pContrasenia
-      ) {
+      if (a.toLowerCase() === pUsuario.toLowerCase() && this.admin[i].contrasenia === pContrasenia) {
         objAdmin = this.admin[i];
       }
     }
@@ -298,13 +248,7 @@ class Sistema {
 
       totalGenerado += generadoPorDestino;
 
-      informe.push({
-        destino: destino.nombre,
-        clientes: clientesPorDestino,
-        monto: generadoPorDestino,
-        gananciasAsociadas: gananciasAsociadas,
-        total: totalGenerado,
-      });
+      informe.push({destino: destino.nombre, clientes: clientesPorDestino, monto: generadoPorDestino, gananciasAsociadas: gananciasAsociadas, total: totalGenerado,});
     }
 
     return informe;
