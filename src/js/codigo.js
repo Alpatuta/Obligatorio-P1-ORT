@@ -561,16 +561,10 @@ function crearDestino() {
   let imagen = document.querySelector("#txtImagen").value;
   let cupos = Number(document.querySelector("#txtCupos").value);
 
-  if (
-    nombre === "" ||
-    precio === "" ||
-    desc === "" ||
-    imagen === "" ||
-    cupos === ""
-  ) {
+  if (nombre === "" || desc === "" || imagen === "") {
     document.querySelector("#pCrear").innerHTML =
       "Debe completar todos los campos.";
-  } else if (isNaN(precio) || isNaN(cupos) || precio < 0 || cupos < 0) {
+  } else if (isNaN(precio) || isNaN(cupos) || precio <= 0 || cupos <= 0) {
     document.querySelector("#pCrear").innerHTML =
       "Precio por persona y Cantidad de cupos deben ser números mayores a 0";
   } else {
