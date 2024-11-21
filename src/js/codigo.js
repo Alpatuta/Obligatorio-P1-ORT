@@ -217,7 +217,7 @@ function registroUsuario() {
     mensaje = "Debe completar todos los campos.";
   } else if (cliente !== null || admin !== null) {
     mensaje = "El nombre de usuario ya está en uso. ";
-  } else if (nbrCvc.length !== 3 || isNaN(nbrCvc)) {
+  } else if (nbrCvc.length !== 3 || isNaN(nbrCvc) || nbrCvc < 0) {
     mensaje = "Formato de CVC incorrecto.";
   } else if (validarContrasenia(contrasenia) === false) {
     mensaje = "La contraseña debe tener un mínimo de 5 caracteres e incluir una mayúscula, una minúscula y un número.";
